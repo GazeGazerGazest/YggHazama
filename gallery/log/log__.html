@@ -1,0 +1,180 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<title>イラスト</title>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<link href="../css/lity-2.4.1/dist/lity.css" rel="stylesheet">
+<script src="../css/lity-2.4.1/dist/lity.js"></script></head>
+</head>
+<style>
+	.sample_box{
+	 margin:0 auto;
+	 overflow:hidden;
+	}
+	.sample_box img{
+	 transition:0.2s all;
+	}
+	.sample_box img:hover{
+	  transform:scale(1.1,1.1);
+	  transition:0.2s all;
+	}
+
+
+	
+.tab_contents {
+	width: 100%;
+}
+
+.tab_wrap {
+	width: 100%;
+	margin: 50px auto;
+	opacity: 0.8;
+}
+@media screen and (max-width:900px) {
+	.tab_wrap {
+		width: 100%;
+		margin: 0 auto;
+		opacity: 0.8;
+	}
+}
+
+/*タブボタンデザイン*/
+.tab_lab1, .tab_lab2, .tab_lab3, .tab_lab4 {
+	background: #242424;
+	color: #fff;
+	padding: 15px;
+}
+
+/*タブにチェック入ったとき*/
+#tab1:checked~.tab_lab1 {
+	background: #ffffff;
+	color: #242424;
+}
+#tab2:checked~.tab_lab2 {
+	background: #ffffff;
+	color: #242424;
+}
+#tab3:checked~.tab_lab3 {
+	background: #ffffff;
+	color: #242424;
+}
+#tab4:checked~.tab_lab4 {
+	background: #ffffff;
+	color: #242424;
+}
+
+/*タブボタンとボックス連動*/
+#tab1:checked~.panels #area1 {
+	display: block;
+	background: #242424;
+}
+#tab2:checked~.panels #area2 {
+	display: block;
+	background: #242424;
+}
+#tab3:checked~.panels #area3 {
+	display: block;
+	background: #242424;
+}
+#tab4:checked~.panels #area4 {
+	display: block;
+	background: #242424;
+}
+
+/*チェックボックスとボックス非表示*/
+input[name="check"] {
+	display: none;
+}
+.panel {
+	padding: 50px;
+	display: none;
+}
+
+/*アニメーション設定*/
+@keyframes SlideUp {
+	0% {
+		transform: translateY(50px);
+		/* Y軸方向に50px */
+		opacity: 0;
+		/* 透明 */
+	}
+	100% {
+		transform: translateY(0);
+		/* Y軸方向に0px */
+		opacity: 1;
+		/* 不透明 */
+	}
+}
+/*アニメーション設定end*/
+
+/*ボックスを下から上へ*/
+.panel_content {
+	animation-name: SlideUp;
+	animation-duration: 2s;
+	background-color: #fff;
+	width: 100%;
+}
+
+</style>
+<body width="100%">
+<table style="background:rgba(0,0,0,0.6);" align="center" class="sample_box" border="1">
+	<tr>
+		<td colspan="4">
+			<section class="tab_contents">
+				<div class="tab_wrap">
+					<input id="tab1" type="radio" name="check" checked>
+					<label for="tab1" class="tab_lab1"></label>
+					<div class="panels">
+						<div id="area1" class="panel">
+							<table style="background:rgba(0,0,0,0.6);" align="center" border="1">
+								<tr align="center">
+									<td class="frame">
+										<a href="image/001.jpg" data-lity="data-lity" title="">
+										<img src="image/001.jpg" width="150px"></a>
+									</td>
+									<td class="frame">
+										<a href="image/002.png" data-lity="data-lity" title="">
+										<img src="image/002.png" width="150px"></a>
+									</td>
+									<td class="frame">
+										<a href="image/003.png" data-lity="data-lity" title="">
+										<img src="image/003.png" width="150px"></a>
+									</td>
+									<td class="frame">
+										<a href="image/004.jpg" data-lity="data-lity" title="">
+										<img src="image/004.jpg" width="150px"></a>
+									</td>
+									<td class="frame">
+										<a href="image/005.png" data-lity="data-lity" title="">
+										<img src="image/005.png" width="150px"></a>
+									</td>
+								</tr>
+								<tr align="center">
+									<td class="frame">
+										<a href="image/006.png" data-lity="data-lity" title="">
+										<img src="image/006.png" width="150px"></a>
+									</td>
+									<td class="frame">
+									</td>
+									<td class="frame">
+									</td>
+									<td class="frame">
+									</td>
+									<td class="frame">
+									</td>
+									<td class="frame">
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</section>
+		</td>
+	</tr>
+</table>
+
+
+</body>
+</html>

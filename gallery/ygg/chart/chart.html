@@ -1,0 +1,316 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+<title>イラスト</title>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<link href="../../css/lity-2.4.1/dist/lity.css" rel="stylesheet">
+<script src="../../css/lity-2.4.1/dist/lity.js"></script></head>
+</head>
+<style>
+	.sample_box{
+	 margin:0 auto;
+	 overflow:hidden;
+	}
+	.sample_box img{
+	 transition:0.2s all;
+	}
+	.sample_box img:hover{
+	  transform:scale(1.1,1.1);
+	  transition:0.2s all;
+	}
+
+
+	
+.tab_contents {
+	width: 100%;
+}
+
+.tab_wrap {
+	width: 100%;
+	margin: 50px auto;
+	opacity: 0.8;
+}
+@media screen and (max-width:900px) {
+	.tab_wrap {
+		width: 100%;
+		margin: 0 auto;
+		opacity: 0.8;
+	}
+}
+
+/*タブボタンデザイン*/
+.tab_lab1, .tab_lab2, .tab_lab3, .tab_lab4, .tab_lab5 , .tab_lab6 , .tab_lab7 , .tab_lab8 , .tab_lab9  {
+	background: #242424;
+	color: #fff;
+	padding: 15px;
+}
+
+/*タブにチェック入ったとき*/
+#tab1:checked~.tab_lab1 {
+	background: #ffffff;
+	color: #242424;
+}
+#tab2:checked~.tab_lab2 {
+	background: #ffffff;
+	color: #242424;
+}
+#tab3:checked~.tab_lab3 {
+	background: #ffffff;
+	color: #242424;
+}
+#tab4:checked~.tab_lab4 {
+	background: #ffffff;
+	color: #242424;
+}
+#tab5:checked~.tab_lab5 {
+	background: #ffffff;
+	color: #242424;
+}
+#tab6:checked~.tab_lab6 {
+	background: #ffffff;
+	color: #242424;
+}
+#tab7:checked~.tab_lab7 {
+	background: #ffffff;
+	color: #242424;
+}
+#tab8:checked~.tab_lab8 {
+	background: #ffffff;
+	color: #242424;
+}
+#tab9:checked~.tab_lab9 {
+	background: #ffffff;
+	color: #242424;
+}
+
+/*タブボタンとボックス連動*/
+#tab1:checked~.panels #area1 {
+	display: block;
+	background: #242424;
+}
+#tab2:checked~.panels #area2 {
+	display: block;
+	background: #242424;
+}
+#tab3:checked~.panels #area3 {
+	display: block;
+	background: #242424;
+}
+#tab4:checked~.panels #area4 {
+	display: block;
+	background: #242424;
+}
+#tab5:checked~.panels #area5 {
+	display: block;
+	background: #242424;
+}
+#tab6:checked~.panels #area6 {
+	display: block;
+	background: #242424;
+}
+#tab7:checked~.panels #area7 {
+	display: block;
+	background: #242424;
+}
+#tab8:checked~.panels #area8 {
+	display: block;
+	background: #242424;
+}
+#tab9:checked~.panels #area9 {
+	display: block;
+	background: #242424;
+}
+
+/*チェックボックスとボックス非表示*/
+input[name="check"] {
+	display: none;
+}
+.panel {
+	padding: 50px;
+	display: none;
+}
+
+/*アニメーション設定*/
+@keyframes SlideUp {
+	0% {
+		transform: translateY(50px);
+		/* Y軸方向に50px */
+		opacity: 0;
+		/* 透明 */
+	}
+	100% {
+		transform: translateY(0);
+		/* Y軸方向に0px */
+		opacity: 1;
+		/* 不透明 */
+	}
+}
+/*アニメーション設定end*/
+
+/*ボックスを下から上へ*/
+.panel_content {
+	animation-name: SlideUp;
+	animation-duration: 2s;
+	background-color: #fff;
+	width: 100%;
+}
+
+</style>
+<body width="100%">
+<table style="background:rgba(0,0,0,0.6);" align="center" class="sample_box" border="1">
+	<tr>
+		<td colspan="4">
+			<section class="tab_contents">
+				<div class="tab_wrap">
+					<input id="tab1" type="radio" name="check" checked>
+					<label for="tab1" class="tab_lab1">あさづけ</label>
+					<input id="tab2" type="radio" name="check">
+					<label for="tab2" class="tab_lab2">ウルフ</label>
+					<input id="tab3" type="radio" name="check">
+					<label for="tab3" class="tab_lab3">ラバソ</label>
+					<input id="tab4" type="radio" name="check">
+					<label for="tab4" class="tab_lab4">スマブラの人</label>
+					<input id="tab5" type="radio" name="check">
+					<label for="tab5" class="tab_lab5">はむぱん</label>
+					<input id="tab6" type="radio" name="check">
+					<label for="tab6" class="tab_lab6">カゲロウ</label>
+					<input id="tab7" type="radio" name="check">
+					<label for="tab7" class="tab_lab7">SAVOIA</label>
+					<input id="tab8" type="radio" name="check">
+					<label for="tab8" class="tab_lab8">キリシロ</label>
+					<input id="tab9" type="radio" name="check">
+					<label for="tab9" class="tab_lab9">T</label>
+					<div class="panels">
+						<div id="area1" class="panel">
+							<table style="background:rgba(0,0,0,0.6);" align="center" border="1">
+								<tr align="center">
+									<td class="frame">
+										<a href="https://drive.google.com/file/d/1gwLYptjbtwAXt1xtdq50ayAYlrgM18Zl/preview" data-lity="data-lity" title="【づけ：異能】">
+										<img src="img/001duke.jpg" height="150px"></a>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div id="area2" class="panel">
+							<table style="background:rgba(0,0,0,0.6);" align="center" border="1">
+								<tr align="center">
+									<td class="frame">
+										<a href="https://drive.google.com/file/d/1w9myV3FkhkN6EdefjBWeoTd7ERj2UfYz/preview" data-lity="data-lity" title="【ウル：異能】">
+										<img src="img/001wolf.jpg" height="150px"></a>
+									</td>
+									<td class="frame">
+										<a href="https://drive.google.com/file/d/1EWbylPgcc2qJ42qVCECuSy_hDSzUVKpA/preview" data-lity="data-lity" title="【ウル：アライメント】">
+										<img src="img/002wolf.jpg" height="150px"></a>
+									</td>
+									<td class="frame">
+										<a href="https://drive.google.com/file/d/1-RHzPsuEnNo16sUCNWahJV68LCyq5eCf/preview" data-lity="data-lity" title="【ウル：経済】">
+										<img src="img/003wolf.jpg" height="150px"></a>
+									</td>
+									<td class="frame">
+										<a href="https://drive.google.com/file/d/1mPZITzgcZ06k--FtnD9qlGFsgiJoqmDt/preview" data-lity="data-lity" title="【ウル：かしこさ】">
+										<img src="img/004wolf.jpg" height="150px"></a>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div id="area3" class="panel">
+							<table style="background:rgba(0,0,0,0.6);" align="center" border="1">
+								<tr align="center">
+									<td class="frame">
+										<a href="https://drive.google.com/file/d/10aN061Zw42mq2OgN7UqM5Sl5IwAEMyhY/preview" data-lity="data-lity" title="【ラバ：異能】">
+										<img src="img/001rab.jpg" height="150px"></a>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div id="area4" class="panel">
+							<table style="background:rgba(0,0,0,0.6);" align="center" border="1">
+								<tr align="center">
+									<td class="frame">
+										<a href="https://drive.google.com/file/d/1euMwtbon4K8doLsYabTHqfWUewx41bip/preview" data-lity="data-lity" title="【スマ：異能（客観的）】">
+										<img src="img/001asuma.jpg" height="150px"></a>
+									</td>
+									<td class="frame">
+										<a href="https://drive.google.com/file/d/1GGKs4THGKcfDrA9n_ulXEmRn43QvhUtK/preview" data-lity="data-lity" title="【スマ：異能（主観的）】">
+										<img src="img/001bsuma.jpg" height="150px"></a>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div id="area5" class="panel">
+							<table style="background:rgba(0,0,0,0.6);" align="center" border="1">
+								<tr align="center">
+									<td class="frame">
+										<a href="https://drive.google.com/file/d/1CXwkwNmpM2jXNdcMpukhv9HIqpxyl39z/preview" data-lity="data-lity" title="【はむ：異能】">
+										<img src="img/001ham.jpg" height="150px"></a>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div id="area6" class="panel">
+							<table style="background:rgba(0,0,0,0.6);" align="center" border="1">
+								<tr align="center">
+									<td class="frame">
+										<a href="https://drive.google.com/file/d/1US4yQuZ9Y016ziq-CJfrCC0KVrzuABNr/preview" data-lity="data-lity" title="【カゲ：異能】">
+										<img src="img/001kage.jpg" height="150px"></a>
+									</td>
+									<td class="frame">
+										<a href="https://drive.google.com/file/d/1mKk5eKu0Dnmp9pjvhLbXD6yKAZ5y77lI/preview" data-lity="data-lity" title="【カゲ：アライメント】">
+										<img src="img/002kage.jpg" height="150px"></a>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div id="area7" class="panel">
+							<table style="background:rgba(0,0,0,0.6);" align="center" border="1">
+								<tr align="center">
+									<td class="frame">
+										<a href="https://drive.google.com/file/d/1ZYt0-ZlozDUC6IuF0r56abih82i1zOGo/preview" data-lity="data-lity" title="【SAVO：異能】">
+										<img src="img/001savo.jpg" height="150px"></a>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div id="area8" class="panel">
+							<table style="background:rgba(0,0,0,0.6);" align="center" border="1">
+								<tr align="center">
+									<td class="frame">
+										<a href="https://drive.google.com/file/d/17bVc_vEKCJHqAe2tGmsS5VVcMDITPChH/preview" data-lity="data-lity" title="【キリ：異能】">
+										<img src="img/001kiri.jpg" height="150px"></a>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div id="area9" class="panel">
+							<table style="background:rgba(0,0,0,0.6);" align="center" border="1">
+								<tr align="center">
+									<td class="frame">
+										<a href="https://drive.google.com/file/d/1TkzL6APTIkm9hLfymTVH_QqebQDYCrK0/preview" data-lity="data-lity" title="【T：異能】">
+										<img src="img/001t.jpg" height="150px"></a>
+									</td>
+									<td class="frame">
+										<a href="https://drive.google.com/file/d/1rjv6pvhRNKRmnK358AQZJB0ah78OXo_Z/preview" data-lity="data-lity" title="【T：アライメント】">
+										<img src="img/002t.jpg" height="150px"></a>
+									</td>
+									<td class="frame">
+										<a href="https://drive.google.com/file/d/1pLkhYbQmYKimIuhxz6xktvaYQp2EJNZE/preview" data-lity="data-lity" title="【T：経済】">
+										<img src="img/003t.jpg" height="150px"></a>
+									</td>
+									<td class="frame">
+										<a href="https://drive.google.com/file/d/12qKBTZpXUTP3YcKAFTBkiWLF3FGmINMK/preview" data-lity="data-lity" title="【T：かしこさ】">
+										<img src="img/004t.jpg" width="150px"></a>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</section>
+		</td>
+	</tr>
+</table>
+
+
+</body>
+</html>

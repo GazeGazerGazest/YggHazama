@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>イラスト</title>
+    <link href="../css/lity-2.4.1/dist/lity.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="../css/lity-2.4.1/dist/lity.js"></script>
+    <style>
+        /* 既存のCSS */
+        html {
+            height: 100%;
+        }
+        body {
+            height: 100%;
+            font-family: 'メイリオ', 'Meiryo', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #ffffff;
+            background-size: cover;
+            animation: fadeIn 1s ease 0s 1 normal;
+            -webkit-animation: fadeIn 1s ease 0s 1 normal;
+        }
+        h1 {
+            background-repeat: no-repeat;
+            background-size: 5em;
+            background-position: right;
+            background-color: #000000;
+            padding: 0.5em;
+            border: 0.1em solid #ffffff;
+            color: #ffffff;
+        }
+        h2 {
+            background-repeat: no-repeat;
+            background-image: url(../image/symbol03.png);
+            background-size: 4em;
+            background-position: right;
+            background-color: #000000;
+            padding: 0.5em;
+            border: 0.1em solid #ffffff;
+            color: #ffffff;
+        }
+        h3 {
+            background-repeat: no-repeat;
+            background-image: url(../image/symbol03.png);
+            background-size: 3em;
+            background-position: right;
+            background-color: #000000;
+            padding: 0.5em;
+            border: 0.1em solid #ffffff;
+            color: #ffffff;
+        }
+        a:before {
+            display: inline;
+        }
+        a:link {
+            color: #a080ff;
+            display: inline;
+        }
+        a:visited {
+            color: #a080ff;
+        }
+        .bottun-hover:hover {
+            background: linear-gradient(45deg, rgba(128, 255, 255, 0), rgba(128, 255, 255, 0.5));
+            color: #00ff00;
+        }
+        ul, ol {
+            margin: 0;
+        }
+        .frame {
+            height: 175px;
+            width: 175px;
+        }
+        @keyframes fadeIn {
+            0% {opacity: 0}
+            100% {opacity: 1}
+        }
+        @-webkit-keyframes fadeIn {
+            0% {opacity: 0}
+            100% {opacity: 1}
+        }
+        /* 新しいCSS */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .gallery img {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            object-position: center;
+            cursor: pointer;
+            background-color: #000; /* 背景色を設定して余白が見やすくなるようにします */
+        }
+
+        .lity-prev, .lity-next {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2em;
+            color: white;
+            text-decoration: none;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 0.5em 1em;
+            border-radius: 0.3em;
+            cursor: pointer;
+            z-index: 10001;
+        }
+        .lity-prev {
+            left: 10px;
+        }
+        .lity-next {
+            right: 10px;
+        }
+    </style>
+</head>
+<body width="100%">
+    <h1>イラストギャラリー</h1>
+    <div class="gallery">
+        <a href="image/001.jpg" data-lity><img src="image/001.jpg" alt="Image 1"></a>
+        <a href="image/002.png" data-lity><img src="image/002.png" alt="Image 2"></a>
+        <a href="image/003.png" data-lity><img src="image/003.png" alt="Image 3"></a>
+        <a href="image/004.jpg" data-lity><img src="image/004.jpg" alt="Image 4"></a>
+        <a href="image/005.png" data-lity><img src="image/005.png" alt="Image 5"></a>
+        <a href="image/006.png" data-lity><img src="image/006.png" alt="Image 6"></a>
+        <a href="image/007.jpg" data-lity><img src="image/001.jpg" alt="Image 1"></a>
+        <a href="image/008.png" data-lity><img src="image/002.png" alt="Image 2"></a>
+        <a href="image/009.png" data-lity><img src="image/003.png" alt="Image 3"></a>
+        <a href="image/010.jpg" data-lity><img src="image/004.jpg" alt="Image 4"></a>
+        <a href="image/011.png" data-lity><img src="image/005.png" alt="Image 5"></a>
+        <a href="image/012.png" data-lity><img src="image/006.png" alt="Image 6"></a>
+        <a href="image/007.jpg" data-lity><img src="image/001.jpg" alt="Image 1"></a>
+        <a href="image/008.png" data-lity><img src="image/002.png" alt="Image 2"></a>
+        <a href="image/009.png" data-lity><img src="image/003.png" alt="Image 3"></a>
+        <a href="image/010.jpg" data-lity><img src="image/004.jpg" alt="Image 4"></a>
+        <a href="image/011.png" data-lity><img src="image/005.png" alt="Image 5"></a>
+        <a href="image/012.png" data-lity><img src="image/006.png" alt="Image 6"></a>
+    </div>
+
+    <script>
+        $(document).on('lity:open', function(event, instance) {
+            let currentImage = instance.element();
+            let images = $('.gallery a');
+            let currentIndex = images.index(currentImage);
+
+            let updateImage = function(index) {
+                let newImage = $(images[index]).attr('href');
+                instance.element().attr('href', newImage).find('img').attr('src', newImage);
+            };
+
+            let prevButton = $('<a class="lity-prev">&#10094;</a>');
+            let nextButton = $('<a class="lity-next">&#10095;</a>');
+
+            prevButton.on('click', function(event) {
+                event.stopPropagation();
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                updateImage(currentIndex);
+            });
+
+            nextButton.on('click', function(event) {
+                event.stopPropagation();
+                currentIndex = (currentIndex + 1) % images.length;
+                updateImage(currentIndex);
+            });
+
+            $('body').append(prevButton, nextButton);
+
+            $(document).on('lity:close', function() {
+                prevButton.remove();
+                nextButton.remove();
+            });
+        });
+    </script>
+</body>
+</html>
