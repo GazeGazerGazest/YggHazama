@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>イラスト</title>
+    <title>ログ</title>
     <link href="../css/lity-2.4.1/dist/lity.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="../css/lity-2.4.1/dist/lity.js"></script>
@@ -119,15 +119,21 @@
     </style>
 </head>
 <body width="100%">
-    <h1>イラストギャラリー</h1>
-    <div class="gallery">
-        <a href="image/001.jpg" data-lity><img src="image/001.jpg" alt="Image 1"></a>
-        <a href="image/002.png" data-lity><img src="image/002.png" alt="Image 2"></a>
-        <a href="image/003.png" data-lity><img src="image/003.png" alt="Image 3"></a>
-        <a href="image/004.jpg" data-lity><img src="image/004.jpg" alt="Image 4"></a>
-        <a href="image/005.png" data-lity><img src="image/005.png" alt="Image 5"></a>
-        <a href="image/006.png" data-lity><img src="image/006.png" alt="Image 6"></a>
-    </div>
+
+<div style="margin-top: 50px;">
+	<h1>■ログ一覧</h1>
+	<hr>
+	<table cellspacing="5" cellpadding="5" width="100%" border="0">
+		<tr bgcolor="#460000">
+			<td width="15%">
+				◆エピソード06
+			</td>
+			<td>
+				<a href="log/006_far distant/far distant.html" >far distant</a>
+			</td>
+		</tr>
+	</table>
+</div>
 
     <script>
         $(document).on('lity:open', function(event, instance) {
@@ -163,5 +169,6 @@
             });
         });
     </script>
+
 </body>
 </html>
