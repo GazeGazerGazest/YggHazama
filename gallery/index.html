@@ -32,4 +32,9 @@
 
 
 </body>
+<script>
+window.onload = function() {
+  parent.postMessage(window.location.pathname, "*");
+};
+</script>
 </html>

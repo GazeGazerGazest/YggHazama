@@ -6,25 +6,59 @@
   <meta http-equiv="Pragma" content="no-cache">
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <title>キャンペーン：狭間の住人</title>
-
+  <style>
+    body {
+      transition: background-image 0.5s ease-in-out;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  </style>
 </head>
-<body id="randbg" text="#FFFFFF" background="image/mainbg.png" bgcolor="#000000">
+<body id="randbg" text="#FFFFFF" bgcolor="#000000">
 
   <div class="hamburger-menu">
     <input type="checkbox" id="menu-btn-check">
     <label for="menu-btn-check" class="menu-btn"><span></span></label>
     <div class="menu-content">
-      
       <iframe name="menuwin" src="menu.html" frameborder="0" width="50%" height="100%"></iframe>
     </div>
   </div>
 
-
   <div class="flex-container">
     <iframe name="menuwin" src="menu.html" frameborder="0" class="menuwin" style="flex-grow:0" width="300"></iframe>
-    <iframe name="mainwin" src="top.html" frameborder="0" class="mainwin"></iframe>
+    <iframe id="mainwin" name="mainwin" src="top.html" frameborder="0" class="mainwin"></iframe>
   </div>
+
+  <script>
+    function changeBackground(event) {
+      const pathname = event.data;
+      const body = document.getElementById('randbg');
+
+      console.log('Current iframe src:', pathname);
+
+      if (pathname.includes('lore/ygg/index.html')) {
+        body.style.backgroundImage = 'url("image/yggbg.jpg")';
+      } else if (pathname.includes('lore/arc/index.html')) {
+        body.style.backgroundImage = 'url("image/arcbg.jpg")';
+      } else if (pathname.includes('top.html')) {
+        body.style.backgroundImage = 'url("image/topbg.jpg")';
+      } else if (pathname.includes('gallery/')) {
+        body.style.backgroundImage = 'url("image/gallerybg.jpg")';
+      } else {
+        body.style.backgroundImage = 'url("image/bg.jpg")';
+      }
+
+      console.log('Background image set to:', body.style.backgroundImage);
+    }
+
+    window.addEventListener('message', changeBackground);
+
+    // ページが読み込まれた時に背景画像を設定
+    document.getElementById('mainwin').onload = function() {
+      const mainwin = document.getElementById('mainwin');
+      mainwin.contentWindow.postMessage(mainwin.src, "*");
+    };
+  </script>
 
 </body>
 </html>
-

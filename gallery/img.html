@@ -162,6 +162,12 @@
                 nextButton.remove();
             });
         });
+
+
+window.onload = function() {
+  parent.postMessage(window.location.pathname, "*");
+};
+
     </script>
 </body>
 </html>
