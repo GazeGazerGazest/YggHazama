@@ -26,6 +26,14 @@
 		<summary><b><a style="cursor: pointer; color: white;">ＳＥ一覧</a></b></summary>
 		<ul>ＳＥ一覧
 			<li><a href="#ペネトレイション">ペネトレイション</a>
+			<li><a href="#オールレンジ">オールレンジ</a>
+			<li><a href="#テリトリー">テリトリー</a>
+			<li><a href="#コンティニュー">コンティニュー</a>
+			<li><a href="#ドレイン">ドレイン</a>
+			<li><a href="#ブレイク">ブレイク</a>
+			<li><a href="#チャージ">チャージ</a>
+			<li><a href="#リスク">リスク</a>
+			<li><a href="#トラップ">トラップ</a>
 		</ul>
 	</details>
 	<hr>
@@ -294,22 +302,6 @@
 							</p>
 						</td>
 					</tr>
-					<tr bgcolor="#171717" valign="top">
-						<td bgcolor="#c0c0c0" colspan="15">
-							<p id="グランドクロス"><b><font color="#000000" size="5">
-								■派生効果【グランドクロス】
-							</p></b></font>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="8">
-							<p>
-								 攻撃発動を併用したオールレンジを、<font color="ffff00">威力据え置きで使用できる派生効果。</font><br>
-								 <font color="ff0000">消費ＰＰが３ｐｐ→９ｐｐに上昇する。</font><br>
-								 <font color="8080ff">応用技作成時点でグランドクロス指定する必要はない。</font>
-							</p>
-						</td>
-					</tr>
 					<tr>
 						<td bgcolor="#c0c0c0" colspan="8">
 							<b><font color="#000000">
@@ -322,6 +314,7 @@
 							<p>
 								●全体攻撃時の命中判定は、アクション側は命中判定を１度行い、リアクション側は各々で回避判定を行うという形になる。<br>
 								　ダメージロールも同様に一括で行う。
+								●全体攻撃時の倍差命中ダメージボーナスは、【＋１ｄ】ではなく、【ダメージロールを等倍】となる。<br>
 							</p>
 						</td>
 					</tr>
@@ -453,7 +446,7 @@
 					</tr>
 					<tr bgcolor="#171717" valign="top">
 						<td bgcolor="#c0c0c0" colspan="15">
-							<p id="セットアップ"><b><font color="#000000" size="5">
+							<p id="セットアップ"><b><font color="#000000" size="4">
 								■特殊宣言【セットアップ】
 							</p></b></font>
 						</td>
@@ -469,7 +462,7 @@
 					</tr>
 					<tr bgcolor="#171717" valign="top">
 						<td bgcolor="#c0c0c0" colspan="15">
-							<p id="追加領域"><b><font color="#000000" size="5">
+							<p id="追加領域"><b><font color="#000000" size="4">
 								■派生効果①【追加領域】
 							</p></b></font>
 						</td>
@@ -484,7 +477,7 @@
 					</tr>
 					<tr bgcolor="#171717" valign="top">
 						<td bgcolor="#c0c0c0" colspan="15">
-							<p id="継続領域"><b><font color="#000000" size="5">
+							<p id="継続領域"><b><font color="#000000" size="4">
 								■派生効果②【継続領域】
 							</p></b></font>
 						</td>
@@ -1052,18 +1045,19 @@
 								チャージカウントやチャージ解放の代わりに他のアクションを宣言することも可能。<br>
 								その場合、チャージの状態は次アクションへ持ち越しとなる。<br>
 							</p>
+							<hr size="1">
 							<p>
-								<font color="ff8040">●チャージ継続判定</font>
-								<hr size="1">
+								<font color="ff8040">●チャージ継続判定</font><br>
 								　チャージ中にダメージ判定を受けた場合、以下の偶奇判定を行う。<br>
 								　○偶数：そのままチャージ継続<br>
 								　○奇数：チャージ解除</font>
 							</p>
+							<br>
 						</td>
 					</tr>
 					<tr bgcolor="#171717" valign="top">
 						<td bgcolor="#c0c0c0" colspan="15">
-							<p id="重チャージ"><b><font color="#000000" size="5">
+							<p id="重チャージ"><b><font color="#000000" size="4">
 								■派生効果【重チャージ】
 							</p></b></font>
 						</td>
@@ -1079,6 +1073,7 @@
 								ＰＰ消費は宣言時に一括で消費する。<br>
 								<font color="8080ff">※２ターンなら４p、３ターンなら６p消費　など。 </font>
 							</p>
+							<br>
 						</td>
 					</tr>
 					<tr>
@@ -1213,11 +1208,14 @@
 								※ＳＥ【トラップ】は設置時にリスクロールを行う。</font>
 							</p>
 							<p>
+							<hr size="1">
 							<table cellspacing="5" style="color:#ff8040">
 								<tr valign="top">
-									<td rowspan="4">
-										<font color="ff8040">●リスクロール</font>
+									<td>
+										<font color="ff8040">●リスクロール表</font>
 									</td>
+								</tr>
+								<tr valign="top">
 									<td valign="top" align="right">
 									【６】</td><td>覚醒発動
 									</td>
@@ -1259,13 +1257,20 @@
 										＋１Ｄ６を加える。
 									</td>
 								</tr>
-								<tr>
-									<td valign="top" colspan="2">
-										●補正可能項目
+							</table>
+							<hr size="1">
+							<table cellspacing="5" style="color:#ff8040">
+								<tr valign="top">
+									<td>
+										<font color="ff8040">●補正可能項目</font>
 									</td>
-									<td valign="top" align="left" colspan="3">
-									ダメージ判定、命中判定、回避判定、<br>
-									各種技能判定、解除判定
+								</tr>
+								<tr valign="top">
+									<td valign="top" align="left">
+									<p>
+									→ダメージ判定、命中判定、回避判定、<br>
+									　各種技能判定、解除判定
+									</p>
 									</td>
 								</tr>
 							</table>
@@ -1316,7 +1321,7 @@
 							１ｓｐ
 						</td>
 						<td>
-							３ｐｐ
+							１ｐｐ
 						</td>
 					</tr>
 				</table>
@@ -1397,25 +1402,113 @@
 								<font color="8080ff">※チェイン発動は内包できない。</font><br>
 								トラップには起動条件となる【トリガー】を設定する必要がある。</font>
 							</p>
-							<p><font color="8080ff"
+							<p><font color="8080ff">
 								例）<br>
 								●攻撃された時に防御発動で防御<br>
 								●攻撃された時に攻撃発動で攻撃　など。
-							<p></font>
-							</table>
-							</p>
+							</p></font>
 							<p>
-								トラップの設置対象は【自身or他者（味方or敵）or場】。<br>
+								トラップの設置対象は【自身】【他者（味方or敵）】【場】のいずれか。<br>
 								敵に攻撃するトラップ等の場合は、【刹那対抗/ＳＳ】による対抗ロールが必要となる。
 							</p>
+							<hr size="1">
 							<p>
-								<font color="ff8040">●トリガー</font>
-								<hr size="1">
+								<font color="ff8040">●トリガー</font><br>
 								トラップはそれぞれ設置条件を設定する必要がある。<br>
 								トリガー条件を参照の事。 <br>
-								※トリガーなしもＯＫ。その場合、トラップ解放でのみ発動するトラップとなる。<br>
-								
+								<font color="8080ff">※トリガーなしもＯＫ。その場合、トラップ解放でのみ発動するトラップとなる。</font>
 							</p>
+							<br>
+							<div>
+								<table border="0" width="100%" cellspacing="7">
+									<tr bgcolor="#171717" valign="top">
+										<td bgcolor="#c0c0c0">
+											<p id="派生効果①【トラップ解放】"><b><font color="#000000" size="4">
+												■派生効果①【トラップ解放】
+											</p></b></font>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="8">
+											<p>
+												既に設置しているトラップは、自ターンのアクション宣言前に任意起動できる。<br>
+												<font color="#8080ff">たとえば、トラップ解放→自身の通常手番といった連続行動が可能。</font><br>
+												ただし、ＳＥトラップによる【命中回避判定を刹那対抗／ＳＳ化する】効果は失われる。
+											</p>
+											<br>
+										</td>
+									</tr>
+									<tr bgcolor="#171717" valign="top">
+										<td bgcolor="#c0c0c0">
+											<p id="派生効果②【エネミー設置】"><b><font color="#000000" size="4">
+												■派生効果②【エネミー設置】
+											</p></b></font>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="8">
+											<p>
+												敵対ユニットを設置対象とする場合、設置にも命中判定が必要。<br>
+												失敗時は【場】への設置に置換される。
+											</p>
+											<p>
+												エネミー設置に成功したトラップの起動時は、通常の【刹那対抗／ＳＳ化】効果に加えて、<br>
+												<font color="ffff00">設置対象への【ダメージ判定】と【命中判定】に【＋３ｄ】のボーナスが与えられる。</font>
+											</p>
+											<br>
+										</td>
+									</tr>
+									<tr bgcolor="#171717" valign="top">
+										<td bgcolor="#c0c0c0">
+											<p id="派生組み合わせ①【ダメージトラップ】"><b><font color="#000000" size="4">
+												■派生組み合わせ①【ダメージトラップ】
+											</p></b></font>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="8">
+											<p>
+												攻撃発動を組み込んだトラップも作成可能。<br>
+												<font color="#ff0000">その場合、消費ｐｐが追加で＋３される。</font>
+											</p><br>
+										</td>
+									</tr>
+									<tr bgcolor="#171717" valign="top">
+										<td bgcolor="#c0c0c0">
+											<p id="派生組み合わせ②【チャージトラップ】"><b><font color="#000000" size="4">
+												■派生組み合わせ②【チャージトラップ】
+											</p></b></font>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="8">
+											<p>
+												SE【トラップ】を内包したトラップは、<br>
+												<font color="ffff00">トリガー条件を満たす度にチャージカウントが進む。</font><br>
+												能力者自身がダメージを受けた場合もチャージ継続判定は発生しない。</font>
+											</p>
+											<p>
+												チャージトラップはトラップ解放と同様、<br>
+												【刹那対抗／ＳＳ化】の効果を得られない。
+											</p><br>
+										</td>
+									</tr>
+									<tr bgcolor="#171717" valign="top">
+										<td bgcolor="#c0c0c0">
+											<p id="派生組み合わせ③【リスクトラップ】"><b><font color="#000000" size="4">
+												■派生組み合わせ③【リスクトラップ】
+											</p></b></font>
+										</td>
+									</tr>
+									<tr>
+										<td colspan="8">
+											<p>
+												SE【リスク】を内包したトラップは、設置時にリスクロールを行う。
+											</p><br>
+										</td>
+									</tr>
+								</table>
+							</div>
 						</td>
 					</tr>
 					<tr>
