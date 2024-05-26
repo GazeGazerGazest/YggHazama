@@ -1,0 +1,1345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<room>
+  <game-table name="メイン" width="20" height="15" gridSize="50" imageIdentifier="4774162acdbebf39518ac094c3b72ec343d61b13e2958a5583b521aeedeb9d58" backgroundImageIdentifier="ae362e1ffbb71b796226436cc5fe4b8b51567566d22a20a136f8431235d49383" backgroundFilterType="black" selected="true" gridType="-1" gridColor="#000000e6">
+    <terrain location.name="table" location.x="0" location.y="0" posZ="0" isLocked="true" mode="3" rotate="0">
+      <data name="terrain">
+        <data name="image">
+          <data type="image" name="imageIdentifier"></data>
+          <data type="image" name="wall">c2c1100442c3cd78dd3ea77096a63e406bdbc5e69c708e4cefb330f3dba50647</data>
+          <data type="image" name="floor">./assets/images/tex.jpg</data>
+        </data>
+        <data name="common">
+          <data name="name">地形</data>
+          <data name="width">20</data>
+          <data name="height">11.4</data>
+          <data name="depth">0</data>
+        </data>
+        <data name="detail"></data>
+        <data name="buff"></data>
+      </data>
+    </terrain>
+    <terrain location.name="table" location.x="500" location.y="0" posZ="352.6419933079543" isLocked="true" mode="3" rotate="0">
+      <data name="terrain">
+        <data name="image">
+          <data type="image" name="imageIdentifier"></data>
+          <data type="image" name="wall">620b045dc332ccaad7436e25a9325f8ac6d70aa200c714b90b8c18ef3555aca4</data>
+          <data type="image" name="floor">./assets/images/tex.jpg</data>
+        </data>
+        <data name="common">
+          <data name="name">地形</data>
+          <data name="width">9</data>
+          <data name="height">3</data>
+          <data name="depth">0</data>
+        </data>
+        <data name="detail"></data>
+        <data name="buff"></data>
+      </data>
+    </terrain>
+  </game-table>
+  <game-table name="バトル" width="20" height="15" gridSize="50" imageIdentifier="4774162acdbebf39518ac094c3b72ec343d61b13e2958a5583b521aeedeb9d58" backgroundImageIdentifier="ae362e1ffbb71b796226436cc5fe4b8b51567566d22a20a136f8431235d49383" backgroundFilterType="black" selected="false" gridType="-1" gridColor="#000000e6">
+    <terrain location.name="table" location.x="0" location.y="-325" posZ="125.00000000000011" isLocked="true" mode="3" rotate="0">
+      <data name="terrain">
+        <data name="image">
+          <data type="image" name="imageIdentifier"></data>
+          <data type="image" name="wall">c2c1100442c3cd78dd3ea77096a63e406bdbc5e69c708e4cefb330f3dba50647</data>
+          <data type="image" name="floor">./assets/images/tex.jpg</data>
+        </data>
+        <data name="common">
+          <data name="name">ステージ背景</data>
+          <data name="width">20</data>
+          <data name="height">11.4</data>
+          <data name="depth">0</data>
+        </data>
+        <data name="detail"></data>
+        <data name="buff"></data>
+      </data>
+    </terrain>
+    <terrain location.name="table" location.x="0" location.y="-325" posZ="0" isLocked="true" mode="3" rotate="0">
+      <data name="terrain">
+        <data name="image">
+          <data type="image" name="imageIdentifier"></data>
+          <data type="image" name="wall">7fbc8e5480520c7c3707a82dd88944d70033bc4a554b3a81e2567f544a8fe852</data>
+          <data type="image" name="floor">5bb4b0c675bcb0fe03e148b0b2167a9ef2e4426f0c5c9426d2a5c8b0eb0037b6</data>
+        </data>
+        <data name="common">
+          <data name="name">ステージ</data>
+          <data name="width">20</data>
+          <data name="height">2.5</data>
+          <data name="depth">6.5</data>
+        </data>
+        <data name="detail"></data>
+        <data name="buff"></data>
+      </data>
+    </terrain>
+    <terrain location.name="table" location.x="0" location.y="-300" posZ="125.00000000000007" isLocked="true" mode="3" rotate="360">
+      <data name="terrain">
+        <data name="image">
+          <data type="image" name="imageIdentifier"></data>
+          <data type="image" name="wall">84d2f9ffb29666f17cf74088c770bd44277942c53d2d268f1ffa4766e9aec6ac</data>
+          <data type="image" name="floor">./assets/images/tex.jpg</data>
+        </data>
+        <data name="common">
+          <data name="name">カーテン</data>
+          <data name="width">20</data>
+          <data name="height">11.5</data>
+          <data name="depth">0</data>
+        </data>
+        <data name="detail"></data>
+        <data name="buff"></data>
+      </data>
+    </terrain>
+    <terrain location.name="table" location.x="0" location.y="-325" posZ="625.0000000000001" isLocked="true" mode="3" rotate="0">
+      <data name="terrain">
+        <data name="image">
+          <data type="image" name="imageIdentifier"></data>
+          <data type="image" name="wall">06444d64febab70ef11d3c6ec5a650975f1e10c29b9a1c83f5c66cd3f82146a7</data>
+          <data type="image" name="floor">10384a5e55da32517b9ed70589dddadb291ee7d9c6c0f8fda565b2bf353775d6</data>
+        </data>
+        <data name="common">
+          <data name="name">カーテン上</data>
+          <data name="width">20</data>
+          <data name="height">2.5</data>
+          <data name="depth">5</data>
+        </data>
+        <data name="detail"></data>
+        <data name="buff"></data>
+      </data>
+    </terrain>
+    <terrain location.name="table" location.x="0" location.y="-325" posZ="124.99999999999991" isLocked="true" mode="3" rotate="360">
+      <data name="terrain">
+        <data name="image">
+          <data type="image" name="imageIdentifier"></data>
+          <data type="image" name="wall">10384a5e55da32517b9ed70589dddadb291ee7d9c6c0f8fda565b2bf353775d6</data>
+          <data type="image" name="floor">fa9aedb333acd2d74dcde0aa7d65f194ac6c6a0d99391594e3d2211717736a57</data>
+        </data>
+        <data name="common">
+          <data name="name">左カーテン</data>
+          <data name="width">0</data>
+          <data name="height">11.5</data>
+          <data name="depth">0.5</data>
+        </data>
+        <data name="detail"></data>
+        <data name="buff"></data>
+      </data>
+    </terrain>
+    <terrain location.name="table" location.x="1000" location.y="-325" posZ="125.00000000000023" isLocked="true" mode="3" rotate="360">
+      <data name="terrain">
+        <data name="image">
+          <data type="image" name="imageIdentifier"></data>
+          <data type="image" name="wall">10384a5e55da32517b9ed70589dddadb291ee7d9c6c0f8fda565b2bf353775d6</data>
+          <data type="image" name="floor">ac8daae3d3facbce314a1e514da4956ebe9d39e4cd247a33d29d86d016d39fd1</data>
+        </data>
+        <data name="common">
+          <data name="name">左カーテン</data>
+          <data name="width">0</data>
+          <data name="height">11.5</data>
+          <data name="depth">0.5</data>
+        </data>
+        <data name="detail"></data>
+        <data name="buff"></data>
+      </data>
+    </terrain>
+    <terrain location.name="table" location.x="0" location.y="75" posZ="0" isLocked="true" mode="3" rotate="0">
+      <data name="terrain">
+        <data name="image">
+          <data type="image" name="imageIdentifier"></data>
+          <data type="image" name="wall">f9248ff6309a5b4b23cc727ef868cc5f07f5695cd046f3cc99cbf1493149a09b</data>
+          <data type="image" name="floor">./assets/images/tex.jpg</data>
+        </data>
+        <data name="common">
+          <data name="name">観客</data>
+          <data name="width">20</data>
+          <data name="height">3</data>
+          <data name="depth">0</data>
+        </data>
+        <data name="detail"></data>
+        <data name="buff"></data>
+      </data>
+    </terrain>
+  </game-table>
+  <character location.name="table" location.x="572.2886231027175" location.y="391.01161370833944" posZ="0" rotate="0" roll="0" hideInventory="false" nonTalkFlag="false" overViewWidth="400" overViewMaxHeight="400" chatColorCode.0="#ff0000" chatColorCode.1="#FF0000" chatColorCode.2="#0099FF" syncDummyCounter="1">
+    <data name="character">
+      <data name="image">
+        <data type="image" name="imageIdentifier" currentValue="">bb1597654c74ea2c2214be9dc5cfe4d61466d96a0a203908b5ae44f615e6afe6</data>
+        <data type="image" name="imageIdentifier">9fba3e56a48b259b9779a7d559c3cc99140b060a19023fe68db65465ed89f463</data>
+        <data type="image" name="imageIdentifier">4d39d4be2f2daa3b178ee3ccfb441e25a88e6d8d8ecc810d12dcff23cc51642d</data>
+        <data type="image" name="imageIdentifier">84b0541734a7859c4076719330b159147d91d23680464e0453eaeef6c04f474c</data>
+        <data type="image" name="imageIdentifier">bd36002b9e91a32cd36baee702d7f16d47c7e47f1d3ef55d62999610e5139f8e</data>
+        <data type="image" name="imageIdentifier">ab927e3ab4b3d40b0f74ff38c2225a17bc641d8fb9d4a222c6d4b55c25412aab</data>
+        <data type="image" name="imageIdentifier">6c9bdbc82814be9b67c8845c30b6086fbed33f32197df8b14bdc6b6e96221ac3</data>
+        <data type="image" name="imageIdentifier">954d3d3acdbbb7f0dd420b2f53de5eeb2e4a03085d9a3bd8aa212f7385e095b7</data>
+        <data type="image" name="imageIdentifier">ba530b41040225c4cf8bdfe9cfb4b4fbf8d939a5483274ea5ee45f640ced9887</data>
+        <data type="image" name="imageIdentifier">e1b78c09ffc5916d7403f8ca88ed0b8810d1867c94b8f403b7d5bf18633394cc</data>
+        <data type="image" name="imageIdentifier">16635815e8e4558de46049435d5f5e3b94970c54fda30db0bc0d0b3942811f38</data>
+        <data type="image" name="imageIdentifier">72dc56987ecbc3c1f38a3acfeef0ebba4e25e7c716cd88484d9aa4e2e0b0ee0c</data>
+        <data type="image" name="imageIdentifier">e878b61cbfb40f6d5ca30bd52924b5da100697ec653d48a19a9e6c23c60abcc8</data>
+        <data type="image" name="imageIdentifier">399ee0a53f66818e87f43febebb8c0d39730c6cf6626d3adba679e9ec9333e71</data>
+        <data type="image" name="imageIdentifier">4ca4ce32783e572d4bf0575a2e81afcbd69c383e1045d306fe5c5716731bdfa9</data>
+        <data type="image" name="imageIdentifier">0d55ee33d045fd16404c475eaedf36f360e66d251871cc9cbd18ecb23517c4bc</data>
+        <data type="image" name="imageIdentifier">bb1597654c74ea2c2214be9dc5cfe4d61466d96a0a203908b5ae44f615e6afe6</data>
+        <data type="image" name="imageIdentifier">093296ff66b79e4ebf88f5a79bf06f8f6b9f033de77d7570c27a00c39980158c</data>
+      </data>
+      <data name="common">
+        <data name="name">レミエム（本物）</data>
+        <data name="size">1.3</data>
+      </data>
+      <data name="detail">
+        <data name="リソース&amp;行動値">
+          <data name="HP" type="numberResource" currentValue="6">8</data>
+          <data name="PP" type="numberResource" currentValue="10">36</data>
+          <data name="暴走率" type="numberResource" currentValue="91">150</data>
+          <data name="因子D" type="numberResource" currentValue="9"></data>
+          <data name="行動値">10</data>
+        </data>
+        <data name="情報">
+          <data name="タグ" type="note">【レミエム】
+格闘：1D6+0 / 武器：1D6+1 / 能力：2D6+5
+防御：0 / 抵抗：10 / 行動値：6
+ＳＳ：20+1D6 / 命中：5+1D6 / 回避：11+1D6
+スペック：6 / 精度：12
+活性タイプ：回復型 / カルマ：不死身【アンデッド】 / ＳＰＥ：瞑想
+
+力0 / 威0 / 観13 / 察4 / 知17 / 技11 / 隠1 / 俊0 / 話10 / 読14 / 閃5 / 幸1
+筋1 / 耐1 / 知18 / 精20 / 器4 / 敏1 / 運2
+
+最大HP3 / 最大PP31 / 初期暴走率25%
+
+【応用技】
+《潰す》 SP1 / PP2 / 2d6+5
+《弄ぶ》 SP2 / PP1 / 探索創造
+《本気》 SP3 / PP4～13 / 攻撃創造　Atk複製
+《本気の準備》 SP4 / PP5～14 / 攻撃創造　Atk複製　トリガーなしトラップ
+《圧す》 SP3 / PP4 / 回避-4テリトリー
+《動く》 SP2 / PP3 / Sh複製
+《効かない》 SP4 / PP10 / 精神リフレクトラップ　ヒットトリガー
+《操る》 SP2 / PP4 / 操作付与　対抗：精神
+
+アイテム
+ネクスト3</data>
+        </data>
+        <data name="立ち絵位置">
+          <data type="numberResource" currentValue="0" name="POS">11</data>
+        </data>
+        <data name="コマ画像">
+          <data type="numberResource" currentValue="0" name="ICON">17</data>
+        </data>
+      </data>
+      <data name="buff">
+        <data name="バフ/デバフ"></data>
+      </data>
+    </data>
+    <chat-palette dicebot="Yggdrasill">「いやあの、能力のむちゃくちゃな使い方をしてしまったので……。」
+「私はグリゴリの最高傑作たるレミエムですから。間違っても暴走崩壊とかはありえないんですが……」
+「身体はそうでもなくて………」
+「……………単純に……腰が……。💦」動けないようです＠</chat-palette>
+    <buff-palette dicebot="DiceBot">[PC名]《[応用技名]》 [効果] [継続R]</buff-palette>
+  </character>
+  <character location.name="table" location.x="1000" location.y="0" posZ="0" rotate="0" roll="0" hideInventory="true" nonTalkFlag="true" overViewWidth="600" overViewMaxHeight="600" chatColorCode.0="#808080" chatColorCode.1="#00b4c8" chatColorCode.2="#0099FF" syncDummyCounter="0">
+    <data name="character">
+      <data name="image">
+        <data type="image" name="imageIdentifier" currentValue="コマ絵">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン1">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン2">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン3">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン4">none_icon</data>
+      </data>
+      <data name="common">
+        <data name="name">NPC用</data>
+        <data name="size">2</data>
+      </data>
+      <data name="detail">
+        <data name="リソース&amp;行動値">
+          <data name="HP" type="numberResource">null</data>
+          <data name="PP" type="numberResource">null</data>
+          <data name="暴走率" type="numberResource">150</data>
+          <data name="行動値"></data>
+        </data>
+        <data name="情報">
+          <data name="▼（ＰＣ名）">
+            <data name="■パラメータ／技能" type="note"></data>
+            <data name="■ステータス" type="note"></data>
+          </data>
+          <data name="▼ＮＰＣ特性（?pt/?bp）：">
+            <data name="■通常特性" type="note"></data>
+          </data>
+          <data name="▼能力名【？？？】">
+            <data name="能力タイプ：" type=""></data>
+            <data name="概要" type="note"></data>
+          </data>
+        </data>
+        <data name="立ち絵位置">
+          <data type="numberResource" currentValue="2" name="POS">11</data>
+        </data>
+        <data name="コマ画像">
+          <data type="numberResource" currentValue="0" name="ICON">4</data>
+        </data>
+      </data>
+      <data name="buff">
+        <data name="バフ/デバフ"></data>
+      </data>
+    </data>
+    <chat-palette dicebot="Yggdrasill"></chat-palette>
+    <buff-palette dicebot="DiceBot">[PC名]《[応用技名]》 [効果] [継続R]</buff-palette>
+  </character>
+  <character location.name="table" location.x="1100" location.y="150" posZ="0" rotate="0" roll="0" hideInventory="true" nonTalkFlag="true" overViewWidth="400" overViewMaxHeight="400" chatColorCode.0="#000000" chatColorCode.1="#FF0000" chatColorCode.2="#0099FF" syncDummyCounter="0">
+    <data name="character">
+      <data name="image">
+        <data type="image" name="imageIdentifier" currentValue="">none_icon</data>
+        <data type="image" name="imageIdentifier">none_icon</data>
+        <data type="image" name="imageIdentifier">none_icon</data>
+        <data type="image" name="imageIdentifier">none_icon</data>
+      </data>
+      <data name="common">
+        <data name="name">チンピラ</data>
+        <data name="size">2</data>
+      </data>
+      <data name="detail">
+        <data name="リソース&amp;行動値">
+          <data name="HP" type="numberResource"></data>
+          <data name="PP" type="numberResource"></data>
+          <data name="暴走率" type="numberResource">150</data>
+          <data name="因子D" type="numberResource"></data>
+          <data name="行動値"></data>
+        </data>
+        <data name="情報">
+          <data name="タグ" type="note">（貼り付け表とか感知の内容をここに貼ってね）</data>
+        </data>
+        <data name="立ち絵位置">
+          <data type="numberResource" currentValue="3" name="POS">11</data>
+        </data>
+        <data name="コマ画像">
+          <data type="numberResource" currentValue="0" name="ICON">3</data>
+        </data>
+      </data>
+      <data name="buff">
+        <data name="バフ/デバフ"></data>
+      </data>
+    </data>
+    <chat-palette dicebot="Yggdrasill"></chat-palette>
+    <buff-palette dicebot="DiceBot">[PC名]《[応用技名]》 [効果] [継続R]</buff-palette>
+  </character>
+  <character location.name="table" location.x="1100" location.y="0" posZ="0" rotate="0" roll="0" hideInventory="true" nonTalkFlag="true" overViewWidth="600" overViewMaxHeight="600" chatColorCode.0="#808080" chatColorCode.1="#00b4c8" chatColorCode.2="#0099FF" syncDummyCounter="0">
+    <data name="character">
+      <data name="image">
+        <data type="image" name="imageIdentifier" currentValue="コマ絵">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン1">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン2">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン3">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン4">none_icon</data>
+      </data>
+      <data name="common">
+        <data name="name">クリーチャー用</data>
+        <data name="size">2</data>
+      </data>
+      <data name="detail">
+        <data name="リソース&amp;行動値">
+          <data name="HP" type="numberResource">null</data>
+          <data name="行動値"></data>
+        </data>
+        <data name="情報">
+          <data name="▼（ＰＣ名）">
+            <data name="■パラメータ／技能" type="note"></data>
+            <data name="■ステータス" type="note"></data>
+          </data>
+          <data name="▼ＮＰＣ特性（?pt/?bp）：">
+            <data name="■通常特性" type="note"></data>
+          </data>
+          <data name="▼能力名【？？？】">
+            <data name="能力タイプ：" type=""></data>
+            <data name="概要" type="note"></data>
+          </data>
+        </data>
+        <data name="立ち絵位置">
+          <data type="numberResource" currentValue="1" name="POS">11</data>
+        </data>
+        <data name="コマ画像">
+          <data type="numberResource" currentValue="0" name="ICON">4</data>
+        </data>
+      </data>
+      <data name="buff">
+        <data name="バフ/デバフ"></data>
+      </data>
+    </data>
+    <chat-palette dicebot="Yggdrasill"></chat-palette>
+    <buff-palette dicebot="DiceBot">[PC名]《[応用技名]》 [効果] [継続R]</buff-palette>
+  </character>
+  <character location.name="table" location.x="-100" location.y="375" posZ="0" rotate="0" roll="0" hideInventory="false" nonTalkFlag="false" overViewWidth="600" overViewMaxHeight="600" chatColorCode.0="#808080" chatColorCode.1="#00b4c8" chatColorCode.2="#0099FF" syncDummyCounter="0">
+    <data name="character">
+      <data name="image">
+        <data type="image" name="imageIdentifier" currentValue="コマ絵">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン1">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン2">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン3">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン4">none_icon</data>
+      </data>
+      <data name="common">
+        <data name="name">処刑空間</data>
+        <data name="size">1</data>
+      </data>
+      <data name="detail">
+        <data name="リソース&amp;行動値">
+          <data name="HP" type="numberResource" currentValue="1">10</data>
+          <data name="行動値">10</data>
+        </data>
+        <data name="情報">
+          <data name="▼（ＰＣ名）">
+            <data name="■パラメータ／技能" type="note">【応用技】
+《すり潰す》 SP3 / PP5 / ブレイク精神攻撃トラップ　トリガーなし
+《踊らせる》 SP4 / PP5 / 2d6+5 操作　対抗：筋力
+《処刑準備》 SP4 / PP5 / 攻撃+4 回避-4テリトリー
+《弱らせる》 SP2 / PP3 / 2d6+5　回避-4
+《いたぶる》 SP4 / PP7 / 2d6+5　継続4ダメージ+制限付与　対抗：耐久
+</data>
+            <data name="■ステータス" type="note"></data>
+          </data>
+          <data name="▼ＮＰＣ特性（?pt/?bp）：">
+            <data name="■通常特性" type="note"></data>
+          </data>
+          <data name="▼能力名【？？？】">
+            <data name="能力タイプ：" type=""></data>
+            <data name="概要" type="note"></data>
+          </data>
+        </data>
+        <data name="立ち絵位置">
+          <data type="numberResource" currentValue="1" name="POS">11</data>
+        </data>
+        <data name="コマ画像">
+          <data type="numberResource" currentValue="0" name="ICON">4</data>
+        </data>
+      </data>
+      <data name="buff">
+        <data name="バフ/デバフ"></data>
+      </data>
+    </data>
+    <chat-palette dicebot="Yggdrasill">行動値10</chat-palette>
+    <buff-palette dicebot="DiceBot">[PC名]《[応用技名]》 [効果] [継続R]</buff-palette>
+  </character>
+  <character location.name="table" location.x="-175" location.y="625" posZ="0" rotate="-15" roll="0" hideInventory="true" nonTalkFlag="false" overViewWidth="600" overViewMaxHeight="600" chatColorCode.0="#808080" chatColorCode.1="#00b4c8" chatColorCode.2="#0099FF" syncDummyCounter="0">
+    <data name="character">
+      <data name="image">
+        <data type="image" name="imageIdentifier" currentValue="コマ絵">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン1">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン2">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン3">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン4">none_icon</data>
+      </data>
+      <data name="common">
+        <data name="name">探索用</data>
+        <data name="size">1</data>
+      </data>
+      <data name="detail">
+        <data name="リソース&amp;行動値">
+          <data name="HP" type="numberResource" currentValue="2">2</data>
+          <data name="行動値">2</data>
+        </data>
+        <data name="情報">
+          <data name="▼（ＰＣ名）">
+            <data name="■パラメータ／技能" type="note">【探索空間】創造PP0
+創造タイプ:探索型
+クリーチャー能力タイプ：サイキッカー
+防御：0 / 抵抗：0 / 行動値：0
+SS：0+1D6 / 命中：0+1D6 / 回避：0+1D6
+スペック：6 / 精度：12
+取得技能：力技、威圧、察知、俊敏、隠密、幸運
+クリーチャー判定値：12
+【応用技】
+《吹き飛ばす①》 SP2 / PP1 / 筋力or俊敏+4
+《吹き飛ばす②》 SP2 / PP1 / 筋力or俊敏+4
+《探る①》 SP2 / PP1 / 察知+4
+《探る②》 SP2 / PP1 / 察知+4
+《備える》 SP4 / PP4 / 暴走トリガー：70　タイミング：ダメージロール　攻撃-8トラップ
+</data>
+            <data name="■ステータス" type="note"></data>
+          </data>
+          <data name="▼ＮＰＣ特性（?pt/?bp）：">
+            <data name="■通常特性" type="note"></data>
+          </data>
+          <data name="▼能力名【？？？】">
+            <data name="能力タイプ：" type=""></data>
+            <data name="概要" type="note"></data>
+          </data>
+        </data>
+        <data name="立ち絵位置">
+          <data type="numberResource" currentValue="1" name="POS">11</data>
+        </data>
+        <data name="コマ画像">
+          <data type="numberResource" currentValue="0" name="ICON">4</data>
+        </data>
+      </data>
+      <data name="buff">
+        <data name="バフ/デバフ"></data>
+      </data>
+    </data>
+    <chat-palette dicebot="Yggdrasill"></chat-palette>
+    <buff-palette dicebot="DiceBot">[PC名]《[応用技名]》 [効果] [継続R]</buff-palette>
+  </character>
+  <character location.name="oBCArlU2twWVmwcLOwMmWwReHwXcM-dvMlJD6" location.x="675" location.y="275" posZ="0" rotate="0" roll="0" hideInventory="false" nonTalkFlag="false" overViewWidth="600" overViewMaxHeight="600" chatColorCode.0="#ff6633" chatColorCode.1="#ff6633" chatColorCode.2="#ff6633" syncDummyCounter="0">
+    <data name="character">
+      <data name="image">
+        <data type="image" name="imageIdentifier" currentValue="コマ絵">ef2dc53b3b03b7e51767222eaa0fe62b5570ec71e6ae2d7d23fda29fabb2acae</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン1">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン2">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン3">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン4">none_icon</data>
+      </data>
+      <data name="common">
+        <data name="name">レミエム</data>
+        <data name="size">2</data>
+      </data>
+      <data name="detail">
+        <data name="リソース&amp;行動値">
+          <data name="HP" type="numberResource" currentValue="3">130</data>
+          <data name="PP" type="numberResource" currentValue="0">10</data>
+          <data name="暴走率" type="numberResource" currentValue="90">150</data>
+          <data name="行動値">12</data>
+        </data>
+        <data name="情報">
+          <data name="▼（ＰＣ名）">
+            <data name="■パラメータ／技能" type="note"></data>
+            <data name="■ステータス" type="note"></data>
+          </data>
+          <data name="▼ＮＰＣ特性（?pt/?bp）：">
+            <data name="■通常特性" type="note"></data>
+          </data>
+          <data name="▼能力名【？？？】">
+            <data name="能力タイプ：" type=""></data>
+            <data name="概要" type="note"></data>
+          </data>
+        </data>
+        <data name="立ち絵位置">
+          <data type="numberResource" currentValue="2" name="POS">11</data>
+        </data>
+        <data name="コマ画像">
+          <data type="numberResource" currentValue="0" name="ICON">4</data>
+        </data>
+      </data>
+      <data name="buff">
+        <data name="バフ/デバフ"></data>
+      </data>
+    </data>
+    <chat-palette dicebot="Yggdrasill"></chat-palette>
+    <buff-palette dicebot="DiceBot">[PC名]《[応用技名]》 [効果] [継続R]</buff-palette>
+  </character>
+  <character location.name="graveyard" location.x="-1101.3671617532818" location.y="-633.7476552069145" posZ="0" rotate="0" roll="0" hideInventory="false" nonTalkFlag="false" overViewWidth="270" overViewMaxHeight="250" chatColorCode.0="#000000" chatColorCode.1="#FF0000" chatColorCode.2="#0099FF" syncDummyCounter="0">
+    <data name="character">
+      <data name="image">
+        <data type="image" name="imageIdentifier"></data>
+      </data>
+      <data name="common">
+        <data name="name">新しいキャラクター</data>
+        <data name="size">1</data>
+      </data>
+      <data name="detail">
+        <data name="リソース">
+          <data type="numberResource" currentValue="200" name="HP">200</data>
+          <data type="numberResource" currentValue="100" name="MP">100</data>
+        </data>
+        <data name="情報">
+          <data type="note" name="説明">ここに説明を書く
+あいうえお</data>
+          <data type="note" name="メモ">任意の文字列
+１
+２
+３
+４
+５</data>
+        </data>
+        <data name="能力">
+          <data name="器用度">24</data>
+          <data name="敏捷度">24</data>
+          <data name="筋力">24</data>
+          <data name="生命力">24</data>
+          <data name="知力">24</data>
+          <data name="精神力">24</data>
+        </data>
+        <data name="戦闘特技">
+          <data name="Lv1">全力攻撃</data>
+          <data name="Lv3">武器習熟/ソード</data>
+          <data name="Lv5">武器習熟/ソードⅡ</data>
+          <data name="Lv7">頑強</data>
+          <data name="Lv9">薙ぎ払い</data>
+          <data name="自動">治癒適正</data>
+        </data>
+        <data name="立ち絵位置">
+          <data type="numberResource" currentValue="0" name="POS">11</data>
+        </data>
+        <data name="コマ画像">
+          <data type="numberResource" currentValue="0" name="ICON">0</data>
+        </data>
+      </data>
+      <data name="buff">
+        <data name="バフ/デバフ"></data>
+      </data>
+    </data>
+    <chat-palette dicebot="DiceBot">チャットパレット入力例：
+2d6+1 ダイスロール
+１ｄ２０＋{敏捷}＋｛格闘｝　{name}の格闘！
+
+自己バフ、リソース操作コマンド例：
+&amp;マッスルベアー/筋B+2/3
+:MP-3
+&amp;マッスルベアー/筋B+2/3:MP-3
+
+//敏捷=10+{敏捷A}
+//敏捷A=10
+//格闘＝１</chat-palette>
+    <buff-palette dicebot="DiceBot">コントローラ入力例：
+マッスルベアー DB+2 3
+クリティカルレイ A 18
+セイクリッドウェポン 命+1攻+2 18</buff-palette>
+  </character>
+  <character location.name="table" location.x="575" location.y="375" posZ="0" rotate="0" roll="0" hideInventory="false" nonTalkFlag="false" overViewWidth="400" overViewMaxHeight="400" chatColorCode.0="#999999" chatColorCode.1="#FF0000" chatColorCode.2="#0099FF" syncDummyCounter="1">
+    <data name="character">
+      <data name="image">
+        <data type="image" name="imageIdentifier" currentValue="">2dcb42430aacba40c26ffbdf66d832249879df25bea2d2ddbb2944d8814da3d7</data>
+        <data type="image" name="imageIdentifier">842260f103f4045fbe0a9d054c715b34cfd973ee72a51af6253dfddd8313d8d9</data>
+        <data type="image" name="imageIdentifier" currentValue="普通">a610d8ca5f03116df26846d0d3e108c5f8c1ef3d78e94aee001d74badaa3e669</data>
+        <data type="image" name="imageIdentifier" currentValue="笑顔">198cfa1f1bf05c89b66261f3124151774d04772aaebce4b499e2fd215b1cb9f3</data>
+        <data type="image" name="imageIdentifier" currentValue="ジト目">19b3fdc569eb1f9e260b266ef9a64abd6145ab0cc98a9dc7c8a620d28de9db6b</data>
+        <data type="image" name="imageIdentifier" currentValue="快活">2efcc7678ccdf6d62d45bda3e0ee6ae31c42253b833982b0e73f1cf994508b02</data>
+        <data type="image" name="imageIdentifier" currentValue="びっくり">b36db5d11ee8ce1eccec9fbddb20ff5e1e86bec73d23c589c71ff4cb5135d68d</data>
+        <data type="image" name="imageIdentifier" currentValue="下心">c31d15c90c0eebc794052af621f9249ea312d06e4860c0b846769fa55a4dbffa</data>
+        <data type="image" name="imageIdentifier">8981d234468f1606dfd63919155edc84dbdaf17510dd7e325ae4f9b4cd83cbf5</data>
+        <data type="image" name="imageIdentifier">77715f22c145c13c5aa2ca8279bd1391248619baadaa39f63ad225b951047b7b</data>
+        <data type="image" name="imageIdentifier">65a9bdce82456c5ab73cba482170df72e84354f8ae49d85fbc9130d1438e8fac</data>
+        <data type="image" name="imageIdentifier">0ac966e701aee01e77dc651c4c6aed430189b451bc31ba6ca30cb60f44c11fae</data>
+        <data type="image" name="imageIdentifier">ec1933470bcfebade2aff14e88f6315cbaff36f83e44d400f29c5d64d6427d8e</data>
+      </data>
+      <data name="common">
+        <data name="name">セスタス</data>
+        <data name="size">3</data>
+      </data>
+      <data name="detail">
+        <data name="リソース&amp;行動値">
+          <data name="HP" type="numberResource" currentValue="13">13</data>
+          <data name="PP" type="numberResource" currentValue="10">29</data>
+          <data name="暴走率" type="numberResource" currentValue="86">150</data>
+          <data name="因子D" type="numberResource" currentValue="9">20</data>
+          <data name="行動値">10</data>
+        </data>
+        <data name="情報">
+          <data name="タグ" type="note">（貼り付け表とか感知の内容をここに貼ってね）</data>
+        </data>
+        <data name="立ち絵位置">
+          <data type="numberResource" currentValue="1" name="POS">11</data>
+        </data>
+        <data name="コマ画像">
+          <data type="numberResource" currentValue="0" name="ICON">12</data>
+        </data>
+      </data>
+      <data name="buff">
+        <data name="バフ/デバフ"></data>
+      </data>
+    </data>
+    <chat-palette dicebot="Yggdrasill"></chat-palette>
+    <buff-palette dicebot="DiceBot">[PC名]《[応用技名]》 [効果] [継続R]</buff-palette>
+  </character>
+  <character location.name="table" location.x="-75" location.y="425" posZ="0" rotate="0" roll="0" hideInventory="false" nonTalkFlag="false" overViewWidth="600" overViewMaxHeight="600" chatColorCode.0="#808080" chatColorCode.1="#00b4c8" chatColorCode.2="#0099FF" syncDummyCounter="0">
+    <data name="character">
+      <data name="image">
+        <data type="image" name="imageIdentifier" currentValue="コマ絵">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン1">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン2">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン3">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン4">none_icon</data>
+      </data>
+      <data name="common">
+        <data name="name">処刑空間_2</data>
+        <data name="size">1</data>
+      </data>
+      <data name="detail">
+        <data name="リソース&amp;行動値">
+          <data name="HP" type="numberResource" currentValue="1">10</data>
+          <data name="行動値">10</data>
+        </data>
+        <data name="情報">
+          <data name="▼（ＰＣ名）">
+            <data name="■パラメータ／技能" type="note">【応用技】
+《すり潰す》 SP3 / PP5 / ブレイク精神攻撃トラップ　トリガーなし
+《踊らせる》 SP4 / PP5 / 2d6+5 操作　対抗：筋力
+《処刑準備》 SP4 / PP5 / 攻撃+4 回避-4テリトリー
+《弱らせる》 SP2 / PP3 / 2d6+5　回避-4
+《いたぶる》 SP4 / PP7 / 2d6+5　継続4ダメージ+制限付与　対抗：耐久
+</data>
+            <data name="■ステータス" type="note"></data>
+          </data>
+          <data name="▼ＮＰＣ特性（?pt/?bp）：">
+            <data name="■通常特性" type="note"></data>
+          </data>
+          <data name="▼能力名【？？？】">
+            <data name="能力タイプ：" type=""></data>
+            <data name="概要" type="note"></data>
+          </data>
+        </data>
+        <data name="立ち絵位置">
+          <data type="numberResource" currentValue="1" name="POS">11</data>
+        </data>
+        <data name="コマ画像">
+          <data type="numberResource" currentValue="0" name="ICON">4</data>
+        </data>
+      </data>
+      <data name="buff">
+        <data name="バフ/デバフ"></data>
+      </data>
+    </data>
+    <chat-palette dicebot="Yggdrasill">行動値10</chat-palette>
+    <buff-palette dicebot="DiceBot">[PC名]《[応用技名]》 [効果] [継続R]</buff-palette>
+  </character>
+  <character location.name="table" location.x="-50" location.y="525" posZ="0" rotate="0" roll="0" hideInventory="false" nonTalkFlag="false" overViewWidth="600" overViewMaxHeight="600" chatColorCode.0="#808080" chatColorCode.1="#00b4c8" chatColorCode.2="#0099FF" syncDummyCounter="0">
+    <data name="character">
+      <data name="image">
+        <data type="image" name="imageIdentifier" currentValue="コマ絵">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン1">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン2">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン3">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン4">none_icon</data>
+      </data>
+      <data name="common">
+        <data name="name">処刑空間_3</data>
+        <data name="size">1</data>
+      </data>
+      <data name="detail">
+        <data name="リソース&amp;行動値">
+          <data name="HP" type="numberResource" currentValue="3">10</data>
+          <data name="行動値">10</data>
+        </data>
+        <data name="情報">
+          <data name="▼（ＰＣ名）">
+            <data name="■パラメータ／技能" type="note">【応用技】
+《すり潰す》 SP3 / PP5 / ブレイク精神攻撃トラップ　トリガーなし
+《踊らせる》 SP4 / PP5 / 2d6+5 操作　対抗：筋力
+《処刑準備》 SP4 / PP5 / 攻撃+4 回避-4テリトリー
+《弱らせる》 SP2 / PP3 / 2d6+5　回避-4
+《いたぶる》 SP4 / PP7 / 2d6+5　継続4ダメージ+制限付与　対抗：耐久
+</data>
+            <data name="■ステータス" type="note"></data>
+          </data>
+          <data name="▼ＮＰＣ特性（?pt/?bp）：">
+            <data name="■通常特性" type="note"></data>
+          </data>
+          <data name="▼能力名【？？？】">
+            <data name="能力タイプ：" type=""></data>
+            <data name="概要" type="note"></data>
+          </data>
+        </data>
+        <data name="立ち絵位置">
+          <data type="numberResource" currentValue="1" name="POS">11</data>
+        </data>
+        <data name="コマ画像">
+          <data type="numberResource" currentValue="0" name="ICON">4</data>
+        </data>
+      </data>
+      <data name="buff">
+        <data name="バフ/デバフ"></data>
+      </data>
+    </data>
+    <chat-palette dicebot="Yggdrasill">行動値10</chat-palette>
+    <buff-palette dicebot="DiceBot">[PC名]《[応用技名]》 [効果] [継続R]</buff-palette>
+  </character>
+  <character location.name="table" location.x="1000" location.y="100" posZ="0" rotate="0" roll="0" hideInventory="true" nonTalkFlag="true" overViewWidth="600" overViewMaxHeight="600" chatColorCode.0="#808080" chatColorCode.1="#00b4c8" chatColorCode.2="#0099FF" syncDummyCounter="0">
+    <data name="character">
+      <data name="image">
+        <data type="image" name="imageIdentifier" currentValue="コマ絵">38d5926cf500bef48d5e6e58751c861536079a60a87e88eda3bacffcf62528a1</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン1">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン2">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン3">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン4">none_icon</data>
+      </data>
+      <data name="common">
+        <data name="name">カルディア</data>
+        <data name="size">2</data>
+      </data>
+      <data name="detail">
+        <data name="リソース&amp;行動値">
+          <data name="HP" type="numberResource" currentValue="10">10</data>
+          <data name="行動値">10</data>
+        </data>
+        <data name="情報">
+          <data name="▼（ＰＣ名）">
+            <data name="■パラメータ／技能" type="note"></data>
+            <data name="■ステータス" type="note"></data>
+          </data>
+          <data name="▼ＮＰＣ特性（?pt/?bp）：">
+            <data name="■通常特性" type="note"></data>
+          </data>
+          <data name="▼能力名【？？？】">
+            <data name="能力タイプ：" type=""></data>
+            <data name="概要" type="note"></data>
+          </data>
+        </data>
+        <data name="立ち絵位置">
+          <data type="numberResource" currentValue="0" name="POS">11</data>
+        </data>
+        <data name="コマ画像">
+          <data type="numberResource" currentValue="0" name="ICON">4</data>
+        </data>
+      </data>
+      <data name="buff">
+        <data name="バフ/デバフ"></data>
+      </data>
+    </data>
+    <chat-palette dicebot="Yggdrasill"></chat-palette>
+    <buff-palette dicebot="DiceBot">[PC名]《[応用技名]》 [効果] [継続R]</buff-palette>
+  </character>
+  <character location.name="table" location.x="1100" location.y="325" posZ="0" rotate="0" roll="0" hideInventory="false" nonTalkFlag="false" overViewWidth="600" overViewMaxHeight="600" chatColorCode.0="#808080" chatColorCode.1="#00b4c8" chatColorCode.2="#0099FF" syncDummyCounter="0">
+    <data name="character">
+      <data name="image">
+        <data type="image" name="imageIdentifier" currentValue="コマ絵">null</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン1">f4d6178f882ef6a35d27c44e3375938465c888be1f07494457965e12ec3d7502</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン2">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン3">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン4">none_icon</data>
+      </data>
+      <data name="common">
+        <data name="name">アリステロス</data>
+        <data name="size">2</data>
+      </data>
+      <data name="detail">
+        <data name="リソース&amp;行動値">
+          <data name="HP" type="numberResource" currentValue="8">10</data>
+          <data name="行動値">10</data>
+        </data>
+        <data name="情報">
+          <data name="▼（ＰＣ名）">
+            <data name="■パラメータ／技能" type="note"></data>
+            <data name="■ステータス" type="note"></data>
+          </data>
+          <data name="▼ＮＰＣ特性（?pt/?bp）：">
+            <data name="■通常特性" type="note"></data>
+          </data>
+          <data name="▼能力名【？？？】">
+            <data name="能力タイプ：" type=""></data>
+            <data name="概要" type="note"></data>
+          </data>
+        </data>
+        <data name="立ち絵位置">
+          <data type="numberResource" currentValue="1" name="POS">11</data>
+        </data>
+        <data name="コマ画像">
+          <data type="numberResource" currentValue="0" name="ICON">4</data>
+        </data>
+      </data>
+      <data name="buff">
+        <data name="バフ/デバフ"></data>
+      </data>
+    </data>
+    <chat-palette dicebot="Yggdrasill"></chat-palette>
+    <buff-palette dicebot="DiceBot">[PC名]《[応用技名]》 [効果] [継続R]</buff-palette>
+  </character>
+  <character location.name="table" location.x="1125" location.y="250" posZ="0" rotate="0" roll="0" hideInventory="false" nonTalkFlag="false" overViewWidth="600" overViewMaxHeight="600" chatColorCode.0="#808080" chatColorCode.1="#00b4c8" chatColorCode.2="#0099FF" syncDummyCounter="0">
+    <data name="character">
+      <data name="image">
+        <data type="image" name="imageIdentifier" currentValue="コマ絵">null</data>
+        <data type="image" name="imageIdentifier" currentValue="デクシオス">5f6a902493dc43091e1e14d4bde341b08b6bd5f2fcd77e2e8b96f662ef3e2ddd</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン2">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン3">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン4">none_icon</data>
+      </data>
+      <data name="common">
+        <data name="name">デクシオス</data>
+        <data name="size">2</data>
+      </data>
+      <data name="detail">
+        <data name="リソース&amp;行動値">
+          <data name="HP" type="numberResource" currentValue="6">10</data>
+          <data name="行動値">10</data>
+        </data>
+        <data name="情報">
+          <data name="▼（ＰＣ名）">
+            <data name="■パラメータ／技能" type="note"></data>
+            <data name="■ステータス" type="note"></data>
+          </data>
+          <data name="▼ＮＰＣ特性（?pt/?bp）：">
+            <data name="■通常特性" type="note"></data>
+          </data>
+          <data name="▼能力名【？？？】">
+            <data name="能力タイプ：" type=""></data>
+            <data name="概要" type="note"></data>
+          </data>
+        </data>
+        <data name="立ち絵位置">
+          <data type="numberResource" currentValue="1" name="POS">11</data>
+        </data>
+        <data name="コマ画像">
+          <data type="numberResource" currentValue="0" name="ICON">4</data>
+        </data>
+      </data>
+      <data name="buff">
+        <data name="バフ/デバフ"></data>
+      </data>
+    </data>
+    <chat-palette dicebot="Yggdrasill"></chat-palette>
+    <buff-palette dicebot="DiceBot">[PC名]《[応用技名]》 [効果] [継続R]</buff-palette>
+  </character>
+  <character location.name="oBCArlU2twWVmwcLOwMmWwReHwXcM-dvMlJD6" location.x="1000" location.y="275" posZ="0" rotate="0" roll="0" hideInventory="false" nonTalkFlag="false" overViewWidth="600" overViewMaxHeight="600" chatColorCode.0="#0099ff" chatColorCode.1="#00b4c8" chatColorCode.2="#0099FF" syncDummyCounter="2">
+    <data name="character">
+      <data name="image">
+        <data type="image" name="imageIdentifier" currentValue="コマ絵">3ae9233582b1b25f612b56e418b6149282fcc9b6baf47c7698fe6c3aca8d72a1</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン1">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン2">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン3">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン4">none_icon</data>
+      </data>
+      <data name="common">
+        <data name="name">テセウスの人</data>
+        <data name="size">2</data>
+      </data>
+      <data name="detail">
+        <data name="リソース&amp;行動値">
+          <data name="HP" type="numberResource">null</data>
+          <data name="PP" type="numberResource">null</data>
+          <data name="暴走率" type="numberResource">150</data>
+          <data name="行動値"></data>
+        </data>
+        <data name="情報">
+          <data name="▼（ＰＣ名）">
+            <data name="■パラメータ／技能" type="note"></data>
+            <data name="■ステータス" type="note"></data>
+          </data>
+          <data name="▼ＮＰＣ特性（?pt/?bp）：">
+            <data name="■通常特性" type="note"></data>
+          </data>
+          <data name="▼能力名【？？？】">
+            <data name="能力タイプ：" type=""></data>
+            <data name="概要" type="note"></data>
+          </data>
+        </data>
+        <data name="立ち絵位置">
+          <data type="numberResource" currentValue="1" name="POS">11</data>
+        </data>
+        <data name="コマ画像">
+          <data type="numberResource" currentValue="0" name="ICON">4</data>
+        </data>
+      </data>
+      <data name="buff">
+        <data name="バフ/デバフ"></data>
+      </data>
+    </data>
+    <chat-palette dicebot="Yggdrasill"></chat-palette>
+    <buff-palette dicebot="DiceBot">[PC名]《[応用技名]》 [効果] [継続R]</buff-palette>
+  </character>
+  <character location.name="oBCArlU2twWVmwcLOwMmWwReHwXcM-dvMlJD6" location.x="800" location.y="50" posZ="0" rotate="0" roll="0" hideInventory="false" nonTalkFlag="false" overViewWidth="600" overViewMaxHeight="600" chatColorCode.0="#ff6633" chatColorCode.1="#ff6633" chatColorCode.2="#ff6633" syncDummyCounter="0">
+    <data name="character">
+      <data name="image">
+        <data type="image" name="imageIdentifier" currentValue="コマ絵">ef2dc53b3b03b7e51767222eaa0fe62b5570ec71e6ae2d7d23fda29fabb2acae</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン1">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン2">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン3">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン4">none_icon</data>
+      </data>
+      <data name="common">
+        <data name="name">レミエム（攻撃型）_1</data>
+        <data name="size">2</data>
+      </data>
+      <data name="detail">
+        <data name="リソース&amp;行動値">
+          <data name="HP" type="numberResource" currentValue="10">10</data>
+          <data name="PP" type="numberResource">null</data>
+          <data name="暴走率" type="numberResource">150</data>
+          <data name="行動値">10</data>
+        </data>
+        <data name="情報">
+          <data name="▼（ＰＣ名）">
+            <data name="■パラメータ／技能" type="note"></data>
+            <data name="■ステータス" type="note"></data>
+          </data>
+          <data name="▼ＮＰＣ特性（?pt/?bp）：">
+            <data name="■通常特性" type="note"></data>
+          </data>
+          <data name="▼能力名【？？？】">
+            <data name="能力タイプ：" type=""></data>
+            <data name="概要" type="note"></data>
+          </data>
+        </data>
+        <data name="立ち絵位置">
+          <data type="numberResource" currentValue="1" name="POS">11</data>
+        </data>
+        <data name="コマ画像">
+          <data type="numberResource" currentValue="0" name="ICON">4</data>
+        </data>
+      </data>
+      <data name="buff">
+        <data name="バフ/デバフ"></data>
+      </data>
+    </data>
+    <chat-palette dicebot="Yggdrasill"></chat-palette>
+    <buff-palette dicebot="DiceBot">[PC名]《[応用技名]》 [効果] [継続R]</buff-palette>
+  </character>
+  <character location.name="oBCArlU2twWVmwcLOwMmWwReHwXcM-dvMlJD6" location.x="850" location.y="200" posZ="0" rotate="0" roll="0" hideInventory="false" nonTalkFlag="false" overViewWidth="600" overViewMaxHeight="600" chatColorCode.0="#ff6633" chatColorCode.1="#ff6633" chatColorCode.2="#ff6633" syncDummyCounter="0">
+    <data name="character">
+      <data name="image">
+        <data type="image" name="imageIdentifier" currentValue="コマ絵">ef2dc53b3b03b7e51767222eaa0fe62b5570ec71e6ae2d7d23fda29fabb2acae</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン1">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン2">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン3">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン4">none_icon</data>
+      </data>
+      <data name="common">
+        <data name="name">レミエム（攻撃型）_2</data>
+        <data name="size">2</data>
+      </data>
+      <data name="detail">
+        <data name="リソース&amp;行動値">
+          <data name="HP" type="numberResource" currentValue="10">10</data>
+          <data name="PP" type="numberResource">null</data>
+          <data name="暴走率" type="numberResource">150</data>
+          <data name="行動値">10</data>
+        </data>
+        <data name="情報">
+          <data name="▼（ＰＣ名）">
+            <data name="■パラメータ／技能" type="note"></data>
+            <data name="■ステータス" type="note"></data>
+          </data>
+          <data name="▼ＮＰＣ特性（?pt/?bp）：">
+            <data name="■通常特性" type="note"></data>
+          </data>
+          <data name="▼能力名【？？？】">
+            <data name="能力タイプ：" type=""></data>
+            <data name="概要" type="note"></data>
+          </data>
+        </data>
+        <data name="立ち絵位置">
+          <data type="numberResource" currentValue="1" name="POS">11</data>
+        </data>
+        <data name="コマ画像">
+          <data type="numberResource" currentValue="0" name="ICON">4</data>
+        </data>
+      </data>
+      <data name="buff">
+        <data name="バフ/デバフ"></data>
+      </data>
+    </data>
+    <chat-palette dicebot="Yggdrasill"></chat-palette>
+    <buff-palette dicebot="DiceBot">[PC名]《[応用技名]》 [効果] [継続R]</buff-palette>
+  </character>
+  <character location.name="oBCArlU2twWVmwcLOwMmWwReHwXcM-dvMlJD6" location.x="800" location.y="575" posZ="0" rotate="0" roll="0" hideInventory="false" nonTalkFlag="false" overViewWidth="600" overViewMaxHeight="600" chatColorCode.0="#ff6633" chatColorCode.1="#ff6633" chatColorCode.2="#ff6633" syncDummyCounter="0">
+    <data name="character">
+      <data name="image">
+        <data type="image" name="imageIdentifier" currentValue="コマ絵">ef2dc53b3b03b7e51767222eaa0fe62b5570ec71e6ae2d7d23fda29fabb2acae</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン1">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン2">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン3">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン4">none_icon</data>
+      </data>
+      <data name="common">
+        <data name="name">レミエム（速度型）_1</data>
+        <data name="size">2</data>
+      </data>
+      <data name="detail">
+        <data name="リソース&amp;行動値">
+          <data name="HP" type="numberResource" currentValue="10">10</data>
+          <data name="PP" type="numberResource">null</data>
+          <data name="暴走率" type="numberResource">150</data>
+          <data name="行動値">10</data>
+        </data>
+        <data name="情報">
+          <data name="▼（ＰＣ名）">
+            <data name="■パラメータ／技能" type="note"></data>
+            <data name="■ステータス" type="note"></data>
+          </data>
+          <data name="▼ＮＰＣ特性（?pt/?bp）：">
+            <data name="■通常特性" type="note"></data>
+          </data>
+          <data name="▼能力名【？？？】">
+            <data name="能力タイプ：" type=""></data>
+            <data name="概要" type="note"></data>
+          </data>
+        </data>
+        <data name="立ち絵位置">
+          <data type="numberResource" currentValue="1" name="POS">11</data>
+        </data>
+        <data name="コマ画像">
+          <data type="numberResource" currentValue="0" name="ICON">4</data>
+        </data>
+      </data>
+      <data name="buff">
+        <data name="バフ/デバフ"></data>
+      </data>
+    </data>
+    <chat-palette dicebot="Yggdrasill"></chat-palette>
+    <buff-palette dicebot="DiceBot">[PC名]《[応用技名]》 [効果] [継続R]</buff-palette>
+  </character>
+  <character location.name="oBCArlU2twWVmwcLOwMmWwReHwXcM-dvMlJD6" location.x="1575" location.y="250" posZ="0" rotate="0" roll="0" hideInventory="false" nonTalkFlag="false" overViewWidth="600" overViewMaxHeight="600" chatColorCode.0="#ff6633" chatColorCode.1="#ff6633" chatColorCode.2="#ff6633" syncDummyCounter="0">
+    <data name="character">
+      <data name="image">
+        <data type="image" name="imageIdentifier" currentValue="コマ絵">ef2dc53b3b03b7e51767222eaa0fe62b5570ec71e6ae2d7d23fda29fabb2acae</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン1">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン2">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン3">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン4">none_icon</data>
+      </data>
+      <data name="common">
+        <data name="name">レミエム_4</data>
+        <data name="size">2</data>
+      </data>
+      <data name="detail">
+        <data name="リソース&amp;行動値">
+          <data name="HP" type="numberResource" currentValue="10">10</data>
+          <data name="PP" type="numberResource">null</data>
+          <data name="暴走率" type="numberResource">150</data>
+          <data name="行動値">10</data>
+        </data>
+        <data name="情報">
+          <data name="▼（ＰＣ名）">
+            <data name="■パラメータ／技能" type="note"></data>
+            <data name="■ステータス" type="note"></data>
+          </data>
+          <data name="▼ＮＰＣ特性（?pt/?bp）：">
+            <data name="■通常特性" type="note"></data>
+          </data>
+          <data name="▼能力名【？？？】">
+            <data name="能力タイプ：" type=""></data>
+            <data name="概要" type="note"></data>
+          </data>
+        </data>
+        <data name="立ち絵位置">
+          <data type="numberResource" currentValue="1" name="POS">11</data>
+        </data>
+        <data name="コマ画像">
+          <data type="numberResource" currentValue="0" name="ICON">4</data>
+        </data>
+      </data>
+      <data name="buff">
+        <data name="バフ/デバフ"></data>
+      </data>
+    </data>
+    <chat-palette dicebot="Yggdrasill"></chat-palette>
+    <buff-palette dicebot="DiceBot">[PC名]《[応用技名]》 [効果] [継続R]</buff-palette>
+  </character>
+  <character location.name="oBCArlU2twWVmwcLOwMmWwReHwXcM-dvMlJD6" location.x="1425" location.y="25" posZ="0" rotate="0" roll="0" hideInventory="false" nonTalkFlag="false" overViewWidth="600" overViewMaxHeight="600" chatColorCode.0="#ff6633" chatColorCode.1="#ff6633" chatColorCode.2="#ff6633" syncDummyCounter="0">
+    <data name="character">
+      <data name="image">
+        <data type="image" name="imageIdentifier" currentValue="コマ絵">ef2dc53b3b03b7e51767222eaa0fe62b5570ec71e6ae2d7d23fda29fabb2acae</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン1">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン2">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン3">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン4">none_icon</data>
+      </data>
+      <data name="common">
+        <data name="name">レミエム_5</data>
+        <data name="size">2</data>
+      </data>
+      <data name="detail">
+        <data name="リソース&amp;行動値">
+          <data name="HP" type="numberResource" currentValue="10">10</data>
+          <data name="PP" type="numberResource">null</data>
+          <data name="暴走率" type="numberResource">150</data>
+          <data name="行動値">10</data>
+        </data>
+        <data name="情報">
+          <data name="▼（ＰＣ名）">
+            <data name="■パラメータ／技能" type="note"></data>
+            <data name="■ステータス" type="note"></data>
+          </data>
+          <data name="▼ＮＰＣ特性（?pt/?bp）：">
+            <data name="■通常特性" type="note"></data>
+          </data>
+          <data name="▼能力名【？？？】">
+            <data name="能力タイプ：" type=""></data>
+            <data name="概要" type="note"></data>
+          </data>
+        </data>
+        <data name="立ち絵位置">
+          <data type="numberResource" currentValue="1" name="POS">11</data>
+        </data>
+        <data name="コマ画像">
+          <data type="numberResource" currentValue="0" name="ICON">4</data>
+        </data>
+      </data>
+      <data name="buff">
+        <data name="バフ/デバフ"></data>
+      </data>
+    </data>
+    <chat-palette dicebot="Yggdrasill"></chat-palette>
+    <buff-palette dicebot="DiceBot">[PC名]《[応用技名]》 [効果] [継続R]</buff-palette>
+  </character>
+  <character location.name="oBCArlU2twWVmwcLOwMmWwReHwXcM-dvMlJD6" location.x="900" location.y="350" posZ="0" rotate="0" roll="0" hideInventory="false" nonTalkFlag="false" overViewWidth="600" overViewMaxHeight="600" chatColorCode.0="#ff6633" chatColorCode.1="#ff6633" chatColorCode.2="#ff6633" syncDummyCounter="0">
+    <data name="character">
+      <data name="image">
+        <data type="image" name="imageIdentifier" currentValue="コマ絵">ef2dc53b3b03b7e51767222eaa0fe62b5570ec71e6ae2d7d23fda29fabb2acae</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン1">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン2">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン3">none_icon</data>
+        <data type="image" name="imageIdentifier" currentValue="アイコン4">none_icon</data>
+      </data>
+      <data name="common">
+        <data name="name">レミエム（攻撃型）_3</data>
+        <data name="size">2</data>
+      </data>
+      <data name="detail">
+        <data name="リソース&amp;行動値">
+          <data name="HP" type="numberResource" currentValue="10">10</data>
+          <data name="PP" type="numberResource">null</data>
+          <data name="暴走率" type="numberResource">150</data>
+          <data name="行動値">10</data>
+        </data>
+        <data name="情報">
+          <data name="▼（ＰＣ名）">
+            <data name="■パラメータ／技能" type="note"></data>
+            <data name="■ステータス" type="note"></data>
+          </data>
+          <data name="▼ＮＰＣ特性（?pt/?bp）：">
+            <data name="■通常特性" type="note"></data>
+          </data>
+          <data name="▼能力名【？？？】">
+            <data name="能力タイプ：" type=""></data>
+            <data name="概要" type="note"></data>
+          </data>
+        </data>
+        <data name="立ち絵位置">
+          <data type="numberResource" currentValue="1" name="POS">11</data>
+        </data>
+        <data name="コマ画像">
+          <data type="numberResource" currentValue="0" name="ICON">4</data>
+        </data>
+      </data>
+      <data name="buff">
+        <data name="バフ/デバフ"></data>
+      </data>
+    </data>
+    <chat-palette dicebot="Yggdrasill"></chat-palette>
+    <buff-palette dicebot="DiceBot">[PC名]《[応用技名]》 [効果] [継続R]</buff-palette>
+  </character>
+  <character location.name="graveyard" location.x="233.4229165418808" location.y="430.4174452937638" posZ="0" rotate="0" roll="0" hideInventory="false" nonTalkFlag="false" overViewWidth="400" overViewMaxHeight="400" chatColorCode.0="#ff0000" chatColorCode.1="#FF0000" chatColorCode.2="#0099FF" syncDummyCounter="1">
+    <data name="character">
+      <data name="image">
+        <data type="image" name="imageIdentifier" currentValue="">f8f73165b7f8c81849d87d4832a7fe02b3db387b199c97cfc12235a2f9184d2a</data>
+        <data type="image" name="imageIdentifier">9fba3e56a48b259b9779a7d559c3cc99140b060a19023fe68db65465ed89f463</data>
+        <data type="image" name="imageIdentifier">4d39d4be2f2daa3b178ee3ccfb441e25a88e6d8d8ecc810d12dcff23cc51642d</data>
+        <data type="image" name="imageIdentifier">84b0541734a7859c4076719330b159147d91d23680464e0453eaeef6c04f474c</data>
+        <data type="image" name="imageIdentifier">bd36002b9e91a32cd36baee702d7f16d47c7e47f1d3ef55d62999610e5139f8e</data>
+        <data type="image" name="imageIdentifier">ab927e3ab4b3d40b0f74ff38c2225a17bc641d8fb9d4a222c6d4b55c25412aab</data>
+        <data type="image" name="imageIdentifier">6c9bdbc82814be9b67c8845c30b6086fbed33f32197df8b14bdc6b6e96221ac3</data>
+        <data type="image" name="imageIdentifier">954d3d3acdbbb7f0dd420b2f53de5eeb2e4a03085d9a3bd8aa212f7385e095b7</data>
+        <data type="image" name="imageIdentifier">ba530b41040225c4cf8bdfe9cfb4b4fbf8d939a5483274ea5ee45f640ced9887</data>
+        <data type="image" name="imageIdentifier">e1b78c09ffc5916d7403f8ca88ed0b8810d1867c94b8f403b7d5bf18633394cc</data>
+        <data type="image" name="imageIdentifier">16635815e8e4558de46049435d5f5e3b94970c54fda30db0bc0d0b3942811f38</data>
+        <data type="image" name="imageIdentifier">72dc56987ecbc3c1f38a3acfeef0ebba4e25e7c716cd88484d9aa4e2e0b0ee0c</data>
+        <data type="image" name="imageIdentifier">e878b61cbfb40f6d5ca30bd52924b5da100697ec653d48a19a9e6c23c60abcc8</data>
+        <data type="image" name="imageIdentifier">399ee0a53f66818e87f43febebb8c0d39730c6cf6626d3adba679e9ec9333e71</data>
+        <data type="image" name="imageIdentifier">4ca4ce32783e572d4bf0575a2e81afcbd69c383e1045d306fe5c5716731bdfa9</data>
+        <data type="image" name="imageIdentifier">0d55ee33d045fd16404c475eaedf36f360e66d251871cc9cbd18ecb23517c4bc</data>
+        <data type="image" name="imageIdentifier">bb1597654c74ea2c2214be9dc5cfe4d61466d96a0a203908b5ae44f615e6afe6</data>
+      </data>
+      <data name="common">
+        <data name="name">レミエム（本物）_2</data>
+        <data name="size">1</data>
+      </data>
+      <data name="detail">
+        <data name="リソース&amp;行動値">
+          <data name="HP" type="numberResource" currentValue="6">8</data>
+          <data name="PP" type="numberResource" currentValue="10">36</data>
+          <data name="暴走率" type="numberResource" currentValue="91">150</data>
+          <data name="因子D" type="numberResource" currentValue="9"></data>
+          <data name="行動値">10</data>
+        </data>
+        <data name="情報">
+          <data name="タグ" type="note">【レミエム】
+格闘：1D6+0 / 武器：1D6+1 / 能力：2D6+5
+防御：0 / 抵抗：10 / 行動値：6
+ＳＳ：20+1D6 / 命中：5+1D6 / 回避：11+1D6
+スペック：6 / 精度：12
+活性タイプ：回復型 / カルマ：不死身【アンデッド】 / ＳＰＥ：瞑想
+
+力0 / 威0 / 観13 / 察4 / 知17 / 技11 / 隠1 / 俊0 / 話10 / 読14 / 閃5 / 幸1
+筋1 / 耐1 / 知18 / 精20 / 器4 / 敏1 / 運2
+
+最大HP3 / 最大PP31 / 初期暴走率25%
+
+【応用技】
+《潰す》 SP1 / PP2 / 2d6+5
+《弄ぶ》 SP2 / PP1 / 探索創造
+《本気》 SP3 / PP4～13 / 攻撃創造　Atk複製
+《本気の準備》 SP4 / PP5～14 / 攻撃創造　Atk複製　トリガーなしトラップ
+《圧す》 SP3 / PP4 / 回避-4テリトリー
+《動く》 SP2 / PP3 / Sh複製
+《効かない》 SP4 / PP10 / 精神リフレクトラップ　ヒットトリガー
+《操る》 SP2 / PP4 / 操作付与　対抗：精神
+
+アイテム
+ネクスト3</data>
+        </data>
+        <data name="立ち絵位置">
+          <data type="numberResource" currentValue="0" name="POS">11</data>
+        </data>
+        <data name="コマ画像">
+          <data type="numberResource" currentValue="0" name="ICON">16</data>
+        </data>
+      </data>
+      <data name="buff">
+        <data name="バフ/デバフ"></data>
+      </data>
+    </data>
+    <chat-palette dicebot="Yggdrasill">「いやあの、能力のむちゃくちゃな使い方をしてしまったので……。」
+「私はグリゴリの最高傑作たるレミエムですから。間違っても暴走崩壊とかはありえないんですが……」
+「身体はそうでもなくて………」
+「……………単純に……腰が……。💦」動けないようです＠</chat-palette>
+    <buff-palette dicebot="DiceBot">[PC名]《[応用技名]》 [効果] [継続R]</buff-palette>
+  </character>
+  <text-note location.name="table" location.x="-175" location.y="175" posZ="0" isLock="false" rotate="-45" zindex="5" password="" limitHeight="false" overViewWidth="250" overViewMaxHeight="250">
+    <data name="text-note">
+      <data name="image">
+        <data type="image" name="imageIdentifier"></data>
+      </data>
+      <data name="common">
+        <data name="width">10</data>
+        <data name="height">3</data>
+        <data name="fontsize">5</data>
+        <data name="title">オリジナル特性【スタン】</data>
+        <data type="note" currentValue="テキストを入力してください" name="text">このキャラクターが「SE：ブレイク」でのPPダメージを受けた場合、次の対抗判定終了時まで疲労状態を適用する。</data>
+      </data>
+      <data name="detail"></data>
+      <data name="buff"></data>
+    </data>
+  </text-note>
+  <text-note location.name="table" location.x="750" location.y="0" posZ="566.7985589499247" isLock="false" rotate="0" zindex="14" password="" limitHeight="false" overViewWidth="250" overViewMaxHeight="250">
+    <data name="text-note">
+      <data name="image">
+        <data type="image" name="imageIdentifier"></data>
+      </data>
+      <data name="common">
+        <data name="width">10</data>
+        <data name="height">3</data>
+        <data name="fontsize">5</data>
+        <data name="title">トラップ設置状況（レミエム）</data>
+        <data type="note" currentValue="テキストを入力してください" name="text">▽レミエム（本物）
+・Tr【ヒットトリガー】精神リフレク&gt;&gt;自身
+
+▽処刑空間１
+・Tr【なし】ブレイク
+
+▽処刑空間２
+・Tr【なし】ブレイク</data>
+      </data>
+      <data name="detail"></data>
+      <data name="buff"></data>
+    </data>
+  </text-note>
+  <text-note location.name="table" location.x="250" location.y="0" posZ="521.7622967616155" isLock="false" rotate="0" zindex="15" password="" limitHeight="false" overViewWidth="250" overViewMaxHeight="250">
+    <data name="text-note">
+      <data name="image">
+        <data type="image" name="imageIdentifier"></data>
+      </data>
+      <data name="common">
+        <data name="width">10</data>
+        <data name="height">3</data>
+        <data name="fontsize">5</data>
+        <data name="title">トラップ設置状況【セスタス】</data>
+        <data type="note" currentValue="テキストを入力してください" name="text">▼セスタス
+・Tr【なし】（攻撃発動／継続【ダメ：耐】）&gt;&gt;セスタス
+
+▼カルディア（故）
+・Tr【遠近ヒット】（物理無効）&gt;&gt;セスタス
+
+▼アリステロス
+・Tr【なし】（攻撃発動／継続【ダメ：耐】）&gt;&gt;自身
+・Tr【なし】（攻撃発動）&gt;&gt;セスタス
+・Tr【なし】（攻撃発動）&gt;&gt;場
+
+▼デクシオス</data>
+      </data>
+      <data name="detail"></data>
+      <data name="buff"></data>
+    </data>
+  </text-note>
+</room>

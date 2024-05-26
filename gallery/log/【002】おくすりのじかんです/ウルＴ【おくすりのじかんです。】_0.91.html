@@ -1,0 +1,9225 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>ウルＴ【おくすりのじかんです。】</title>
+	<style>
+		html {
+			font-size: 14px;
+		}
+		body {
+			-webkit-text-size-adjust: 100%;
+			background-color: #ffffff;
+		}
+		h1 {
+			font-size: 20px;
+			margin: 1rem 1rem 0;
+			color: #000000;
+		}
+		.tab {
+			border: 1px solid #999;
+			margin: 2rem 1rem 1rem;
+			line-height: 1.5;
+			position: relative;
+		}
+		.tabtitle {
+			border: 1px solid transparent;
+			border-color: inherit;
+			background-color: inherit;
+			position: absolute;
+			top: -.8rem;
+			left: 1rem;
+			min-width: 7rem;
+			padding: 0 .5rem;
+			text-align: center;
+			font-size: 1rem;
+			z-index: 9999;
+			line-height: 1.4rem;
+		}
+		.player {
+			margin: 0;
+			padding: 0 .5rem;
+			padding-left: 10.5rem;
+			border-bottom: 1px dotted transparent;
+			border-color: inherit;
+			position: relative;
+		}
+		.player:last-child {
+			border-bottom: 0;
+		}
+		.player b {
+			display: block;
+			height: 100%;
+			width: 9rem;
+			padding: 0 .5rem;
+			border-right: 1px solid transparent;
+			border-color: inherit;
+			position: absolute;
+			top: 0;
+			left: 0;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+		.tabtitle + .player {
+			padding-top: .7rem;
+		}
+		.tabtitle + .player b {
+			padding-top: .7rem;
+			height: calc(100% - .7rem);
+		}
+		.diceroll {
+			padding: 0 .5em;
+			color: #ffffff;
+		}
+
+		/* [メイン] タブ */
+		.t0 {
+			background-color: #ffffff;
+			border-color: #999999;
+			color: #000000;
+		}
+
+		/* [雑談] タブ */
+		.t1 {
+			background-color: #fadbda;
+			border-color: #999999;
+			color: #000000;
+			font-size: .8rem;
+		}
+
+		/* [情報] タブ */
+		.t2 {
+			background-color: #feecd2;
+			border-color: #999999;
+			color: #000000;
+			font-size: .8rem;
+		}
+
+		/* 発言者：蔓茱萸・T・ティルチ */
+		.p0 { color: #673ab7; }
+		.p0 .diceroll { background-color: #673ab7; }
+
+		/* 発言者：私がGM */
+		.p1 { color: #009966; }
+		.p1 .diceroll { background-color: #009966; }
+
+		/* 発言者：小山 ミケ */
+		.p2 { color: #000000; }
+		.p2 .diceroll { background-color: #000000; }
+
+		/* 発言者：セスタス */
+		.p3 { color: #9e9e9e; }
+		.p3 .diceroll { background-color: #9e9e9e; }
+
+		/* 発言者：system */
+		.p4 { color: #000000; }
+		.p4 .diceroll { background-color: #000000; }
+
+		/* 発言者：カルディア */
+		.p5 { color: #888888; }
+		.p5 .diceroll { background-color: #888888; }
+
+		/* 発言者：ゼルナ */
+		.p6 { color: #000000; }
+		.p6 .diceroll { background-color: #000000; }
+
+		/* 発言者：デクシオス */
+		.p7 { color: #888888; }
+		.p7 .diceroll { background-color: #888888; }
+
+		/* 発言者：アリステロス */
+		.p8 { color: #888888; }
+		.p8 .diceroll { background-color: #888888; }
+
+		/* 発言者：謎ののじゃ族 */
+		.p9 { color: #009966; }
+		.p9 .diceroll { background-color: #009966; }
+
+		/* 発言者：パナケア */
+		.p10 { color: #009966; }
+		.p10 .diceroll { background-color: #009966; }
+
+		/* 発言者：職員 */
+		.p11 { color: #607d8b; }
+		.p11 .diceroll { background-color: #607d8b; }
+
+		/* 発言者：探索 */
+		.p12 { color: #60538c; }
+		.p12 .diceroll { background-color: #60538c; }
+
+		/* 発言者：哀れな少女(1) */
+		.p13 { color: #ff9800; }
+		.p13 .diceroll { background-color: #ff9800; }
+
+		/* 発言者：チンピラ */
+		.p14 { color: #607d8b; }
+		.p14 .diceroll { background-color: #607d8b; }
+
+		/* 発言者：薬売り */
+		.p15 { color: #607d8b; }
+		.p15 .diceroll { background-color: #607d8b; }
+
+		/* 発言者：ヴェイド・カークマン */
+		.p16 { color: #795548; }
+		.p16 .diceroll { background-color: #795548; }
+
+		/* 発言者：人の群れ(1) */
+		.p17 { color: #607d8b; }
+		.p17 .diceroll { background-color: #607d8b; }
+
+		/* 発言者：ヴァルハザク */
+		.p18 { color: #802151; }
+		.p18 .diceroll { background-color: #802151; }
+
+		/* 発言者：氷結界1 */
+		.p19 { color: #60538c; }
+		.p19 .diceroll { background-color: #60538c; }
+
+		/* 発言者：氷結界2 */
+		.p20 { color: #60538c; }
+		.p20 .diceroll { background-color: #60538c; }
+
+		/* 発言者：氷結界3 */
+		.p21 { color: #60538c; }
+		.p21 .diceroll { background-color: #60538c; }
+
+		/* 発言者：娘 */
+		.p22 { color: #000000; }
+		.p22 .diceroll { background-color: #000000; }
+
+		/* 発言者：姉1 */
+		.p23 { color: #000000; }
+		.p23 .diceroll { background-color: #000000; }
+
+		/* 発言者：姉2 */
+		.p24 { color: #000000; }
+		.p24 .diceroll { background-color: #000000; }
+	</style>
+</head>
+<body>
+	<h1>ウルＴ【おくすりのじかんです。】</h1>
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			cond (COND) ＞ HP9[3,6] 、 PP11[5,6]<br>
+			いいね、これで
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ｋ<br>
+			ではまぁ<br>
+			ヤギ氏が来るまで待機という形で
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			さ&quot;む&quot;す&quot;ぎ&quot;る&quot;よ&quot;お&quot;お&quot;お&quot;
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			氷点下じゃないなら涼しいの部類
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			14時くらいにしょうもない長電話挟むと思うので長電話にならないことを祈ってください
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			承知
+		</p>
+		<p class="player p2">
+			<b>小山 ミケ</b>
+			こんばんは<br>
+			今日は違わい！
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			誰だ貴様<br>
+			今日は全年齢向けやぞ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			穢れた記憶
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			少々離席
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			さ&quot;む&quot;い&quot;よ&quot;お&quot;お&quot;お&quot;お&quot;お&quot;
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			cond (COND) ＞ HP3[1,2] 、 PP6[4,2]<br>
+			へなちょこ<br>
+			まぁこれでいいか　各宣言良いですか？
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] HP : 8 → 11<br>
+			[ セスタス ] PP : 23 → 29<br>
+			[ セスタス ] 暴走値 : 20 → 26
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ただいま<br>
+			挨拶代わりどうぞ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			おかやま<br>
+			はい
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			良いなら私も【攻撃創造トラップ】宣言します
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			ティルチからどうぞ<br>
+			同時に宣言したら混乱するだろうから
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			PP14を支払い自設置
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 蔓茱萸・T・ティルチ ] PP : 37 → 24<br>
+			[ 蔓茱萸・T・ティルチ ] PP : 24 → 23<br>
+			[ 蔓茱萸・T・ティルチ ] 暴走値 : 33 → 47
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ra50いくけどケアするかなぁ<br>
+			まぁいいか
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			むかーしむかしに<br>
+			「味方か否かは双方の認識によって判定される」ってのを利用して、<br>
+			「味方を一時的に敵扱いしてトラップ設置する」ってグリッチが言及されたことありましたけど<br>
+			あれはアリなんですか？
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			そもそも味方にトラップ設置できないんですか？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			枠が足りない
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			在りですが、敵設置をちょっと厳密化しました
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			ほう
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			具体的に言うと「命中回避判定を介したもの」を敵設置と定義しました<br>
+			回避放棄すればいいと思います
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			なるほど～～～
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			だいたい同じ認識だった
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			だから私の卓だと「もう同じ対象でもいいからトラップは４つまで設置可能でええやん」ってなったんですね
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			そうか、敵設置ならもう一個設置できるんだったか<br>
+			同行者に味方枠消費してセスタスに敵枠使えばよかったかなぁ<br>
+			まぁでもまだ会ってないからな…
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			まだ会ってないだろうけどセスタスに攻撃創造トラップ設置、まずかったら言ってください
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			セスタス側がいいなら問題なし
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 蔓茱萸・T・ティルチ ] 暴走値 : 47 → 60
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 蔓茱萸・T・ティルチ ] PP : 23 → 9
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 蔓茱萸・T・ティルチ ] 暴走値 : 60 → 61
+		</p>
+
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			EX1本飲んでPPB3します
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 蔓茱萸・T・ティルチ ] 因子 : 0 → 2
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			4d6 (4D6) ＞ 18[2,5,6,5] ＞ 18
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 蔓茱萸・T・ティルチ ] PP : 9 → 27
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			うーん……ターンエンド
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			俺のターン！　ドローカード！
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			はたき落とし
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			ドローのことドローカードっていうの好き<br>
+			ぐわああああああああああああ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			バクラが言ってた記憶しかない
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			初代勢は結構言ってた気がする<br>
+			王国編で見た
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			Tr【なし】（創造：「ﾃﾞｸｼｵｽ：１０】／複製【At】）　ティルチに設置<br>
+			Tr【なし】（創造：「ｱﾘｽﾃﾛｽ：１０】／複製【At】）　自分に設置<br>
+			まずは28点消費<br>
+			死力も嚙ませ……いや、このＨＰだと微妙に怖いか？
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ティルチじゃなくてツルグミか蔓茱萸とよんでほしい<br>
+			タリホと同じファミリーネームだから…
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			うん……結果次第では普通にマンタンからでも死ねるな
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			満タンなエネルギーは行き場をなくしてゴマ売ってるぜ？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			死力なしでー
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] PP : 29 → 1<br>
+			[ セスタス ] 暴走値 : 26 → 54
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ごめんra50忘れてたから処理するわ<br>
+			ra50 (RA50) 暴走Lv.1(1) ＞ 発作【自爆÷2ダメージ。（自身に能力攻撃ロールダメージ÷2）。防御無視】
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			ココフォリアのリモコン、手動でカチカチするしかないんす？
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			生きろ<br>
+			4d6+2 (4D6+2) ＞ 17[5,3,4,5]+2 ＞ 19
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			+5とか数値入力してその通りに処理してほしい
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 私がGM ] HP : 0 → 5
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			「:HP+5」みたいな
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] 因子 : 0 → 5
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			9ダメージ、もやしじゃなくて良い
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 蔓茱萸・T・ティルチ ] HP : 17 → 8
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			おお
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			そんなことを打ち込めば反応する
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] HP : 11 → 15
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			ふむ
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] HP : 15 → 11
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			「:（パラメータ）+n」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			:最大HP+4<br>
+			これは無理か
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			最大値は残念ながら
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			まぁ50活性とra50
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			まぁ最大値超えて回復とかはできる
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			1d6 50活性 (1D6) ＞ 6<br>
+			ra50 (RA50) 暴走Lv.1(2) ＞ 高揚【1D6暴走率上昇】 ： 6[6] ％<br>
+			おいおい
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			はい
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			なんで毎回高揚引いてんだこいつ
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			もう勃ってんの？
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			お元気ですね
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			前からツルグミに目つけてて同じ任務だったことに息巻いている説
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			誰かがちょっと揺らすだけで大仏は破裂するぜ～ｗｗｗ<br>
+			でんわきた
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			はい<br>
+			いってらっしゃいませ
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] PP : 1 → 7<br>
+			[ セスタス ] 暴走値 : 54 → 60
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			その間にセスタスの処理をしよう
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			その間処理しときます<br>
+			1d6 幸せな60活性 (1D6) ＞ 2
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			低い
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			活性をraみたいになんかうまいこと略せないかな
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			これは腎虚<br>
+			回復活性だけだしなぁ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			マグZを1本飲んで
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			1d6　60 (1D6) ＞ 5
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			1d6 (1D6) ＞ 1
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			これでわかるような気がしないでもない<br>
+			ごめんね出目奪っちゃって
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			赦さんからな<br>
+			そうだなぁ、えーっと<br>
+			今のところトラップしか設置してないし、<br>
+			無理に減衰トラップ置くんじゃなくてティルチに蘇生してもらう方が早い気もしてきた<br>
+			と思ったけどツルグミの知技11点か……
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			あ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			蘇生のリスクに見合ってないな　やや重いが減衰でなんとかしよう
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			今回の特殊ルールの説明忘れてたけど<br>
+			まぁ下層入ってからのやつだからいいや
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			（創造：カルディア【８】）<br>
+			ほんまか？<br>
+			ちょっと待てよ<br>
+			うん、4創造だな<br>
+			発生します<br>
+			生じます
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			はい
+		</p>
+	</div>
+
+	<div class="tab t2">
+		<div class="tabtitle">情報</div>
+		<p class="player p1">
+			<b>私がGM</b>
+			ウィルスペナルティ<br>
+			高揚・連鎖・発症・戦闘不能になるたびに疫病カウンターを1つ置く。<br>
+			疫病カウンターを持つキャラクターは以下の効果を適用する。<br>
+			●探索判定の達成値がカウンターの値だけ減少する。<br>
+			●消費チェック以外で暴走率が上昇する場合、カウンターの値だけ追加で暴走率が上昇する。
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			休み中に仕事の話させんな～～（至極まっとうな話題だった）
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			おかかか
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			しゃけ　しゃけ
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ツナマヨ
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p1">
+			<b>私がGM</b>
+			というわけで情報に貼っときました<br>
+			コマに「疫病」の項目を追加しておいてください
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			カウンターカウンター発動してもいいですか？
+		</p>
+
+		<p class="player p1">
+			<b>私がGM</b>
+			出来るなら発動してもいいです<br>
+			でもカウンターを乗せる効果はカウンター罠ではないです
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			場に設置してなかったです
+		</p>
+		<p class="player p5">
+			<b>カルディア</b>
+			Tr【暴走：７０】【ﾀｲﾐﾝｸﾞ：ダメージロール】（減衰【攻：２】）&gt;&gt;セスタス<br>
+			転換
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			多分カウンタークリーナーの方がこの場合は役割を持てると思いますぞ<br>
+			ぺやっ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			カウンタークリーナーだったわ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			1d6 その前に60活性だったわ (1D6) ＞ 5
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] PP : 7 → 9<br>
+			[ セスタス ] PP : 9 → 14
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			60活性は普通にra60って呼んでるわ
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] PP : 14 → 10<br>
+			[ セスタス ] 暴走値 : 60 → 63<br>
+			[ セスタス ] 因子 : 5 → 6
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			えーっと<br>
+			マグZ2本<br>
+			2d6 (2D6) ＞ 8[6,2] ＞ 8
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] 暴走値 : 63 → 55
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			リソースがかなり貧弱なので60活性は極力使い潰してみた<br>
+			なんでマグZ4本じゃなかったんだろうな　まぁいいや
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ バナケアちゃん ] HP : 5 → 10<br>
+			[ バナケアちゃん ] HP : 10 → 1
+		</p>
+		<p class="player p5">
+			<b>カルディア</b>
+			転換で消滅
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			Tr【なし】（攻撃発動／継続【ダメ：耐】）&gt;&gt;ツルグミに敵として設置<br>
+			死力1しとくかー<br>
+			いや……2
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			おはなつみ
+		</p>
+		<p class="player p6">
+			<b>ゼルナ</b>
+			いってらっしゃい
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] PP : 10 → 5<br>
+			[ セスタス ] 暴走値 : 55 → 60<br>
+			[ セスタス ] HP : 11 → 7<br>
+			[ セスタス ] PP : 5 → 7<br>
+			[ セスタス ] 暴走値 : 60 → 62
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p1">
+			<b>私がGM</b>
+			違う人だった
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			1d6 60活性 (1D6) ＞ 3
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] HP : 7 → 10<br>
+			[ セスタス ] PP : 7 → 10
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			なるほどな<br>
+			えーっと今の設置状況が……<br>
+			セスタス：アリステロス<br>
+			ティルチ（味方）：デクシオス<br>
+			ティルチ（敵）：継続トラップ<br>
+			こうなので<br>
+			とりあえずカルディアをPP4でもう1回創造
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] PP : 10 → 6<br>
+			[ セスタス ] 暴走値 : 62 → 66
+		</p>
+		<p class="player p5">
+			<b>カルディア</b>
+			Tr【暴走：７０】【ﾀｲﾐﾝｸﾞ：ダメージロール】（減衰【攻：２】）<br>
+			これを本体に転換設置して消滅
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			だれだいまの
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			導入で説明してくれるいい人
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			やさしい
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			フラメルの良心
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			あえて突っ込むまい
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p5">
+			<b>カルディア</b>
+			あ、やべ。ミスった
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			創造トラップ場に設置すりゃ良かった<br>
+			場に設置してたことになりませんか！？
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			そもそもその減衰攻ってタイミング逃さなかったか？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			暴走とダメージロールで指定してあるので逃さない
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			回避しないように気をつけようね
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			あるえ～～？まぁいいや今度からつかおう
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			ra70だと逃す<br>
+			ra70というかトリガー【暴走：70】
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			暴走70以上のダメージロールにとりあえず反応するトラップ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			設置先ちょろまかすのはダメですか？<br>
+			ダメならダメで運命を受け入れて進みます
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			んーっとちょいまち<br>
+			ダメロタイミングが入れば反応できるからコレはセーフ<br>
+			70のみだとタイミングを逃す<br>
+			ダメロのみでも反応自体はできるが不確実<br>
+			そういう感じ<br>
+			設置先還るのはぁ<br>
+			GUKI (GUKI) ＞ 2 ＞ 成功<br>
+			良いって
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			神託が下った
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			神宣
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			味方ティルチに設置してた創造トラップを場に変更します
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ズズズ……
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			場でいいのか？<br>
+			たぶん場設置って要するにゲーム内で移動したら置いてっちゃうんでしょ？
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			いますぐ解放するならどうでもいいんですけど、もし後で解放しようとしている場合<br>
+			現在地は中層なので、解放されたあとにクリーチャーが下層に到着するまで合流できない扱いです
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			残像が勝ち取りたいものもない無力なバカにはなれなくて追いかけてくるかもしれない
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			BBの墓場
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			Tr【なし】（攻撃発動）&gt;&gt;味方ツルグミに設置
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] PP : 6 → 4<br>
+			[ セスタス ] 暴走値 : 66 → 68
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			剛毅【カルディア】を２創造
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] PP : 4 → 2<br>
+			[ セスタス ] 暴走値 : 68 → 70
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			審判の時<br>
+			1d6 活性 (1D6) ＞ 6
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] HP : 10 → 11<br>
+			[ セスタス ] PP : 2 → 8
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			ra70 もし暴発が今作ったカルディアに飛んで行ったら流石に悲しい (RA70) 暴走Lv.3(3) ＞ 暴発【ランダム攻撃。基本的に能力攻撃。対象は自分、キャラ、オブジェクトの三種類】<br>
+			choiceくーださい
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			減衰適応なら耐える可能性が微レ存？
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			マスターデュエルのデイリー消化用に観戦モードつけっぱにしてたらターン1で先手が鉄獣戦線のモンスター効果を発動した瞬間使った側の手札が全部消えてサレンダーしたんだけど意味わからん
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			バグかな<br>
+			たまにある
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			たまにある？？？
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			MTGアリーナとかの話ではあるけど
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ネタじゃなくてマジならゲームやるってレベルじゃねえぞ！
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			最新カード使ったら唐突に相手のマナが全部弾け飛んでライフ消し飛んだとか
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			劣勢になってやけくそ効果発動したらハルマゲドンのスクリプトがそのまま間違えて流用されてて劣勢逆転できたとか<br>
+			ある
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			？？？？？
+		</p>
+		<div class="tabtitle">雑談</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			多分手札事故かな
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			効果処理の最中に改めてサレンダーしたのかな
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			普通に敗北演出だよ
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			星4を捨てたなら最高の手札なはず
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			手札とか砕けるのは
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			あぁ、タダのサレンダー演出か
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			デッキとかも全部砕けたから
+		</p>
+	</div>
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p1">
+			<b>私がGM</b>
+			//CHOCE[セスタス,ツルグミ,カルディア,何について調べますか？]
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			CHOCE[セスタス,ツルグミ,カルディア,何について調べますか？]<br>
+			CHOiCE[セスタス,ツルグミ,カルディア,何について調べますか？] (choice[セスタス,ツルグミ,カルディア,何について調べますか?]) ＞ 何について調べますか?<br>
+			おまえを消す方法
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			消されてしまった
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			おまえはよくやった
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			とはいえこのままだとトラップが邪魔なので
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			自分を殴ります
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			設置したやつがいねぇから任意解放もできない
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			格闘攻撃。まぁ描写上は別の理由で体力削ってる感じで
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			オナニーじゃん
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			別の理由（意味深）
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			腎臓に負担賭けてるじゃん
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			いつも笑顔の腎臓くん
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			今日はちょっと元気がないみたい
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			1d6+0-16 別の女食って来た帰り　減衰4枚 (1D6+0-16) ＞ 1[1]+0-16 ＞ -15
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			レッドアラート
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			はい<br>
+			1点だけダメージ
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			1ダメ
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] HP : 11 → 10
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			なるほど、処理しなければいけないデメリットもあるのか
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			残り続けるからね
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] 因子 : 6 → 9
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			まぁ格闘攻撃で自分殴ればいいから時間さえ許すなら問題ない<br>
+			ではソリティア続行
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			別にその辺のオブジェクト殴ってもええけど
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			場設置の創造トラップを起動
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			殴ったオブジェクトが反撃してくる可能性は考慮しておく必要はある
+		</p>
+		<p class="player p7">
+			<b>デクシオス</b>
+			やぁ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			いや<br>
+			おまえちょっと待ってろ
+		</p>
+		<p class="player p7">
+			<b>デクシオス</b>
+			はい
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			デクシオス創造する前に自設置のアリステロス出します
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			わん
+		</p>
+		<p class="player p8">
+			<b>アリステロス</b>
+			ごめん、待った？♥
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			いま来たところ<br>
+			残像分身で一人で5Pできるのか<br>
+			4Pか
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			で、アリステロスだけ生えた状態でTr【なし】（攻撃発動）&gt;&gt;自設置<br>
+			ギリギリSOなし
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			竿分身はあんま好きじゃねぇ～
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			じゃあ膣内でちんこだけ分身するやつ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			？？？？？
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			抜いたときのひっかかりと突いた時の感触が同時に云々
+		</p>
+		<p class="player p8">
+			<b>アリステロス</b>
+			以下のトラップを設置<br>
+			Tr【なし】（攻撃発動／継続【ダメ：耐】）&gt;&gt;自身<br>
+			Tr【なし】（攻撃発動）&gt;&gt;本体（味方）<br>
+			Tr【なし】（攻撃発動）&gt;&gt;本体（敵）
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ちんこが倍だから精液も倍
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ちんこが倍だから精液も倍？？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			あぁPP足りないなこれ。マグタフ3本使っときます
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			金玉も当然増える
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			3d6 (3D6) ＞ 10[2,5,3] ＞ 10<br>
+			PP:10
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			+
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] PP : 8 → 18
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			こうか
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] PP : 18 → 9
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			-で減らせるから
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			:暴走+9
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			しっかり挿れなければならない
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			まってセスタスくん所持アイテムどうなってるの？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			:暴走値:+9
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] 暴走値 : 70 → 79
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			半角コロン
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			キャラシと所持品変わってたわ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			暴走ヤバいなこれ
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			80％を維持しろ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			バトル始まったらかなり節約できるはずではあるが
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			減らさず増やすな
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			卓なんだからSC入るだろ
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ないよそんなん
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ないの！？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			あ、探索クリいるじゃん　邪魔くせぇ～
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			シーンチェックアンチだよ我
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			そのぶん敵の強さを上げると……
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			暴走欲しいなら暴走Bしろ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			いいかもう　探索クリなんていなかったんや
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			こっちの次元だとscないと難易度が低すぎる<br>
+			それはそれで正しいけど
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			なんなら卓中に回復ポイントガバガバ置いてるから<br>
+			可能な限り最高のコンディションで立ち回ってほしい
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			臨戦ラウンドって１Ｒですよね？
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			1Rです。エンドフェイズは無い
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			１Ｒというか１手か
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			暴走回復チャンスあるならトラップ消さないほうがよかったかもな
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			1手番<br>
+			まぁ、このシナリオに暴走回復チャンスがあるかはわからないが
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			まぁお得だから消すのは尚早だった説はある
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			回復ポイントいっぱいあるけどどれだけ引けるかは探索次第
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			……いや、このままでいくか
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			なお睡眠休憩は原則不可能です<br>
+			寝るとシーン休憩扱いになります
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			いけねーよ！！！　デクシオス場に設置してんだよ！！！<br>
+			アホか私は！！！
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			デクシオスが中層に置いてけぼり
+		</p>
+		<p class="player p5">
+			<b>カルディア</b>
+			本体に応急処置転換して消えます<br>
+			……知識も技術も取ってなかったか<br>
+			しゃーないので普通に消えます　なんか別の使いかたをすれば良かったな、このPP2点
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			解放しよ♥
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			場に設置してたデクシオスを改めて創造
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			周りには下層から救出されたと思しき傷病者がたくさん<br>
+			解放すれば一網打尽だ
+		</p>
+		<p class="player p7">
+			<b>デクシオス</b>
+			Tr【なし】（攻撃発動／継続【ダメ：耐】）&gt;&gt;自身<br>
+			Tr【なし】（攻撃発動）&gt;&gt;本体（味方）<br>
+			Tr【なし】（攻撃発動）&gt;&gt;本体（敵）<br>
+			上記トラップを設置
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] PP : 9 → 0<br>
+			[ セスタス ] 暴走値 : 79 → 88
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			あー待った！！<br>
+			設置の前に！！
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			はい
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			設置というか解放の前に、<br>
+			（複製【Sh】）&gt;&gt;アリステロス
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p1">
+			<b>私がGM</b>
+			ちなみにこのシナリオは
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			初心者1名、中級者1名、最古参勢1名の3人PTで挑んで敗北した実績があります<br>
+			でもお二人ならなんとかなると信じています<br>
+			なんとかしてください
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			3人でダメだったのに2人で勝てるわけないだろ！！！！！
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			実質一人みてぇなもんだよ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			何だと？どういうことだ？（桐生一馬）
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			初心者はまぁいわずもがなとして
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ユグドラ最古参勢って初心者みてぇな奴らだから
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			いうてそっちの次元でいう初心者って言ってもインフェルニティみたいな事できるんでしょ？
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			んーっと
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			この初心者はガチの初心者だったので
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			凡骨バニラビートみたいな感じでした
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ウォークライ
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			最古参勢さんは第一期グッドスタッフみたいな感じでした
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			40枚中37枚バニラ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ダイナソー竜崎かな？
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			危うく忘れるところだった
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ほい
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			PP足りないのでそこはPPB3してー<br>
+			3d6 (3D6) ＞ 9[2,5,2] ＞ 9
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] PP : 0 → 9
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] PP : 9 → 3
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			6じゃないわ
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] PP : 3 → 6<br>
+			[ セスタス ] 暴走値 : 88 → 91
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			はい<br>
+			ra90 (RA90) 暴走状態表(52) ＞ 言語異常【AE使用時に偶奇判定。奇数の場合は消費だけ行いAE発動失敗。話術の判定結果が半減】
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			まぁ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			おっ
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ええんちゃう
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			ほぼアタリ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			まぁ以上だ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			罠も全部設置し終わったので完全に行動終了
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			念のためPPBしとこうかなとも思うがその必要性すらぶっちゃけ怪しいぐらい全部出し切った
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			もう探索以外で支払う要素がない
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			セスタスって行動値10のクリを場に出してる？
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			あ、暴走症状に関してなんですけど
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			出してます　パクってくれてもいいよ
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			RPしてもしなくてもええです。<br>
+			進行に支障が出る系だと特にダルいんで
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			自分で出すつもりだったけどパクればいいことに気づいた<br>
+			暴走症状は僕はあんまRPしないですね
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			多少意識する程度でいいです
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			正直しろって言われてもしません
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			視覚異常で直前まで普通に活動してたのに
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			私が従うのは判定結果だけだ
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			冒涜的なものを見た時だけ視覚異常で見えてなかったわ～とか言うのもまぁいいです
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			うーんここでra70突破シといたほうがいいのかな…
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			君もこっちに来なよ<br>
+			楽になれるよ<br>
+			気持ちいいよ
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ですが、判定結果へのペナルティは必ず適用してください
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			当然ですよ
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			まぁするだろうけど
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			暴走引いたのにペナ適用しないって鼻殴られても文句言えないだろ
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ユグドラ最古参勢に言ってくれ
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			キャラの性質踏まえて提案するならともかく当然のように無視するな&gt;&gt;暴走ペナ
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			すまん、我のターン！ドロー！
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ほい<br>
+			強烈なはたき落とし
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ぐああああああああ<br>
+			Sh複製術をセスタスのHP10クリに使用<br>
+			:pp-3
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			半角コロン
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			半角大文字P
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			pp:-3
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 蔓茱萸・T・ティルチ ] PP : 27 → 24
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			こうか！
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			イエス
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			:暴走+3
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			半角コロン打ち込んだ時点で<br>
+			なんか候補が出てくるだろうから<br>
+			其処から選ぶと間違いがない
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 蔓茱萸・T・ティルチ ] 暴走値 : 61 → 64
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			なるほどな<br>
+			続いて召喚権を使用し探索型クリをHP3で召喚
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ｺﾝﾆﾁﾜ
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 蔓茱萸・T・ティルチ ] PP : 24 → 21<br>
+			[ 蔓茱萸・T・ティルチ ] 暴走値 : 64 → 67
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			余談なんだけど、シーンチェックって原義的に言えば「シーンへの参加権」なんやね<br>
+			ユグドラ以前、シーン制が生まれた当時の発想だけど
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			だから「あぁ、自分このシーンには出るつもりないんで」って蹴ることもできたとかなんとか
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			今はもうシーンがクソ長い上に<br>
+			登場前提で構築されているので
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			DXを意識したシナリオ構成が為されていない以上SCの必要性を感じない
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			そもそも冒険ものみたいなシナリオ中に長時間移動があったりするシステムに向いたもので、<br>
+			DXですらいらないんじゃないかと思う
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			DXはSCがないとみんな好き勝手出てきてかっこいいシーン演出に支障が出るんよ<br>
+			だから必要<br>
+			「このシーンはこいつの見せ場だから出てくんなカス」ってのがDXにおけるSC
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			あぁ、となるとＧＭに指名されたＰＣはタダで参加したりできるのか
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			うむ<br>
+			なのでGMが全員参加想定のシーンはSC無いとかが普通
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			ユグドラ……（呆れ）
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ユグドラは全員参加前提のくせに全員SCあるのがおかしい
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			乱入ペナルティ2d6！！！！
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			デュエル開始時に強制徴収されてんだよなぁ
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			探索型の効果発動！！【攻撃減衰】を本体に使用し攻撃力を-8する！
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 蔓茱萸・T・ティルチ ] PP : 21 → 18<br>
+			[ 蔓茱萸・T・ティルチ ] 暴走値 : 67 → 70
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ra70 (RA70) 暴走Lv.3(6) ＞ 自制【暴走無し】<br>
+			取越苦労！！！！！
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			罠2枚を維持しターンエンド
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ほい
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			回復型じゃないってだけでアド損だなぁ
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 蔓茱萸・T・ティルチ ] 因子 : 2 → 4
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			覚醒型補正は強いんだが回復型がもっと強すぎる
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			3体目のクリは時期を見て創造する（僕が苦手なやつ）
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			では準備完了かい
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ウッス
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			愛にできることはまだあるかい
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			そうねだいたいね
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p1">
+			<b>私がGM</b>
+			では開始。<br>
+			ここは天下の中層中央エレベーター<br>
+			君たちは下層で発生した大規模災害の調査のために集められました。<br>
+			仮設拠点の周辺には下層から救助されたと思しき下層民が転がされており、さながら野戦病院の様相を呈しています。<br>
+			そんな仮設拠点の、これまた簡素なブリーフィングルームです<br>
+			具体的に言うとちょっと大きめのテントの中です。<br>
+			担当者が来るまで少し時間があるっぽいので
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			凄惨な状況に素直に心を痛めます＠
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			まぁセックスするなりしてると良いと思います＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			しねーよ！！！！
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			そうなの？<br>
+			アストルフォならしてた
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			僕らをなんだと思ってるんですか～～
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			いません。ブリーフィングが本格的に始まるまでちょっと遅れてきます＠
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			じゃあオナニーか<br>
+			愚民が苦しんでる……♥
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			フリなの？？？？？？？？
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			って感じの
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			フリなのかそれ？？？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			ナンパして遊んできたのでちょっと遅れてます
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			なるほどなぁ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			時間にルーズ
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			じゃあツルグミが心を痛めていると
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			まぁ下層民の介抱を手伝ってます。＠
+		</p>
+		<p class="player p6">
+			<b>ゼルナ</b>
+			「やぁぁ、おぉ待たせぇたね」
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			フラメルの研究員と思しき物体がテントにやってきます。<br>
+			どうやら責任者のようですね＠
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			コイツが研究責任者としてフラメルで活動続けられてるのが<br>
+			一番アロドラシルの治安を物語っている気がする
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			なんでや<br>
+			明確に事件起こしては居ないんやぞ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			製造物責任ってのがあってぇ……
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ちゃんと手順に従って廃棄してるから<br>
+			廃棄したあとに脱走したとかは廃棄場管理者の責任だから……
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「はじめまして。私、グレイプニル所属【蔓茱萸・トリベディ・ティッルチラーッパリカー】と申します。ツルグミとでも呼んでくださいませ」<br>
+			握手しようと手を差し伸べます＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ツルグミの耳にも入るような所業をこのひとはしてますか？？
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ふむ<br>
+			ツルグミがグレイプニル所属であればある意味有名ですね<br>
+			賢者の石の研究の第一人者で、本人も死んで復活した経験があるとかいう厄い物体です。<br>
+			生物を面白半分で改造したり合成したり賢者の石化したりして、上層に技術貢献をしています。
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			大丈夫かこいつ？？？？？
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			生成物の八割は廃棄されたあとも何らかの方法で復活、脱走し<br>
+			主に中層や下層に潜伏する悪癖を保ちます
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			今回もこいつのせいでは！？
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			なお、被造物との仲は良く、ディスコのグループに生きてる奴らはだいたい入ってます<br>
+			そういう研究員ですね
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ディスコのグループ<br>
+			………まぁとりあえず握手します！！＠<br>
+			手はひんやりしてます。
+		</p>
+		<p class="player p6">
+			<b>ゼルナ</b>
+			「こぉれはご丁ぃ寧に」
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			悪手に応じますが<br>
+			手を握ると手首のあたりで手のような物体がもげます<br>
+			ツルグミの手には泥のような物体が残されます
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			草
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「きゃ、きゃっ！？」
+		</p>
+		<p class="player p6">
+			<b>ゼルナ</b>
+			「おっとぉ、外れちゃったぁねぇ」
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			握手は悪手だったな！　ガハハ
+		</p>
+		<p class="player p6">
+			<b>ゼルナ</b>
+			知らない人には毎回コレやってる気がするわ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			手首据わらせろ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			新たな犠牲者になってしまった
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			飛び散ると集めるのがめんどくさくて
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			ゼルナの泥、何製なんだろうな<br>
+			クレイトロニクス？
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			原材料は泥変質トランサーだよ
+		</p>
+		<p class="player p6">
+			<b>ゼルナ</b>
+			ナノマシンってよりは微生物の集合体か<br>
+			メカニズムはほぼ同じ
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ゼルナさんの何がアレって<br>
+			この体が千切れたり流動するの能力でもなんでもないんだよっていう
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p1">
+			<b>私がGM</b>
+			研究員は特に気にした様子もなくツルグミの手から泥を回収して手首に押し付けます。<br>
+			すると、泥が再び手のような形を取りますね。便利そうです＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「……だ、大丈夫ですか？」＠
+		</p>
+		<p class="player p6">
+			<b>ゼルナ</b>
+			「あぁ、問題ぃはないよ」<br>
+			「ゼぇルナさんはちょぉっと流動ぅ的でぇね」
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			まぁ本当に大したことは無さそうですね
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「申し訳ありません。体質に狼狽してしまうなど、礼を欠いた真似を…。」＠
+		</p>
+		<p class="player p6">
+			<b>ゼルナ</b>
+			「いいのぉさ。初めぇての人は大ぃ体そうだぁからね」<br>
+			「で、今回ぃはもう一ぉ人呼んだって聞いたぁけど」<br>
+			「まぁだ来てないのかぁな？」
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			右の眼球がぐるっと頭部を一周します。<br>
+			どうやら部屋を見渡してるようですね＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「ふふ、中々にユニークなお目々ですね」<br>
+			「私も会ったことはないのですが、どんな方なのかしら……。」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			現れ出るべきですか？
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			まぁいいんじゃないか
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			じゃあバイクに乗って来ます
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			バイクに乗って行くぜ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			その辺に停めてブリーフィングルームまで走ります
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			では外からバイクに轢かれた傷病者の悲鳴が聞こえます
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			！？！？？！？？？？？？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			轢いてねーよ！！！！！！
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			あ、バイクで突っ込んでくるんじゃないのか
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			それやっても罪に問われ無さそう
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			GMさんほんとはそういう展開期待してますよね！？？？
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			じゃあバイクを見てPTSDを発症した傷病者が喚きます。きっとナムです
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			なんだこいつって思いながらブリーフィングルームまで走ります
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			結局啼くんかい
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「いや～ごめんお待たせ！　もう始まっちゃった～？」＠
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			だってバイクに乗ってくるとかいうから部屋までバイクでくるとばかり
+		</p>
+		<p class="player p6">
+			<b>ゼルナ</b>
+			「いぃまから説ぅ明をするぅところだぁよ」＠
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p1">
+			<b>私がGM</b>
+			ゼルナさんの喋り方は正直結構疲れるので
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			卓に出したくないPCランキング上位にいる
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			「あ、そーなんだ。じゃあセーフだね！」　ふーと一息つきながら適当な椅子に腰かけます
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「ぇ………………」セスタスの紅顔を見て固まります＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「ん？　博士、この人誰？」＠
+		</p>
+		<p class="player p6">
+			<b>ゼルナ</b>
+			「今回ぃのキぃミの相方だぁよ」<br>
+			「仲良ぉくね？」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			前から目つけてはいなかったか
+		</p>
+	</div>
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			人妻がショタを一目見て発情するのもどうなんだ
+		</p>
+		<p class="player p6">
+			<b>ゼルナ</b>
+			いや、人妻はショタを視ると発情するでしょ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			逆レもの！！！！！！
+		</p>
+		<p class="player p6">
+			<b>ゼルナ</b>
+			自分の子供の一番可愛かった頃と重ね合わせて
+		</p>
+		<p class="player p6">
+			<b>ゼルナ</b>
+			無聊を慰める
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			正直紅顔の美少年はディルムッドのほくろに近いもんだと思ってる
+		</p>
+	</div>
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			「あー。今回はツーマンセルだって隊長言ってたっけ」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ソールと仲良さそう
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「えっと、【セスタス】でーす。今回はよろしく！」　屈託のない笑顔で手を差し出します＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「……………」<br>
+			「……っ、あ、はい。失礼致しました。」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「【蔓茱萸・トリベディ・ティッルチラーッパリカー】と申します。ツルグミとお呼びくださいね。」ごつごつとした手とひんやりとした手で握手します＠
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p6">
+			<b>ゼルナ</b>
+			ここでセスタスの手首が外れて……
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			天丼やめろｗｗｗｗｗｗｗｗｗｗｗｗ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			超再生能力だからできないことはない
+		</p>
+		<p class="player p6">
+			<b>ゼルナ</b>
+			セルとかピッコロみたいなつなげ方か
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			「うわっ、冷た！　キーンと来るね！」　びくっとしますが改めて握りなおします<br>
+			「……ツルグミさんだね。一緒に頑張ろう！」　一瞬表情が変化したのは見逃していません＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「ええ、よろしくお願いします。セスタスくん。」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「まだ小さいのにすごく逞しくて、手もこんなに大きくて硬い。よほど修練に励みなさったのね。頼もしいですわ」にこにこ＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「あはは、そう言われると照れくさいな」　背こそ小さいですが、引き締まって無駄のない筋肉の付き方をしています
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p6">
+			<b>ゼルナ</b>
+			今回のシナリオ、ウィルスの主な作用は血液の凝固<br>
+			海綿体がもげることを受け入れれば一回だけめっちゃ硬いペニスが手に入る可能性が？
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			再生能力だから実質ノーリスクでディルド生成できるじゃん（最低の発想）
+		</p>
+		<p class="player p6">
+			<b>ゼルナ</b>
+			カマキリの雄同様にメスに膣内にペニス残して死ぬ
+		</p>
+		<p class="player p6">
+			<b>ゼルナ</b>
+			セスタスはまた生やせばいいのか<br>
+			自分のペニスの型を取る必要もなく同型ディルドできるじゃん
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			繁殖欲はないから……<br>
+			強いやつを殴りたい、美味しいもの食べたい、いっぱい眠りたい、いい女を抱きたい
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			あとレイプ趣味じゃなさそうって言ったけど、<br>
+			弱いやつから一方的に奪い取るのはつまらんってだけで打ち負かした強者に対してペナルティとして強姦するのは好きかもしれんなセスタスくん
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			「でも、グレイプニルってことはツルグミさんも超強いってことだよね」<br>
+			「僕、集団戦は苦手だから、いざという時はよろしく。その代わり１対１の時はドカーンと期待してくれて良いから！」<br>
+			ふんすと胸を叩きます＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「ふふ、胸を叩く音まで強壮でいらっしゃるのね。ふふふ。」つい顔がほころびます<br>
+			（……本当、羨ましいですわ。私とは正反対の生命力に溢れていて。）<br>
+			（若い頃の主人も、ここまで筋肉質だったかしら……）＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			言われてみれば死なずの兵士と短命の貴婦人か<br>
+			まぁそんな感じで邂逅RPは以上です
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			不死能力を分け与えられたら元ネタよろしく「お前も不死身にならないか？」って言えたのに
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			……………なるほどな！<br>
+			じゃあ氷能力を与えられたら氷属性の術式展開とかさせてあげられたね<br>
+			氷結界テリトリーで援護すれば実質破壊殺・羅針
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p6">
+			<b>ゼルナ</b>
+			では<br>
+			「さぁて、事件のお話とぉ行こうか」
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			椅子に乗ってくるくると回転しながら<br>
+			そう口火を切ります
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			椅子の上にあぐらをかいてます＠
+		</p>
+		<p class="player p6">
+			<b>ゼルナ</b>
+			「今回ぃ下層を襲った異変はぁ、疫ぃ病をぉ持った霧、ってところだよぉ」<br>
+			「主な作用ぅは、血液の凝ぅ固」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			膝の上に手を置いて背筋を伸ばしながら上品に座っています＠
+		</p>
+		<p class="player p6">
+			<b>ゼルナ</b>
+			「即効性ぃこそなぁいケド、薄ぅいところで最長ぉ５日」<br>
+			「救助さぁれたヘル親衛ぃ隊の証言だぁと、『濃霧』に至ってぇは数時ぃ間で発症するらしいぃ」<br>
+			「キミぃ達には、その下層でぇ、元凶の調査、及び解ぃ決」<br>
+			「もしくはぁ、特効ぅ薬の精製をぉ行ってもらう感じぃだよ」＠
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p6">
+			<b>ゼルナ</b>
+			ちなみにゼルナさんの発言が間延びしてるのは
+		</p>
+		<p class="player p6">
+			<b>ゼルナ</b>
+			泥の振動制御が完璧ではないためです<br>
+			母音が残ります
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			「なるほど病気か～。だから僕なんだね」←病や癌に対しても有効な超再生能力者<br>
+			「ってことは、ツルグミさんもそーゆー感じなのかな？」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「ヘルの方々まで救助対象になってしまうだなんて……大変なパンデミックですね。」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「いえ……私はむしろ逆。病には弱い体質でございます。命の灯もいずれ消えゆく身です。」<br>
+			「しかし、私も代々続く強力な能力者の末席。<br>
+			市井を守ることが先祖から受け継ぐ我が努めです。」<br>
+			「どうせ命の保証はない任務であれば、<br>
+			皆様に代わってこの残り少ない命を捧げることを誓っているのです。」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「あ、そうなんだ……悪いこと聞いちゃったかな」　ばつが悪そうに苦笑します<br>
+			「でも大丈夫！　危ないところは僕が先行するからさ！」<br>
+			「ツルグミさんが市民を護るなら、僕がツルグミさんのこと護ってあげないとね！」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「まぁ、いけませんわ。私が貴方のような麒麟児の命を脅かしたとあれば。<br>
+			それこそ末代まで語り継がれる恥というものです。」<br>
+			「しかし助け合い、ともに生還すれば美談となりますわ。頑張って生き残りましょうね。」＠
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			あ、こっちで勝手に話始めても続けてて大丈夫です<br>
+			勝手にＲＰ挟んでるだけなので話進んだらちゃんと乗ります
+		</p>
+		<p class="player p6">
+			<b>ゼルナ</b>
+			テキストが消えてるんですよ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			草<br>
+			物理的なトラブルかよ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			かわいそう
+		</p>
+		<p class="player p6">
+			<b>ゼルナ</b>
+			ちょっと前回ログから引っ張ってきて整形とかいうめんどくさいことをしてる
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			（もう…。本当にたくましい子です。齢を大きく離れたこの私が、つい頼ってしまいそうな程に）＠
+		</p>
+		<p class="player p6">
+			<b>ゼルナ</b>
+			「でぇ、今回キミたぁちにはコレを持っていって貰うぅよ」
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			回転を止め、机の上に手のひらサイズの少女を置きます。
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			手のひらサイズの少女！？
+		</p>
+		<p class="player p9">
+			<b>謎ののじゃ族</b>
+			「のじゃ～」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			GM！？
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			身長はおよそ15cm<br>
+			緑の気配がします。GMとはちょっと関係ないです
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			罹患してもちょっとやそっとじゃ死ななそうなセスタス投下するのはともかく、<br>
+			「短命だからここで死んでも大差ない」でツルグミ突っ込むの畜生だけど合理的なんだよな……
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			実は能力的がコレだったので<br>
+			もうちょい深い理由が生えた
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			「わ、何これ」　興味深そうに眺めています＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			どうでもいいんですが、うちの次元ドラシルにもこの画像のこあくまPCを使うひとがいます
+		</p>
+		<p class="player p9">
+			<b>謎ののじゃ族</b>
+			間違いなく私の方が先に使ってましたので起源主張します
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「まぁかわいらしい。」頬が緩む＠<br>
+			4枚目は敵になるかもしれないから破り捨てておくべきだった
+		</p>
+		<p class="player p9">
+			<b>謎ののじゃ族</b>
+			「さて、主らが今回の同行者じゃな」<br>
+			「私は検体名『パナケア』じゃ。よろしく頼むぞ」
+		</p>
+		<p class="player p9">
+			<b>謎ののじゃ族</b>
+			のじゃのじゃ＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「僕はセスタス、よろしく！」　指でつつきます＠
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			でも霧ならツルグミの能力と相性いいな、そっちも大いに考慮されてはいそう
+		</p>
+		<p class="player p9">
+			<b>謎ののじゃ族</b>
+			犬死させるほど人的資源が豊富でもないので、使うところはしっかり見極めて使うアレ
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p1">
+			<b>私がGM</b>
+			ではセスタスは指先にぴりりと痛みを感じます
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			ピリッと来ます＠
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			能力によって即座に修復されますが<br>
+			セスタスは指先の皮膚がわずかに分解されたと察します＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「いつっ！　……なんだ今の？」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「よろしくお願いします。パナケアさん。【蔓茱萸・トリベディ・ティッルチラーッパリカー】と申します。<br>
+			……握手は、やめておいたほうがよさそうね？」＠
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			といわけで「観察眼・知識・閃き/8」で判定<br>
+			閃きはセスタスのみです
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			アタッチメント「薬学知識」で補正がもらえますか？
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			あー<br>
+			+3か+1D6してよい
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			閃き～？<br>
+			閃きなんて……<br>
+			10あります
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			アタッチメントで2%消費せずにキャラ特性として補正を要求したら+1くらいですかね
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			器運だからなぁ<br>
+			キャラ特性でも+2で良いで
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			これまで能力者無能力者問わずいろんなやつと殴り合ったり殺し合ったりしてきたと思うんですが、<br>
+			そういった経験から洞察できることはありませんか？
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ツルグミの設定的に説明受けたことある可能性まである<br>
+			セスタスは……<br>
+			元闘技場か<br>
+			じゃあ+1
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			あざます。まぁ振って観ます
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			下層なら親戚に出会ったこともあるだろう
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			う～ん倍差を狙うために投資するにはギリ遠いな……しかし……
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			cf10+1d6+2d6+1  (CF10+1D6+2D6+1) ＞ 計【 16 】 ： 10+3[3]+4[3,1]+1 (fa:1)-2[2]
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ニョホ
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ギリギリ<br>
+			一二三賽か？
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			う～ん、キャラ特性として+2、知識コンセ2を投資して固定値15で振ります
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 蔓茱萸・T・ティルチ ] PP : 18 → 16
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			コンセ1で良いと思います
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			……あ！そうだ！<br>
+			ありがとうございます、算数ロール失敗してました
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			算数ロールは定期的に失敗するからしゃーない
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 蔓茱萸・T・ティルチ ] PP : 16 → 17<br>
+			[ セスタス ] 因子 : 10 → 11<br>
+			[ 蔓茱萸・T・ティルチ ] 暴走値 : 70 → 71
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			cf14+1d6 (CF14+1D6) ＞ 計【 19 】 ： 14+5[5]
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			では倍差
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			因子いただきます。
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 蔓茱萸・T・ティルチ ] 因子 : 4 → 5
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ではふたりとも知ってるのか気付いたのかはともかくとして<br>
+			このパナケアちゃんはですね<br>
+			まず生物的特徴として「触れたものを分解・吸収する性質」を持っています。<br>
+			なお、クリーチャーではなくそういう品種の植物が人形を取ってる形ですね<br>
+			で、この植物はフラメルの植物室で育成されているものです。<br>
+			病原体を分解吸収し、その免疫となる成分を体内で精製する、と<br>
+			そういう、まぁ医薬品として利用される植物であるとキミたちはなんとなく察します。<br>
+			なお、利用方法は全身すりおろしです
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			もう16時か！18時くらいになったら同居人にごはん作る為に買い出し行ってきます！！<br>
+			って言おうとしたら今日はごはんいらないって連絡がはいってたから僕一人で断食しつつ続行することができる
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p1">
+			<b>私がGM</b>
+			ミキサーに掛けるといい感じになります
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			残酷！！！！！！<br>
+			人格もたせると愛着湧いちゃうだろ！！！
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			断末魔は「のじゃっ……」<br>
+			です
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ヲイ！
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			まぁその程度でPTSD抱えるようなやつはフラメルに居ないので
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			倫理のりの字もない
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			まぁというわけで貴方たちは<br>
+			あぁ、この植物を下層の霧に曝して特効薬精製しろってことなんだぁ<br>
+			と察します
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「………………。」何かを察して急にテンションが下がります。
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「ふんふんなるほど」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			とりあえず瞑目します＠
+		</p>
+		<p class="player p6">
+			<b>ゼルナ</b>
+			「一応歩く機能はあるけぇど」<br>
+			「其処まで速くはなぁいから、其処の植木ぃ鉢にでも入れてもぉち運んでほしぃなぁ？」<br>
+			「で、次にぃ、コレだ」
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			そう言って2本のアンプルが入ったケースを机の上に置きます。
+		</p>
+		<p class="player p6">
+			<b>ゼルナ</b>
+			「まぁ、タダのワクチンだぁよ」<br>
+			「下層の入りぃ口付近に植えたヤぁツから絞ったんだぁけどね」<br>
+			「どぉうにも効きぃ目が薄くてぇね」<br>
+			「だぁから、キミ達には『パナケアを霧が濃いところまで持っていき、特効薬を精製する』かぁ『元凶を調査、解決』して欲ぃしいわけだ」＠
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			「まぁそういうことじゃ。よろしく頼むぞ！」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「ワクチンが存在するだけ、ありがたいものです。これもこの子達の遺したものですから…。役立てさせて頂きましょう」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「危機感ないなぁ～。まぁ使い潰されるならそれはそれで本望って感じなのかな？」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「植木鉢は、私が持っていますね。よろしくね。パナケアさん。」<br>
+			と、両腕とデカパイで植木鉢をホールドします＠
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			「まぁそうじゃな。人の役に立つのが仕事じゃし」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			悲しいかな、家畜に神はいない
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			「どうせ死んでも次の私になるだけじゃ。そう悲観するでないわ」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			宗教観はあった
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			パナケアはかっかっかと咲いながらツルグミに確保されます＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			咲う
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			わらう
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			いい言葉だ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「じゃ、やることはシンプルだね！　さっさと行こっか！」　マップを確認します＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「自分でも、慣れているのか、慣れないのか、よくわからないものです。」悲観するなと言われて＠
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			なお、ワクチンの効果は3日なので
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			悲観とかじゃなくて人格あるものをすり潰す作業が抵抗あるんだよ！！
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			え<br>
+			家畜と違って鳴き声がキミたちの言語に近いだけで
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			わざわざブタに名前つけてペットとして可愛がってから屠殺するなみに非効率
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			痛覚はないから<br>
+			ヴィーガンも安心
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ヴィーガンも安心。
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			人格がある理由なんですけど<br>
+			品種改良の結果です
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			家畜〆る作業をプレイヤーにさすな！<br>
+			純粋に気分悪いよ！！！
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			人格を剥奪すると体内で精製するワクチンの質が下がる
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			UXはともかくもっとUIってものをだね…
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			締めるのは後ほど上層が勝手にやるよ！！<br>
+			とりあえずパナケアを育てるだけだって！<br>
+			流石にミキサーにパナケア入れて<br>
+			スイッチ押してください<br>
+			とかは言わないよ！！！
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			ならわざわざ説明するな！！！！
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			「のじゃ……！」決意を秘めた顔
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p1">
+			<b>私がGM</b>
+			それがタイムリミットです。<br>
+			厳密に時間を図らないので、「シーン休憩が最大で3回できる」と認識していただければよき
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			2泊３日かよ、ごはん持ってこればよかった
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			もう出発できますか？
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			あ、出来ます
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			往きますか？<br>
+			征きますか？
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			二泊三日なら非常食と簡易寝袋などのお泊りセットくらいは持っていることにします。フレーバーで
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p10">
+			<b>パナケア</b>
+			分解吸収したあとにドレへの抗体作るかを選別するために人格が必要だったわけですねぇ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			現地で押してくださいって言われるのかと思ってたｗｗ<br>
+			覚悟してたのに
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			ちゃんと不純物入らないようにフラメルの粉砕機使うから
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			逝きます＠
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			では下層です。<br>
+			セスタスにとってはある意味故郷な気もしないではないですが<br>
+			景観はかつてのものとは一変しています。<br>
+			太陽光ライトがなく暗いのは当然として<br>
+			霧によって視界が極端に悪く、また浮浪者の姿なども見当たりません。<br>
+			動いてるものは防護服のようなものを着込んだ、おそらく同僚と思しきものだけですね＠<br>
+			ちなみに箱庭形式です。GMの手綱は無いです。<br>
+			好きに動け
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			霧か……吸っても今のところは大丈夫そうかな<br>
+			というか防護服着てるのか？我々も
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			同僚たちにフランクな挨拶をしながら移動します
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			あ、キミたちはさっきのワクチン打ってるので<br>
+			生身です
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			防護服だとキャラデザが味気ないからね
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			防護マスクぐらいはしてるかもしれない
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			防護服は著しく運動性能下げるし、顔も体型も見えないのはよろしくない<br>
+			で、ツルグミなんですけど<br>
+			この霧、空気の流れをちょいちょいとやればかなり動かせます。<br>
+			病弱な自分が何故、と思わなくもなかったでしょうが、単純に相性の良さを理解できます。
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			とりあえず防護服の人たちに濃霧の濃い場所や特筆すべき事項がないか訊ねますが
+		</p>
+		<p class="player p11">
+			<b>職員</b>
+			『おいおい、防護服も着ず大丈夫か？』<br>
+			職員はフランクに接してくれます＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			とりあえず空気の結界を作ります。毒素を完全にシャットアウトできるほどの能力精度はないけど<br>
+			恩恵受けたら行為発動払います
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			とりあえず今のところは払わなくて良いです
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「ごきげんよう。ええ、ワクチンを打ったので……。<br>
+			それと、私の能力で結界を張っていますので。」<br>
+			「セスタスくんにはちょっと空気が冷たいかもしれないけど、我慢してくださいね」＠
+		</p>
+		<p class="player p11">
+			<b>職員</b>
+			『霧が濃い場所、といっても俺はこのエレベーター周辺の確保が任務だから、詳しいことは知らん』
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			　「ワクチン打ったからこれだけでいいってさー」　防護マスクだけ＠
+		</p>
+		<p class="player p11">
+			<b>職員</b>
+			『ただ、そうだな。グニパヘリルへ行ったやつらの話だが、それこそ外へ突き出した部分は霧がほぼ無いらしい』
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「へぇ？」＠
+		</p>
+		<p class="player p11">
+			<b>職員</b>
+			『だから、グニパヘリルの住民のうち、生存者はそっちへ避難したとか言っていたな』
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ツルグミは多分マスクもしてない。いざという時誰かに渡せるように持ち歩いています＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「そこに誘き出すのが目的なのか、あるいは犯人が隠れてるのかって感じかなぁ」
+		</p>
+		<p class="player p11">
+			<b>職員</b>
+			『……あと、お前らみたいに防護服も、なんならマスクすらしないで霧のある部分で過ごすやつらもいるとか言っていたな』
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「ふむ……。怪しいですね！」おまいう＠
+		</p>
+		<p class="player p11">
+			<b>職員</b>
+			『アンタみたいに能力で対処してる可能性もあるにはあるが……』<br>
+			『あぁそうだ。この異変が始まってからジョンドゥの姿が確認できていねぇ』
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「そもそもこの霧って異能現象だっけ？　それともまだわかってないのかな？」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			そういえば、容疑者だなあの能力………まぁないだろうが
+		</p>
+		<p class="player p11">
+			<b>職員</b>
+			『それすら不明だ。一週間ほど前に突如発生し、数日で下層がこの有様だ』<br>
+			『フラメルの研究員には最下層がどーのこーの言ってるやつもいたか』
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「このビョーキが海に漏れだして魚が捕れなくなったりしたら困るなぁ」
+		</p>
+		<p class="player p11">
+			<b>職員</b>
+			『ただ、この霧はヘル隊員ですら被害を受けてる。ジョンドゥが犯人だとしたら、部下をそんな目に合わせる理由があるか？　ってな』<br>
+			『まぁ、俺には預かり知らん事があるのかもしれねぇけどよ』＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「能力による霧でしたら、クリエイトノイザーを使えば除去できるかもしれませんが……」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「ありがと！　とりあえずグニパヘリルに行ってみるのが良さそうかな？」＠
+		</p>
+		<p class="player p11">
+			<b>職員</b>
+			『ジャミング装置は軒並み効かねぇらしい』<br>
+			『例の無効化能力者も打診したらしいが……能力によるものでなかった場合を考慮し却下だとさ』
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「あのおじさんは『周りに被害が出るから自分の能力は不便だ』って零してるらしいし、こういうことはしないと思うなぁ」
+		</p>
+		<p class="player p11">
+			<b>職員</b>
+			『まぁ、アンタらが完全な特効薬を作ったらやってくるのかもしれねぇな』＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「そうですね。万が一を考えると、若いあの子たちにはちょっと危険すぎますもの」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「専門家として別件にあたってるか、よしんば犯人だとしても洗脳されたりしてるとかだと思うな」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「では、まずはグニパヘリルへ行って生存者の様子を視察してみましょうか」＠
+		</p>
+		<p class="player p11">
+			<b>職員</b>
+			『じゃあ頑張ってくれよ』
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「おじさんありがとう！」　ブンブン手を振りながら行きます＠
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			職員も関節を動かして見送ってくれます＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「ご協力、心より感謝いたします。」＠
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ではグニパヘリル街です。<br>
+			まずは外周部の廃墟ですが<br>
+			死体がごろごろ転がってます。<br>
+			おそらく発症し見捨てられた浮浪者だと思われます。<br>
+			死んでないものもあらかた瀕死ですね＠
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			急にツルグミの設定を変えたくなったので<br>
+			蔓茱萸（名前）・天馬空（日本人としての旧姓）・トリベディ（インド人の主人の姓）・ティッルチラーッパリカー（祖先を称えるインド人の故地名）<br>
+			長い名前に変更します
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			あいあいさ
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			無視して奥に進みます＠
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			はい
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			泣いても拝んでも助からんものは助からん
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			くだらないことを書いている場合じゃなかった
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			では「観察眼・察知/8」でとりあえず
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			まぁ、助からないものは助からないからね……。
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			五感の内どれを使う判定ですか？　それとも直感的なもの？
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			んー<br>
+			動くものに気がつく感じなので、聴覚視覚
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			ちょっとした物音とかだったら剣闘士としての経験が生きるかなぁと思ったり<br>
+			まぁとりあえずクリーチャーに察知振らせます
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			嗅覚は人類程度ならちょっとこの場所が臭いので微妙かな
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			クリーチャーに代理判定させます。空気型クリーチャーで気流の流れを読む……
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			死臭はもちろんだが、インフラ周りも崩壊してそうだしな
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			ミュートリアおるやんけ！！！（パック引きながら）
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			マ？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			石返せ！！！！
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			変異体は居ないか流石に
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			でも変異体以外は作れるなら十分イケるな
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			セラの蟲惑魔目当てでパック引いたら現れ出でた
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			セスタスのクリをコピーしたからかな？探索型に発言させられない
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			一回自分の支配下に置く必要がある<br>
+			右クリックからしまう
+		</p>
+		<p class="player p12">
+			<b>探索</b>
+			お～ん<br>
+			察知代理判定コストは転換で支払います。判定していいかな
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ええで
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 探索 ] HP : 3 → 2
+		</p>
+		<p class="player p12">
+			<b>探索</b>
+			cf12+2d6 (CF12+2D6) ＞ 計【 27 】 ： 12+10[4,6] (cr:1)+5[5] (cr:計1回)
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			マジィ？
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			まぁ倍差はもぎ取る予定だった
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			3倍差なので物音とかすっとばして現場を視ることができます
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			こっちも振るけど剣闘士補正はなしかしら
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			3倍差であることを汲み取ってくれるんだ
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			あ、+1でええぞ
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 蔓茱萸・T・ティルチ ] 因子 : 5 → 6
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			汲み取る判定と汲み取らない判定がある<br>
+			これは汲み取る判定だった
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			やったぜ。ありがとうございます<br>
+			ならクリーチャーがコンセ1して代理判定<br>
+			本体も振っとくか
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] PP : 6 → 4<br>
+			[ セスタス ] 暴走値 : 91 → 93
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			おはなつも
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			cf4+1d6+2d6+1 本体の察知4 (CF4+1D6+2D6+1) ＞ 計【 14 】 ： 4+3[3]+6[2,4]+1<br>
+			おしい
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			草<br>
+			90とはいえよく食らいつく
+		</p>
+		<p class="player p8">
+			<b>アリステロス</b>
+			cf12+1d6+1+1 クリの察知12 (CF12+1D6+1+1) ＞ 計【 17 】 ： 12+3[3]+1+1
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			倍差<br>
+			とりあえず倍差は因子<br>
+			かんたんに描写だけはしとくか
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] 因子 : 11 → 12
+		</p>
+		<p class="player p13">
+			<b>哀れな少女(1)</b>
+			「コホッコホッ……」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			微妙に余裕ないから稼いでおかないとな
+		</p>
+		<p class="player p13">
+			<b>哀れな少女(1)</b>
+			「こいつも持ってない……」
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			物音がする方に目を向けると、身なりの悪い少女が死体の懐を漁っています<br>
+			咳き込んでこそ居ますが、瀕死、とかそういうわけではなさそうで
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			不意打ち気味に襲い掛かって組み伏せます<br>
+			判定いるなら判定するしそうでもないならＲＰ範囲で＠
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			では組み伏せられます
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「…！まだ生きている子が…。しかもあんなに幼い…。」＠
+		</p>
+		<p class="player p13">
+			<b>哀れな少女(1)</b>
+			「あぐぅ！？」
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			セスタスが組み伏せるわけなんですが
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「よっと」　背後から関節極めながらマウントポジション＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「セ、セスタスくん…！」＠
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ちょっと力技……<br>
+			いや関節技なら器用か<br>
+			「技術/8」で判定してください。
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			神の裁定
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			技術じゃなくて器用ね
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			倍差をとると女の子の抵抗能力が完全に失われます
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			cf20+1d6+2d6 オラァこちとら90活性背負った器運じゃ (CF20+1D6+2D6) ＞ 計【 37 】 ： 20+6[6]+10[5,5] (cr:1)+1[1] (cr:計1回)
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ダイソウゲン
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			クリ使いに残酷な力技判定を要求しないGM初めてみた
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			必要以上でも必要未満でもない最適な力で長漬けます<br>
+			押さえつけます
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			では、セスタスは確かに必要以上でも未満でもない最適な力だったはずなんですが<br>
+			めきめきめき、ぐち、と
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「ありゃ」＠
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			軟骨を潰すような感触とともに、少女の骨を砕いてしまいます。
+		</p>
+		<p class="player p13">
+			<b>哀れな少女(1)</b>
+			「ぎぃ、が、あっ、あ、あ……」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「ちょ、ちょっと！」駆け寄ります<br>
+			「いくらなんでも…やりすぎですわ」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			目が点になりながら、まぁ押さえつける手間が省けたので立ち上がります
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			その痛みで少女は完全に抵抗する意思を喪失したようです。<br>
+			周囲にアンモニア臭が漂います。
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「うーん……ここまでやるつもりなかったんだけどなぁ」
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			セスタスはイタイイタイ病という言葉が脳裏に浮かびます。
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			やはりそっち系か
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ジャパニ―ズ公害
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「もしかしたらこの霧、骨を弱くする作用があるのかな？」　周りを見渡します＠<br>
+			「ま、それはさておき」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「……そうね、骨量や骨強度の減少があるみたい」彼女を触診してみます
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「折っちゃってごめんねー。この際聞いておきたいんだけど、何を捜してたのかな？」＠
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ツルグミは骨軟化症の症状を知覚できるんですが<br>
+			んー<br>
+			「知識/12」で判定してください<br>
+			解剖は流石にしないと思うので技術は使えない
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			薬学補正ください<br>
+			アタッチメント抜きで
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			薬学補正は+1D6、アタッチメントで目標値-2が付きます
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			うまい！！！！！！！
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			1d6だけで十分なので振ります<br>
+			cf11+2d6 (CF11+2D6) ＞ 計【 20 】 ： 11+9[5,4]
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ｋ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			アタッチメントにしておけば因子もらえてたが結果論
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ではツルグミはこの症状が「霧によるものであるのは間違いない」こと<br>
+			そして「霧が出てからの1週間で進行したにしては早すぎる」ことがわかります。<br>
+			具体的な期間はわかりませんが、どう速く見積もっても2週間～1ヶ月は必要だって感じですね
+		</p>
+		<p class="player p13">
+			<b>哀れな少女(1)</b>
+			「あ、あぅ、痛、……」
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			少女は痛みに苦しんでますが、まぁ此処は下層です。強いものが正義で、少女はか弱いので
+		</p>
+		<p class="player p13">
+			<b>哀れな少女(1)</b>
+			「く、薬、お薬」<br>
+			「白いや、つ」<br>
+			「え、えへへ、正直に、正直に言いました、へへ」
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			まぁガクガクと引きつった笑みを浮かべながら必死に答えてくれますね。健気＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「その薬の話って誰から聞いたの？　それとも君が見つけたのかな？」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「………。私にできることはありませんわ。」
+		</p>
+		<p class="player p13">
+			<b>哀れな少女(1)</b>
+			「ゔぇ、ヴェイドさん、ヴェイドさんがくれてたやつで」<br>
+			「飽きたからもういらないって、それで、アレ、ないと、ダメで」<br>
+			「コホッ」<br>
+			「し、死にたくないか、ら、アレないと、霧で死んじゃうから……」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「ヴェイド……さん？」聞き覚えはありますか？＠
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			しどろもどろになりながらも必死に答えてることが伝わってきます。
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			元ヘイズルーン所属ですが＠
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			そして二人はヴェイドという名前に聞き覚えは無いですね
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			ないか<br>
+			スヴァルトの筋じゃないか、あるいはプロモーターはしていなかったか
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			セスタスがヘイズルーンに居た頃には聞いたとがなかった名前<br>
+			あれ、セスタスが剣闘士してたのって此処数週間の話だっけ？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			わりと前
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			じゃあ完全に知らない名前
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			半年は前かな<br>
+			場合によっちゃもっと前かも。詳しくは決めてない
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			まぁ半年以上なら知らない名前ですね
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「知らない名前だなぁ……。ヴェイドさんはどこかに行ったのかな？　ここにはもういないの？」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「…とにかくこの子を助けないと。」<br>
+			植木鉢、手で持つしか無いなら流石に不便なので肩掛け用の紐くらいはついていると思うのでパイスラ状態にして<br>
+			この子を抱きかかえます＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「え、連れてくの？」　マジ？って顔＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「………責務ですので」テンポ悪くなってもいいなら一度エレベーターに戻りたいくらい＠
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			「……この少女をこの霧から外に出すのはオススメせぬのじゃ」
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			植木鉢からそんな声が聞こえます。
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			知っているのかパナケア
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			「あくまで視たところの話じゃ」<br>
+			「その少女、骨こそ軟くなっておるが」<br>
+			「この霧で、『死ぬような影響』は受けておらぬ用に見えるのじゃ」<br>
+			「それこそ主ら、ワクチンを打ったものと同じようにの」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			（それもほんまか～～？）って目で少女に向き直ります＠
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			「……ただ、何が原因かは知らぬが」<br>
+			「吐き出す呼気に酸素の濃度が妙に濃い」<br>
+			「……その反面、この霧の成分が異様に少ない」<br>
+			「何が起きているのかもわからぬ。私はその少女を霧の外に出すのはオススメせぬよ」
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			パナケアはそんな感じ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「っ………。」
+		</p>
+		<p class="player p13">
+			<b>哀れな少女(1)</b>
+			「え、へ？」
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			少女は状況をいまいち理解できていなさそうです＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「………わかりました。」彼女を地面にそっと置きます。<br>
+			テンポのためにわからせます。＠<br>
+			命より尺のが大事
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「気にかかるのはわかるけど、これから元凶と戦うような事になったら余計危険にさらすことになるよ」<br>
+			「この子を庇いながら戦うわけにもいかないし、むしろ移動中にまたどこかの骨が折れるかもしれない」
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ではちいさなメダルの獲得実績は増やすとして<br>
+			骨折した少女はリリースされます。長くないでしょう＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「そっちの方が酷だと思うな。どうしてもっていうなら……」<br>
+			防護服着てた連中を呼んで励ましてあげることはできますか？＠
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			じゃあ来ます
+		</p>
+		<p class="player p11">
+			<b>職員</b>
+			『此処に要救助者が居ると聞いて』
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			アストルフォだったらゴムつけて感染対策（）した後にチンポケースにして探索続行してた
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「まぁ……話相手になってあげてよ。最期が一人だと心細いだろうからさ」　少女には聞こえないよう小声で＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「………すみません。私の気休めの為に呼んだようなものです。」＠
+		</p>
+		<p class="player p11">
+			<b>職員</b>
+			ちんこの圧力で恥骨とか骨盤を砕く<br>
+			『なるほど。了解だ』
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			奥へ進まはります＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			後ろ髪を引かれながらセスタスについていきます＠
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p1">
+			<b>私がGM</b>
+			さて、グニパヘリルの内部に到着です。<br>
+			屋内の部分で、普通に霧があるんですが
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「……急がないとダメだねー」　落ち込んでるツルグミにそのぐらいの言葉はかけます＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「……ええ、一刻も早くこの事態を鎮めなければ」決意を新たに＠
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			にぎやか、というわけではないんですが下層住民が居ます。<br>
+			深夜の町中くらいのエンカウント率で普通に下層住民を見かけます。<br>
+			ただ、どれもこれもチンピラっぽい感じです。<br>
+			クラブとか行ってそうな感じのみためのやつらですね＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			一人に話しかけてみます。
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			インタビューに同行します＠
+		</p>
+		<p class="player p14">
+			<b>チンピラ</b>
+			「アァン？」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「えっと…。事態収束の為に駆けつけて参りましたグングニルの隊員なのですが。状況はどうなっていますか？」＠
+		</p>
+		<p class="player p14">
+			<b>チンピラ</b>
+			「事態～？」<br>
+			「そんなことよりオレと遊ばねぇ？」<br>
+			「天国に連れて行ってやるぜ～」<br>
+			まぁ軽いです。ことの重要性を理解していなさそうです。<br>
+			あと本気で孕ませに来そうな雰囲気も醸し出しています＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「え、あの、落ち着いてくださいませ！」と言いつつセスタスの後ろに隠れます＠<br>
+			（＞＜；）
+		</p>
+		<p class="player p14">
+			<b>チンピラ</b>
+			まぁそのグラサンの向こうの目は血走っていて、何らかの薬物の影響を見て取れます＠<br>
+			グラサン……？　下層で……？
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			こわい＞＜；；；；
+		</p>
+		<p class="player p14">
+			<b>チンピラ</b>
+			グラサンはイメージなのでしてません。目が血走ってます＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			言われてみればグラサンって下層にものすごく似合うけどミスマッチだな………
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「うわうわ」　後ろに隠れられます<br>
+			「えーっと、まぁ落ち着いて落ち着いて。僕ら聞きたいことが……」＠
+		</p>
+		<p class="player p14">
+			<b>チンピラ</b>
+			「チッ、男連れか」<br>
+			「……ちょっと待ってろ」<br>
+			チンピラは路地の方へ向かっていくと<br>
+			汚ぇ吐瀉音を撒き散らします<br>
+			「ふうスッキリした……」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「つい盾にしてしまってすみません…。ですがおかげさまで穏便に済みそうです………？？？」＠
+		</p>
+		<p class="player p14">
+			<b>チンピラ</b>
+			「で、何だよ。何の用だよ」<br>
+			「女連れでよぉ。デートかよ。見せつけてんのかよ」<br>
+			正気に戻ったらしいチンピラは妙に卑屈です＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「トばしすぎでしょ、具合見ながらやらないと……」呆れます
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「お、男連れ……。そんな、この子も立派なグレイプニル隊員です。同僚ですよ。」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「ヴェイドって人知らない？　その人に用があるかもしれないしないかもしれないんだけど」＠
+		</p>
+		<p class="player p14">
+			<b>チンピラ</b>
+			「ヴェイド……」<br>
+			「あぁ、お前らも薬目当てか？」<br>
+			「いや、でもグレイプニルって言ったか？」<br>
+			「まぁ知ってるけどよ……」<br>
+			「そうだな。教えるに当たってオレにもなんかバックは欲しいよな」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「どういう薬なの？　やってて楽しい？」＠<br>
+			「それとも健康にいいのかな？」＠
+		</p>
+		<p class="player p14">
+			<b>チンピラ</b>
+			「すっげー飛ぶらしいぜ？」<br>
+			「それこそ人格があっという間にぶっ壊れて」<br>
+			「ヴェイド様ヴェイド様～ってよぉ」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			（なんと言いますか……これが下層……。私も所詮温室育ちだったことを自覚してしまいますね……。）＠
+		</p>
+		<p class="player p14">
+			<b>チンピラ</b>
+			「あーいうのがアレばオレも童貞卒業できるのになぁ」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「凄いなぁ。その状態でヤッたら良さそうだね？」　けらけら笑いながらツルグミに冗談を飛ばします＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「な、何をおっしゃいますか、お戯れを…。もう。」ぷくっと頬を膨らませます＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「まぁ、それが欲しいんだよねー。紹介してほしいな」<br>
+			「持ち合わせは今ないから、仕事が終わったら、かな」＠
+		</p>
+		<p class="player p14">
+			<b>チンピラ</b>
+			「……」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「……もしかして僕とするの想像した？」＠
+		</p>
+		<p class="player p14">
+			<b>チンピラ</b>
+			「そ、そんなわけ」<br>
+			「……」<br>
+			「いや違うぞ？」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			そっち！？
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「ッ………」脂汗が出ます
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「いや君じゃないから！」　ビシッと突っ込みます
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「そ、それは置いといて。現金でしたら持ち合わせております！はい！」＠
+		</p>
+		<p class="player p14">
+			<b>チンピラ</b>
+			「いや、此処3日くらいシテねぇからイケるかなって……」<br>
+			「それと、金はいらねぇ」<br>
+			「金じゃねぇ。一個頼みがある」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「頼み？」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			（なんなんですかこの層……）＠<br>
+			もうめんどうみきれよう。
+		</p>
+		<p class="player p14">
+			<b>チンピラ</b>
+			「ヴェイドのやつとオレは別に知り合いってわけじゃねぇ」<br>
+			「だからアンタらに教えられるのは、あいつが何処にいるかってことだけなんだが」<br>
+			「できればでいいんだ」<br>
+			「アイツの取り巻き、もしなんか悪い子としてたとしても、できれば殺さねぇでおいてほしいんだよな」<br>
+			「な、そこまで難しいことじゃねぇだろ？」<br>
+			「頼むよ」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「知り合いなの？」＠
+		</p>
+		<p class="player p14">
+			<b>チンピラ</b>
+			「……知り合いだったんだけどよ」<br>
+			「薬で頭がぶっ飛んだのかな。もうなんも覚えてねぇみてぇだし」<br>
+			「感傷だよ感傷」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「ふーん。まぁ約束はできないかな」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「……言われなくても、最大限の努力はしますわ。<br>
+			一人でも多くの命を救うために我々は来ています。」ちゃんと目を見据えながら誓います＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「不殺って相手の協力もあって成り立つものだからね。まぁ……考えておくよ」＠<br>
+			「素直に降参してくれるといいね」＠
+		</p>
+		<p class="player p14">
+			<b>チンピラ</b>
+			「……そうだな」<br>
+			「ヴェイドのやつは、この時間帯ならマーケットの『カクテルハウス』ってとこに居るはずだ」<br>
+			「其処で薬をバラ撒いてる」<br>
+			「あの薬を飲めば霧の中でも普通に生活できるってんで」<br>
+			「今のグニパヘリルの奴らはみんな其処に集まってるはずだぜ」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「売り文句といい、あまりにも怪しすぎますわ……。早く行かなくては」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「オッケ～、ありがとう！」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「ご協力、心より感謝申し上げますわ。」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「…………お兄さん、見た目で損するタイプだね」　思いのほかまともだったなこいつ＠
+		</p>
+		<p class="player p14">
+			<b>チンピラ</b>
+			「……まぁな」<br>
+			チンピラはちょっと肩を落としながらグニパヘリルの屋外部の方へ向かっていきます<br>
+			少しすると姿は見えなくなるでしょう＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			いい童貞
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「裏が取れてるわけじゃないから気を付けないといけないけど、行ってみる価値はあるね」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「無論警戒は最大限に払いますわ。行きましょう」足早に＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			征きます＠
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p1">
+			<b>私がGM</b>
+			ではカクテルハウス周辺です<br>
+			現在のグニパヘリルの生存者が全員集まってるじゃねぇかってくらいごった返してます。<br>
+			建物に入り切らなかったのか、周辺の民家に勝手に入り込んで乱交してるやつらも居ますし、なんなら路上でしっぽりしてるやつらも居ます。
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			！？？？？？？？？？！
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「うわー」　うわーって思います＠
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			普通に移動するのも困難なレベルでごった返しているわけですが<br>
+			近づく貴方たちに一人の男が気付いて近づいてきます。
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「あ、あまり来たことはありませんが。すごい場所ですのね、下層は……。」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「流石に僕もこれは初めて見た」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「しかしこれだけの人混みであれば、霧などなくてもあっというまに疫病が広がってしまいますわ……。」＠
+		</p>
+		<p class="player p15">
+			<b>薬売り</b>
+			「見ない顔だな」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			まぁ、身なりが良すぎるからな……。
+		</p>
+		<p class="player p15">
+			<b>薬売り</b>
+			「この霧のなか当店へご足労有難うございます、さて、ご用件は？」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「………もしかして、こういうときはグングニルと名乗らない方がいいのかしら？」セスタスに小声で話しかけます＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「上層から二人で旅行に来てたんだけど、この霧で帰るに帰れなくなってさー」<br>
+			「霧が晴れるまでどうしようかって思ってて、ここに良い薬があるって聞いたんだけど」　ツルグミを抱き寄せます＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「きゃっ！？」病的に白かった顔を真っ赤にします＠<br>
+			/////
+		</p>
+		<p class="player p15">
+			<b>薬売り</b>
+			「なるほどなるほど」<br>
+			「お客様は運がよろしい。偶然最後の一つが残っておりまして」<br>
+			散剤を1包取り出し<br>
+			「こちら、10万クレジットとなっておりますが」<br>
+			「お支払いは如何程に？」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			財布にされちゃう…///
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「お願いしていい？」＠ツルグミへ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「は、はい…！」<br>
+			技能：経済力でポンと支払います。どこか嬉しそうです＠
+		</p>
+		<p class="player p15">
+			<b>薬売り</b>
+			「確かに……」<br>
+			「ふふふ、ではごゆっくり」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			ツルグミには聞こえるかな、ぐらいの声で「ありがと」と囁きます＠
+		</p>
+		<p class="player p15">
+			<b>薬売り</b>
+			薬売りは興味をなくしたように何処かへ立ち去っていきます＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「あ、ちょっと待って」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「い、いえ。お仕事ですから。それにしてもやはりこういった場に慣れていますわねセスタスくんは…。」＠
+		</p>
+		<p class="player p15">
+			<b>薬売り</b>
+			「……何か？」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「ここのオーナーってヴェイドさんで会ってるよね」<br>
+			「いろいろ聞きたいことがあるんだけど、会えるかな？」＠
+		</p>
+		<p class="player p15">
+			<b>薬売り</b>
+			「申し訳ないが、彼は忙しくてね」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			&gt;&gt;ツルグミ<br>
+			「そうかな？　まぁ薬の売り買いに同席したことぐらいはあるし、だからかも」＠
+		</p>
+		<p class="player p15">
+			<b>薬売り</b>
+			「観光客と合っている暇はないね」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			（……………。）＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			どうしたもんかな　流れで薬買ったけど、本来的な目的はヴェイドに会う事なんだよな
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			こいつに素性を隠すことによって得られるメリットは薬買えること以外になければバラして改めて交渉っていうのも可能か？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			どうする？って目でツルグミを見ます＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			（か、抱えながら見つめないでくださいませ……(汗)）<br>
+			「い、いえ……！このまま帰るわけにはいきませんわ。」<br>
+			「何故ならば私達は本当の素性はグングニルでございます。話し合いの席を設けて頂けなかった場合、お互いに面倒な事態になるかと思いますわよ」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「そうだ！（適当）」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			本当は腕をほどいて改めて格好をつけたかったのですが、セスタスの力が自分よりずっと強く叶いませんでした＠
+		</p>
+		<p class="player p15">
+			<b>薬売り</b>
+			「……ほう」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			そんなに強く抱き寄せてるつもりないのできっと別の作用が働いていたと思います＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ひどい
+		</p>
+		<p class="player p15">
+			<b>薬売り</b>
+			「では悪いがお引取り願おう」<br>
+			「お前らとする話はこちらには無いからなァ」
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			薬売りが指をパチンと弾くと、セックスに耽ってた下層民たちがゆらゆらと立ち上がり、貴方たちを生気のない目で見つめます。
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「なっ……！」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「僕らはここの摘発に来たわけじゃなくて、聞きたいことがあって来ただけなんだけど」
+		</p>
+		<p class="player p15">
+			<b>薬売り</b>
+			「天下のグレイプニルといえど、この数の前にはどうにもなるまい！」<br>
+			「大人しく立ち去ったほうが懸命だ！」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「……我々はこんなことをしている場合ではありませんわ。あの霧を晴らさなければ、多くの人間が命を落とします。手を取り合うことはできませんの？」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「聞く耳は持ってくれないのかな？」＠
+		</p>
+		<p class="player p15">
+			<b>薬売り</b>
+			「悪いがこの霧のお陰で、こいつの売上は今日上昇していてな」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			強度感知というか、向こうの実力を測ることはできますか？
+		</p>
+		<p class="player p15">
+			<b>薬売り</b>
+			「それを解決しに来たとなれば貴様らと手を組むなど……ハッ」＠<br>
+			まぁ感知してええよ<br>
+			臨戦ラウンドとしては扱わない
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「げ、外道……！」じゃあここで見切りつけてトラップを解放したい。＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			なら素振り
+		</p>
+		<p class="player p15">
+			<b>薬売り</b>
+			んー<br>
+			感知かトラップ解放による攻撃かどちらか
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			攻撃ではない、創造トラップだから
+		</p>
+		<p class="player p15">
+			<b>薬売り</b>
+			あぁ、そっちならおｋ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			感知して、分が悪ければ退く、なんとかなりそうなら戦う<br>
+			難易度はいーくら
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			リバースカードオープン
+		</p>
+		<p class="player p16">
+			<b>ヴェイド・カークマン</b>
+			感知12デース
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			氷結界1、氷結界2が誕生
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			お前かい！
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			まぁ実際に戦う相手を感知したいなら臨戦でってことでしょ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			でもPC的にはヴェイドだとは思ってません
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			お前かい！！！！
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			本体が感知素振り。剣闘士補正は入りますか？
+		</p>
+		<p class="player p16">
+			<b>ヴェイド・カークマン</b>
+			んー<br>
+			まぁ+2していいよ
+		</p>
+		<p class="player p8">
+			<b>アリステロス</b>
+			ワイも振るで
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			合計3点の消費<br>
+			あざす　ではいきます<br>
+			あっ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			群衆は別ユニット？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			言語異常か
+		</p>
+		<p class="player p16">
+			<b>ヴェイド・カークマン</b>
+			群衆は別ユニットというか
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			言語異常だったの！？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			ならセスタス本体の感知はやめとこう
+		</p>
+		<p class="player p16">
+			<b>ヴェイド・カークマン</b>
+			感知不能です
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			クリだけ振ります
+		</p>
+		<p class="player p16">
+			<b>ヴェイド・カークマン</b>
+			ヴェイドを感知すると自動公開
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			対象にとれないってことか
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			cf12+1d6+2  (CF12+1D6+2) ＞ 計【 18 】 ： 12+4[4]+2
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			感知結果は累積？
+		</p>
+		<p class="player p16">
+			<b>ヴェイド・カークマン</b>
+			個別
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			今回は一発振りだろう
+		</p>
+		<p class="player p16">
+			<b>ヴェイド・カークマン</b>
+			まぁボスじゃない
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			探索型に降らせることもできたが…
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			うまく立ち回れば回避できる敵だった感があるけどまぁしょうがない
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			12ともなると倍差が期待できない以上置い感知しても仕方がない
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			結果を見てどうにもならなければ退けばいいし。向こうも逃がしてくれそうだしな
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			まだ臨戦フェイズではない？
+		</p>
+	</div>
+
+	<div class="tab t2">
+		<div class="tabtitle">情報</div>
+		<p class="player p16">
+			<b>ヴェイド・カークマン</b>
+			ヴェイド・カークマン<br>
+			行動値：15　活性：感覚型<br>
+			HP：30<br>
+			暴走：70％<br>
+			<br>
+			SS：12+1D6　命中：3+1D6　回避：28+1D6<br>
+			<br>
+			通常攻撃：1D6+0<br>
+			能力攻撃：2D6+0<br>
+			<br>
+			防御：0　精神抵抗：0<br>
+			<br>
+			能力精度：10<br>
+			スペック：6<br>
+			<br>
+			SPE【共鳴】　カルマ【勇猛】<br>
+			<br>
+			耐性：気絶<br>
+			特性：特筆するものはなし<br>
+			オリ特性：カクテルドラッグ　改造ドラッグ<br>
+			<br>
+			所持アイテム・武装<br>
+			　増強アンプル　神経シナプス　煙幕*2<br>
+			　バーサーカー*3　ハイウェイ*3<br>
+			<br>
+			備考：<br>
+			【カクテルドラッグ】<br>
+			　自身が自身のみを対象として使用しとした特殊武装・消費武装の効果は、<br>
+			　効果範囲が自陣営全体となる。<br>
+			　この効果の対象となる武装を自身が使用する場合、攻撃行動を併用できない。<br>
+			<br>
+			【改造ドラッグ】<br>
+			　自身が使用する増強アンプル・神経シナプスの効果を以下に変更する。<br>
+			　バーサーカー・ハイウェイにも同様の効果を適用する。<br>
+			　●増強アンプル：攻撃+2D6+3<br>
+			　●神経シナプス：反応値+6+1D6
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p16">
+			<b>ヴェイド・カークマン</b>
+			これから臨戦<br>
+			次臨戦<br>
+			1d6+2 (1D6+2) ＞ 3[3]+2 ＞ 5
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			トラップ解放させてもらっただけで十分だ、ターンエンド
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			回避28ィ！？
+		</p>
+	</div>
+
+	<div class="tab t2">
+		<div class="tabtitle">情報</div>
+		<p class="player p17">
+			<b>人の群れ(1)</b>
+			速度型クリーチャーです
+		</p>
+		<div class="tabtitle">情報</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			普通に10創造クリ？
+		</p>
+		<p class="player p17">
+			<b>人の群れ(1)</b>
+			はい
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p16">
+			<b>ヴェイド・カークマン</b>
+			口を慎み給え
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			勇猛はアカンでしょ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			行動値15でドラッグ使うから実際はもっと上がるか
+		</p>
+		<p class="player p16">
+			<b>ヴェイド・カークマン</b>
+			君はいま売人王の前にいるのだよ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			テリ打って叩けば勝てるが消費が………
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			何とかしようと思えばなんとかできそうな数値ではあるが本当にこいつを何とかしないといけないのか？
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			これトラップ解放せずにリベンジで相打ち狙ってれば解決してたな！<br>
+			いや、解決してないか。こいつ自ら攻撃はしてこなさそうだし
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			撤退の選択肢が提示されているのも気にかかる
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			でもさ、オルレで速度型クリーチャーを全滅させればいいんじゃないの？
+		</p>
+	</div>
+
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			本体は生き残っても話し合いの席には立てる
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			普通に再創造してくると思うんだよな<br>
+			回避が40+3d6か……
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ヴェイドが創造を可能とする能力者扱いかどうか教えて欲しい
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			反動に耐性はあるんですか？
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			創造は行いません<br>
+			反動に耐性もないので痛いです
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			う～～ん
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			煙幕も持ってるのがやばい
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			普通に「命中50点ぐらい出して無理やり落せ！」なコンセプトのボスなのか？
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			トランサー扱いではありますが<br>
+			創造に制約があるタイプなのでこの場ではあんまり使えないです
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			諦めてテリ撒くしかなくないか？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			クリーチャーは何体いますか？
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			5
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			どう考えても相手すべきじゃない<br>
+			「……いくらなんでも分が悪そうだけど、なんかアイデアある？」　&gt;&gt;ツルグミ＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ちょっとまってね
+		</p>
+	</div>
+
+	<div class="tab t2">
+		<div class="tabtitle">情報</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			共鳴か……共鳴サポートでアンプルバーサーカー付与はできるのかしら
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			出来ます
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			となるとクリーチャーをオルレで一網打尽にするのも現実的じゃないな
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			GM、セスタスは感知に成功しましたが、ヴェイドが武器を持っていたり<br>
+			単刀直入にいえば本体が攻撃してきそうな感じはありましたか？
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			んー<br>
+			まぁいいか<br>
+			欠片もないです
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			なんなら劣勢になったらさっさと逃げそうです
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			つまりヴェイドが先手取ってやることはバフのバラマキなんだよ<br>
+			だから勇猛で殴ってくることはなさそう
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			でもあいつ煙幕撒いて逃げるで
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			あ～本体が離脱してもクリが止まらないって話？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			いや、勝ってもうまみがない<br>
+			こいつにインタビューするために殴り合いするんだけど頑張って殴り合いしても逃げられちゃ世話ないというか
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			それは……そうだな<br>
+			殺すな……って、そういうことか？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			向こうが有無を言わさず襲い掛かって来るならしゃーないけど、<br>
+			今回逃げるなら逃がしてくれそうだし
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			なるほどわかった。<br>
+			お前のいうことが全面的に正しい<br>
+			というわけで<br>
+			「逃げましょう！」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			つまりは何か交渉のテーブルに持ち込む方法があって、我々はそれを捜すべきではないかと判断する
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「まず腕をほどいてくださいませー！！」テンパっている＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「あ、ごめん」<br>
+			「……というわけで降参しまーす！　流石にその人数は相手し切れないよ」　両手を挙げてひらひら振ります<br>
+			「ただ、このまま手ぶらで帰るわけにもいかないってのが正直なところなんだよね～」<br>
+			「というわけで、霧について君の知ってることをお駄賃に何か僕らにお使い頼んでくれたりしない？」<br>
+			「この霧を捨て置いたまま帰るわけにはいかないよ」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「無理やり彼らを殺害してまで抵抗するのも本望ではありませんからね……」<br>
+			スキを見て逃げられそうな場所を探します＠
+		</p>
+		<p class="player p16">
+			<b>ヴェイド・カークマン</b>
+			「悪いが間に合っていてね」<br>
+			「頼むことなど何もないさ」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「そうか……弱ったなぁ」＠
+		</p>
+		<p class="player p16">
+			<b>ヴェイド・カークマン</b>
+			「さて、私も手荒な真似が好きなわけじゃない」<br>
+			「二度と関わらないのであれば見逃してもいいがね」<br>
+			「そちらが戦うつもりであれば容赦はしない」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「退きましょう。…ここは私達の命の使い所ではありません」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「そのつもりだよ。薬はもうもらったし、聞きたいこと聞けないならしょうがないや」<br>
+			すごすごとその場を後にします＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「…………………。」彼らと向き合いながら後ずさりします＠
+		</p>
+		<p class="player p16">
+			<b>ヴェイド・カークマン</b>
+			「ふん、お客様のお帰りだ」<br>
+			「丁寧に見送ってやれ」<br>
+			そう言い残してヴェイドは人混みの中に消えますね<br>
+			人の群れは貴方たちが見えなくなるまで、虚ろな目で眺め続けているでしょう＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			逃げます。<br>
+			きりの仲間で<br>
+			霧の中まで逃げなくても追ってこないかな？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			さてどうしたものか
+		</p>
+		<p class="player p16">
+			<b>ヴェイド・カークマン</b>
+			なんなら此処も霧の中ではある
+		</p>
+		<div class="tabtitle">メイン</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			じゃあ適当な廃墟にでも逃げ込んで休みます。
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「はーっ…はーっ……」つらそう＠<br>
+			「すみません。私の軽率な一言で……。」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「まーしょうがないよ。とりつくしまも無さそうだったしね」<br>
+			「……大丈夫？」　息切れしてるのを案じます＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「……こう見えて脚は速いのでなんとか貴方に追いつけましたが。……ぜぇ…………少し休ませてくださいませ…。」壁にでももたれかかりながらこれからのことを考えます＠<br>
+			安易にクリを出してしまった………シーン休憩3回できるからまだ余裕がないわけではないが<br>
+			しかし……パナケアの様子はどうですかね。毒素を十分に吸収できましたか？
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			まだまだですね<br>
+			具体的には、この程度の濃度なら3日彷徨う必要がありそうな感じです
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			適当に散策して帰ってもノーマルエンドにはできそうだが
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			うーむ手掛かりが途絶えたのがな
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			まぁやることはある
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			どうするのですか？
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「セスタスくん。ここは一旦霧が濃い場所を探しませんか。<br>
+			test
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「僕は構わないけど……」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「現状を打開するために応援を呼ぶにしても、人名を救うためにも、より良いワクチンの完成を早める必要があります。何も手がかりがなければまずそちらをあたってみませんか」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「ま、それもそうだね」<br>
+			「なら休憩したら移動してみようか」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「それに、ヴェイドという男は霧の恩恵を預かってはいますが、発生源ではない気がします」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「あの口ぶりからするとそうだろうね」<br>
+			「何か変わったものが見つかればいいけど……」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			シーン休憩＝睡眠休憩ですか？
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			イエス
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ぶっちゃけさっさと使って時間を早めてもいいんだが、まぁもうちょっと頑張ってみよう<br>
+			建物に登って当たりを見渡して、霧のより濃い方角とかわかったりしませんかね？無茶か<br>
+			霧の中でどーやって霧を探せっつーんだよォ～！（仗助）
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			申し訳ないが私も微妙に思いつかない
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			見えねぇなぁ<br>
+			とりあえずヴェイドから撤退したので一個判定がありました<br>
+			閃きです<br>
+			「閃き/10」です
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			閃き～～！？
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			困った時の閃き
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			１０あります
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			観察眼でも良い
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			たったの5
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			素振りします
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			観察眼9を素振り
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ではGO
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			cf9+1D6 観察眼　探索までサジェスト出るの便利だな (CF9+1D6) ＞ 計【 13 】 ： 9+4[4]
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			cf10+1d6+2d6 (CF10+1D6+2D6) ＞ 計【 24 】 ： 10+4[4]+8[2,6] (cr:1)+2[2] (cr:計1回)
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			セスタスが倍差
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			運が全体的にいい
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			まぁセスタスはアレ程の規模でやらかしてるのに名前を知らなかったこと<br>
+			そして剣闘士として「そうなった人」を何度も見たことがあるので経験から<br>
+			ヴェイドはつい最近外界から収監されたばかりであると判断できます
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			わんぱくだなぁ
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			それこそ2週間～1ヶ月程度であるとまで当たりをつける事ができます
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			しかしだからなんやねんって感じだな
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			また、その程度の日数であそこまでの影響力を齎すのは少々異常であり<br>
+			ヴェイドからそんな事ができる器も感じ取れませんでした
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			いうて知敏だぞ
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			器はないだろが
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			草<br>
+			私が悪かった
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			わかればいい
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			でも人の器がどうこうとか言える立場じゃないので（奴隷上がり）黙ってます！！！！！
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			まぁ薬に洗脳効果ありそうだし……
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			何ならツルグミがそう思ったことにしてください
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			あ、そういえば薬買ったな
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			使いますか？
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			使わねーよ！！……この状況なら候補としてあるけど！！<br>
+			「そういえば、あの男。異様な求心力を得ていましたね。」<br>
+			「この薬と関係あるのでしょうか…？」観察眼などで分析できませんか？＠
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			パナケアに与えれば分析します
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			マジか
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			全自動成分分析装置なのじゃ<br>
+			そのための人格
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			のじゃロリ式鑑識
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「パナケアさん、どう思いますかコレ」＠
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			「もぐもぐ」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「食べちゃった」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「わわっ、食べた…！？」＠
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			「混ぜものが凄いのじゃ。なんて低質」<br>
+			「……それはともかく、本薬の主成分がとんでもないのじゃ」<br>
+			「うむ。この霧の成分とほぼ一致……」<br>
+			「なるほど、摂取を続ければ確かにある種のワクチンとして作用するじゃろうな」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「あ、そうなんだ」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「ということは、能力などで霧の成分を抽出してこの薬を作る……ということも可能なのでしょうか？」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「そりゃ情報提供も拒むよね。薬のおかげでバブルが来たどころか、この薬あってのシノギだったわけだ」＠
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			「そういう能力であれば……可能じゃろうな」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「あのヴェイドという男、戦闘能力はなさそうに見えました。そういった能力なのかもしれませんね」＠<br>
+			でもあいつと再コンタクトする方法は隠密で潜入して不意打ちでぶちのめすくらいしか思いつかん
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「ということは、ヴェイドはこの霧の源泉を知ってて、その成分をどこかから抽出してるってことかな？」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「霧の濃い場所か、あるいはもっと濃縮された源泉のような場所を知っているのかもしれませんね。彼自身がどうして無事なのかは謎ですが」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「監視して後を付けるってのも手段としては考えられるけど……警戒されてそうだしなぁ」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			まさに五里霧中！！！！！<br>
+			あろドラシルでは下層の中心には何があるんですかね
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			エレベーターがあります
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			突き出した部分は霧がほぼ無いらしいっていうから、素直に中心部が発生源なんじゃないかと思ったが違ったか<br>
+			散策して霧の濃い場所を探すという選択をした場合、察知とかですかね、要求されるのは<br>
+			幸運のような気もするけど
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			幸運ですねぇ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			3です！！！！！
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			目標値ではなく高いほど云々系です
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			でもさっき散策してみようと言っちゃった手前、一回何も期待せずにやってみたいんですがどうでしょう＠<br>
+			作中時間も３日あるしな！！！
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			幸運は15しかないです
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			いけるいける
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			では
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			いや期待してるとかじゃなくて引っ込みがつかないからやるだけなんだけど<br>
+			まぁ息が整ったので、でかけてみることにします。＠
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			ほい<br>
+			では外は生憎の空模様<br>
+			霧です＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「あ、移動がしんどいならバイク使う？」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「そ、そういえばそんなものをお持ちでしたね。」<br>
+			「ありがたいのですが、後ろに乗ればよいのでしょうか……？」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「うん。しっかり掴まっててね？　振り落としたら危ないからさ！」＠
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			少々離席
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			うぇーい
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「つ、掴まるということは…。その、は…はい……。」
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			幸運は代表者1人による判定になりまする
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			背中になんか当たります。なるべく遠慮して身体を離してるつもりなのですが、それでもなんか当たります＠<br>
+			まぁセスタスくんがやるしかない<br>
+			バイクで効率よく探せてますし、補正ありませんかね
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			俊敏で判定してもいいよ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			おお！！（2）
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			クリワンチャンあるか……？
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			セスタスのバイクで得してるのにツルグミのクリが俊敏判定っていうのはいいのだろうか<br>
+			タンデムしてはいるけど
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			別にええぞ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ええんか
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			その辺は厳密にする意味もあんまないし
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ただクリに代理判定させるのもセスタスがコンセ1して降るのと大差無いんだよな<br>
+			うーん、ドルイドいないけどここは勝手に振っておいたほうがお互いのためだな
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			実はセスタスは今90乗ってはいる
+		</p>
+		<p class="player p12">
+			<b>探索</b>
+			というわけで、俊敏12+2d6で振らせて頂きます。転換。
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 探索 ] HP : 2 → 1
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			なので15+3Dではなかっただろうか
+		</p>
+		<p class="player p12">
+			<b>探索</b>
+			………！！！！
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			まぁ振ってもええけど
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			僕が悪かった
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			はい
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 探索 ] HP : 1 → 2
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			二度と逆らうなよ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			デカパイBBAの分際でよ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			デカパイババア
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			せっかくですしごはん休憩にしますか？僕は今の所お腹すいてないけど
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			帰還
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			おかかかか
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			帰ってきてドルトラマン
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			私は食べながらやります
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			はい<br>
+			ラ王か
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			無敵じゃん
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			スーパー開いてるうちに買い物いかないと人間らしい料理ができないけど卓のが大事だから我慢します
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			というわけで振ります<br>
+			cf15+1d6+2d6 幸運 (CF15+1D6+2D6) ＞ 計【 26 】 ： 15+2[2]+8[6,2] (cr:1)+1[1] (cr:計1回)
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			なんなのこいつのダイス
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			ド平均
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			1d100 (1D100) ＞ 1<br>
+			うせやろ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			うっそだろお前
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			１クリ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			CoCなら1クリだがこれはユグドラなんだよな コンティニュー判定 ＞ 4 ＞ 1R追加
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			えー<br>
+			1クリしたしなんか凄い運命の悪戯を感じますが
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			CoCって発言しただけでコンテ降るの欠陥だろ コンティニュー判定 ＞ 1 ＞ 1R追加
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			では二人が霧の中を進むこと数十分<br>
+			周囲の霧が異様なまでに濃くなっていきます<br>
+			それは次第にバイクのライトさえ視認が困難になり<br>
+			自らの腕を目視できない程になるでしょう＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「うわ、なんだなんだ？」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「これは……」行為発動で風を起こして晴らせませんか？＠
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			晴らして良い<br>
+			でも1消費してね
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			いけっババア！きりばらいだ！
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 蔓茱萸・T・ティルチ ] PP : 17 → 16
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			ばさぁ……
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 蔓茱萸・T・ティルチ ] 暴走値 : 71 → 72
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			キミたちは、濃霧の中<br>
+			それの接近に気がつくことさえ出来ていなかった<br>
+			巨大な爬虫類、その死骸。<br>
+			それが立ち上がり、動き出したと言われれば信じてしまいそうなその風貌
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			草
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			なんですかこれ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			いや草
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			「SUTERAAAAAAA！！！！！」<br>
+			「KAIGYUUUUUU！！！！！」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			すてらーかいぎゅう
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			おぞましい咆哮は、キミたちに根源的な恐怖まで呼び覚ますだろう
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			やべえSANチェックだ！！
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			霧を、瘴気を纏う疫病の王。
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			この世のものとは思えない、化け物が其処に在る＠
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			モンハンワールドにいた古龍です
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			うちの環境でオドガロン卓開いたじゃないですか、あの「瘴気の谷」というフィールドのヌシ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			いたっけこんなの
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			うちの卓では情報過多になるので出してなかった。あそこで発生してた瘴気の正体です
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			あーそうなんだ！！！！
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			もしかしてとるとるの出陣だったらこの霧知ってたのかｗｗｗｗ
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ワンダリングしてるのに1クリ出るとは
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			なんでステラーカイギュウなのかって言われると……<br>
+			原典でクソ雑魚だったわりに報酬がうまかったので、乱獲されて……
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			人間は愚か
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			あー、それに参加してるなら知ってる可能性はあるなぁ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			設定上はすげーやつなんですが……
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			一応原典そのままの生物ではないが
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「ふぁぁああああ！？」ついビビってセスタスに抱きつきます＠
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			まぁ別物だと思う<br>
+			うちのオドガロン卓は外界での出来事だしな
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			歴戦王っていう強化個体ですら<br>
+			強いのは瘴気だとか散々
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			ドルイドラシル時空にもいることにはいる想定だが、こいつではないかと
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			まぁこいつは最下層からの突然変異生命体なので<br>
+			確実に別個体
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			屍とも龍ともつかぬ怪物を目の当たりにし、バイクを止めます<br>
+			向こうから接近してきてるなら逆にそれを回避するようにハンドルを切るかな
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			疫病の王はキミたちを歯牙に賭けた様子もなく
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「っと……お出ましだ」＠
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			今の咆哮はちょっといきなり瘴気が晴れてびっくりしただけなので
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			草<br>
+			確かにそんな挙動したなあいつ
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			悠然と佇んでいます。悠然とね＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			やりすごせそうってこと？<br>
+			てか、こいつを倒せって卓なんじゃないのこれ？
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			【補足】<br>
+			MHWにおいては、ヴァルハザクに限らず古龍種は人間への興味が薄い存在として描写されていた。<br>
+			実際に斬りかかるまでは発見判定が出ないというのはザラ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			まぁ、人間からする虫みたいなもんってことか
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			うむ
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			なおネギ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			手負いでないと完遂できるかは怪しいとはいえ、<br>
+			あいつは古龍が餌とかいうやべーやつだし……
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			本部と通信できますか？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			そもそもパナケアに聞いてもいいな<br>
+			眼前の異形がこの事件の元凶だと解釈して良いか否か<br>
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			正直こいつと遭遇した時点で十分な毒素取れてておかしくない…いや質より量が大事か
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			いや、そもそもワクチン生成なんてまどろっこしいことをする必要がない<br>
+			こいつを殺せば全部終わる
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			まぁいざというときは撤退でもノーマルエンドにはなるかも
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ふむ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			ガワからしてほぼ間違いないが
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			「こ、こやつが生成元で間違いないのじゃ！」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			何故1クリを引いてしまったのか我々は
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			「この霧の濃度……まさか、こんな化け物がおるとは……！」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			シーン休憩を使わず終わってしまうぞ卓寿郎！！！！！
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「人工物じゃなさそうな雰囲気だよね。作れる覇気じゃない」<br>
+			「というわけで……こいつを始末すれば万事解決ってことなのかな？」&gt;&gt;パナケア
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			眼前の怪物から漂う威風堂々とした気迫を感じ取りながらも、挑戦的な眼差しを向けずにはいられない＠
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			「う、うむ。なんなら私が擦り下ろされる必要も……まぁ多少は薄れる……気がしないでもない……」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「パナケアさんまで助かるなら一石二鳥どころではありませんが……勝てるのでしょうか！？」＠
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			「ま、まぁとりあえず元凶は間違いなくこやつじゃ！」<br>
+			「というか他に居たらこの程度で済むはずがないのじゃ！」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			相手、こちらに無関心なら、臨戦入る前になんか準備できてもいい？
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			ええぞ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			感知は？
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			特に隠してないので消費した時点で全開示
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			なら使うわ<br>
+			いや
+		</p>
+		<p class="player p12">
+			<b>探索</b>
+			代理感知でHP全部使って消えます
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「下層全土を巻き込むような真似、どうやったらできるのかと思ってたけど……」<br>
+			「これなら納得って感じだよね！　人間じゃないけど、相手にとって不足なしだ！」<br>
+			古代において“セスタス”と呼ばれた手甲を腕に巻きます＠
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 探索 ] HP : 2 → 0
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			察知降る必要あります？
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			無いっすね。倍差も発生しないんで（目標値1
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			じゃあクリが命を捧げて感知したので開示お願いします
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			原作やってる身としてはパナケアがビビり散らしてるのじわじわ来る<br>
+			設定上はヤバいやつだからな……設定上は……
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			原作でもNPCはビビりちらしてただろ！！<br>
+			なおPC
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			オドガロンに噛み付かれても意に介さず瘴気噴射で一蹴するの好き
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			なお
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			ぜってぇオドガロンの方が強い
+		</p>
+	</div>
+	
+	<div class="tab t2">
+		<div class="tabtitle">情報</div>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			【疫病の王】ヴァルハザク<br>
+			行動値：7　活性：感覚型<br>
+			HP：150<br>
+			暴走：70％<br>
+			<br>
+			SS：19+2D6　命中：26+2D6　回避：15+2D6<br>
+			<br>
+			通常攻撃：4D6+0<br>
+			能力攻撃：6D6+0+1D6<br>
+			<br>
+			防御：5　精神抵抗：4<br>
+			<br>
+			能力精度：15<br>
+			スペック：7<br>
+			<br>
+			SPE【熟練】　カルマ【突然変異】<br>
+			<br>
+			耐性：気絶<br>
+			特性：再行動<br>
+			オリ特性：累積耐性　スタン　能力補助<br>
+			<br>
+			備考：<br>
+			【累積耐性】<br>
+			状態異常（解除Bで解除可能な効果）を受ける度に耐性カウンターを１つ得る。<br>
+			このキャラクターは以下の効果を適用する。<br>
+			●自身が解除判定を宣言する際、耐性カウンターを１つ取り除くことで、「自身のカウンターの数＋１Ｄ」の補正を得る。<br>
+			●エンドフェイズに自身の耐性カウンターをすべて取り除くことで、自身に付与されている状態異常を全て解除する。<br>
+			●耐性カウンターの数×１０以下の命中達成値で受けた状態異常を無効化する。<br>
+			このユニットが「付加効果：制限」を受けている場合、この数値を半分で計算する。<br>
+			<br>
+			【スタン】<br>
+			　このキャラクターが「SE：ブレイク」でのPPダメージを受けた場合、<br>
+			　次の対抗判定終了時まで疲労状態を適用する。<br>
+			<br>
+			【能力補助】<br>
+			　自身及びクリーチャーの能力によるPP消費は0になる。<br>
+			　この特性を保有する限り命中回避にAEを宣言できない。
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			HP150？ワンキルできませんかこれ？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			もうステータスが面白い<br>
+			アロドラシル基準ではあるがすげえもっさりしてる
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			もっさり
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			原作再現しました
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			まぁ回避がずいぶんと…のんびりしているというか……
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			穴はないけど尖り切れてもない感じ<br>
+			いやまぁ回避については期待値22だからこんなもんだろう
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			でもこいつ性質もないぞ<br>
+			ってなんだあのテリトリーは
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			いや、回避テリがあるな
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			やめないかそういうテリトリーは
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			打点減衰もある
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			あ、至極当然ですが
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			1ターン目はしのいで次で仕留める？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			これちゃんとＨＰ振ってるキャラなら受けきれるだろｗｗｗｗ
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			限定無効ないんでハザクの打点も下がります<br>
+			は？<br>
+			精度12がちょっと防御発動積んだら凌ぎきれるが？
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			いやまぁ継続あるし……
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			エンドフェイズに瘴気が残留発動するのだけ厄介
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			制止すれば不発になりません？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			そこんとこどうなんですか？
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			オート系に関しては制止しても発動します
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			まぁだろうな
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			セミオートも「発動しない」を選べるだけで基本は発動故に発動<br>
+			ただ……まぁ<br>
+			あの……<br>
+			瘴気の残留ってイメージ優先の技でして……
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			行為発動で吹き飛ばせる！？
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			瘴気吐き出す行動を止められたらうん……
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			…………
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			流石にかなり濃いから吹き飛ばせはしないけど……
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			瘴気ブレス止めたらもしかしてそのラウンドはクリ創造しないんですか？
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			じゃあなんすか、瘴気ブレスを制止すれば止まるんすか
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			しない
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			なんだこいつ
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			止まる
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			つってもちょっと回避が高いな～
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			まぁ事情はわかった<br>
+			ティルチ、テリ何枚貼りますか？
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			当てるならまぁまぁ投資しないと<br>
+			2R連続なら余裕<br>
+			3枚でも
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			私はテリ2枚で強化【攻：2】減衰【回：１】【防：１】になるつもりです
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			それはなに、コンテ？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			コンテ<br>
+			いやコンテじゃないわ<br>
+			器運だからコンテつける余裕がなくなったんだった<br>
+			普通のテリです
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			まぁ供給と転換で2Rまでならクリが負担してくれるでしょ？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			いいえ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ああ、言語異常で供給がおぼつかないのか
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			攻撃にも転換する想定で組んであるのでこのラウンドしか貼りません
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			じゃあテリ3枚で回避-12してなんとか制止を打ち込むしかないってこと？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			はい<br>
+			打ち込むしかないことはない<br>
+			まぁそれが早いかなって思ってます<br>
+			故にどのぐらい火力出せるかが知りたい
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			とりあえず今から3体目のクリをHP8創造する<br>
+			行動値上がる要素ないよねこいつ<br>
+			いやどうせ供給するのにケチってもしょうがないわ、HP10創造だ<br>
+			私は攻撃型創造をPP13で召喚、3体目の氷結界を召喚する
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			氷結界が3体
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 蔓茱萸・T・ティルチ ] PP : 16 → 3<br>
+			[ 蔓茱萸・T・ティルチ ] 暴走値 : 72 → 85
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			氷結界の晶壁の効果条件が満たされた
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			今こそ魔の都を貫け！シンクロ召喚！
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			おかえり
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			バウンスやめろ<br>
+			更に抑制もしといた方がいいな<br>
+			ダメ元で聞きますがここでシーン休憩相当の回復できたりしませんか
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			えっ此処で寝るの？
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			なんでもないでーす！！！
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			ツルグミのテリが2枚と仮定すればこっちは基礎火力が15点なので<br>
+			ダメージロール11回で165点、攻撃型創造の補正で+4*8=+32、継続が最低6回で+24<br>
+			テリトリーによる補正が(+16-5)×3=33、装甲値による減衰が11回（-5+4）*11=(-11)
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			流石にハザク移動するよ？
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 蔓茱萸・T・ティルチ ] 因子 : 6 → 9
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			c(165+32+24+33-11) c(165+32+24+33-11) ＞ 243<br>
+			このぐらい出せそう
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			なんなら1R目からぶち抜いた方が話早いですかね？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			はい
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			テリ3枚、いやネクスト使えば4枚いける<br>
+			臨戦で本体が貼れば４枚いける<br>
+			抑制B2をしてもいいですか？
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			ええで
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			浮かんできたんです、抑制B2という数字が（適当）<br>
+			ごめんその前にこっちの総火力計算するわ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			オリ特性もないから理論値通りに殴り殺せば何とかなるかと思われる
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			まず5点ぶんのPPと暴走を確保すれば臨戦でテリ打てば4枚実現
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			回避も減衰が最低でも3枚はあるっぽいので-12+5で-7
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			更に3点確保できれば継続トラップ設置が可能
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			8+2d6。必中ではないがまぁ当たる範疇
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			この条件が揃えば…<br>
+			(4d6+6+16+継続)×3+(4d6+6+16)×3+本体の(4d6+2+12+1d6)+リベンジ(4d6+2+12+1d6)<br>
+			ここにセスタスのクリも乗る
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			圧倒的ではないか我が軍は
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			まぁ計算はいいか……
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			いっぱい
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			最悪リベンジゾンビで倒せる圏内に入る
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			じゃあラストバトルを踊りますか？
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			だからとりあえずまず抑制B2とPPB2を宣言
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			ほい
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			2d6 抑制 (2D6) ＞ 6[4,2] ＞ 6<br>
+			タリン
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			これ臨戦？
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			2d6 pp (2D6) ＞ 8[4,4] ＞ 8
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 蔓茱萸・T・ティルチ ] 暴走値 : 85 → 79<br>
+			[ 蔓茱萸・T・ティルチ ] PP : 3 → 11<br>
+			[ 蔓茱萸・T・ティルチ ] 因子 : 9 → 3
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			あたいもPPB3……いや、もしかしていらない？
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			今回はぶっちゃけ臨戦無限
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			いらんことはないな<br>
+			行動放棄で回復を！？
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			それは逃げそう！！！<br>
+			さ、最低限最低限……
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			PPB1かな<br>
+			というか、1点だけなら行動放棄で回復したりできます？<br>
+			……いや、言語異常か<br>
+			しゃーない、PPB2しとこう
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			行動放棄は成否に関わらず1回のみ、他行動不可
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			2d6 (2D6) ＞ 6[4,2] ＞ 6
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			他行動不可は制約効果です
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ギリ足りる。足りなくてもどうにかなる
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] PP : 4 → 10<br>
+			[ セスタス ] 因子 : 13 → 11
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			なんなら不死身まである
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			まぁ継続あるからそれは大してアテにならなさそう
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			行くぞ！！！<br>
+			臨戦に行こう
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			臨戦は行動放棄です。クリーチャーたちはトラップを場に設置して終了＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			あ、そうか<br>
+			クリも今行動できるんだ
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] PP : 10 → 6<br>
+			[ セスタス ] 暴走値 : 93 → 97
+		</p>
+		<p class="player p19">
+			<b>氷結界1</b>
+			すみません、継続トラップをHP払って設置
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 氷結界1 ] HP : 10 → 5
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			おｋ
+		</p>
+		<p class="player p20">
+			<b>氷結界2</b>
+			同じく
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 氷結界2 ] HP : 10 → 5
+		</p>
+		<p class="player p21">
+			<b>氷結界3</b>
+			同じく<br>
+			;HP-5
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 氷結界3 ] HP : 10 → 5
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			3体に1点ずつ供給
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 蔓茱萸・T・ティルチ ] PP : 11 → 8
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「1対１ならやりやすいや。ツルグミは僕に呼吸を合わせて！」<br>
+			拳を構え、軽快なステップを踏みます＠
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 蔓茱萸・T・ティルチ ] 暴走値 : 79 → 82<br>
+			[ 氷結界1 ] HP : 5 → 6<br>
+			[ 氷結界2 ] HP : 5 → 6<br>
+			[ 氷結界3 ] HP : 5 → 6
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			罠を三枚伏せターンエンド！<br>
+			「え、ええ！？これを倒すというのですか！？」<br>
+			「でも……恐竜さんって、寒さに弱いんでしたっけ？なんとかなるかしら……。」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「死なない生き物なんて僕とクラゲぐらいのものさ！　死なないならそれはそれで……燃えるじゃないか！」＠<br>
+			スイッチが入ったかのように笑います。その笑顔は勇猛な反面、凶暴さも感じさせます。＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「もう…勇ましくて本当に、頼もしいんですから」＠<br>
+			バイクに乗ったまま？ライディングデュエルなのこれ？
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			では周りでうろちょろとする羽虫達に、ついに嫌気が差したのか
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			どっちでもいいな<br>
+			ツルグミは降りた方がいいかも
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			疫病の王はその巨躯で立ち上がり、翼を広げ<br>
+			貴方たちを睥睨します。
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			「SURURURURU……」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			降りないことで不都合がないならせっかくなので抱きついておきます＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			（たぶん後で乗り捨てる）
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			その時はその時だ！
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			そして、王は鬱陶しい羽虫を払いのけるため、その暴力を振り翳す＠END<br>
+			でーは始めましょう
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p1">
+			<b>私がGM</b>
+			所詮カイギュウなんだよなぁ
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p1">
+			<b>私がGM</b>
+			1Rセットアップ
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			行動7　瘴気の領域（回避+5　攻撃-5）　AEなし＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			待って、臨戦させてください<br>
+			臨戦を前提としたターンエンドだった
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			えっまだやってないこと合ったんだ<br>
+			じゃあ……どうぞ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			すいません、ネクスト3枚を使ってテリトリーを発動。これにより1R目の自分の行動時まで攻撃+4回避-4テリトリーが設置されます。終わり
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			ネクストってラウンド継続だったっけ？
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			瞬間
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			テリトリー発動時にスペック4であれば問題ないでしょう？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			あぁなるほど<br>
+			クソリプでしたすいません
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			今覚醒Lv3クリ3体でスペック7-6なのでネクスト3枚でSOせず発動可能。<br>
+			1R目いけます。
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			宣言変わらず
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 蔓茱萸・T・ティルチ ] PP : 8 → 3<br>
+			[ 蔓茱萸・T・ティルチ ] 暴走値 : 82 → 87
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			行動値、Sh複製で10宣言なし
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			行動値0→Sh複製で10　AEなし＠
+		</p>
+		<p class="player p19">
+			<b>氷結界1</b>
+			行動値10攻撃+4回避-4テリトリー発動、転換
+		</p>
+		<p class="player p20">
+			<b>氷結界2</b>
+			行動値10攻撃+4回避-4テリトリー発動、転換
+		</p>
+		<p class="player p21">
+			<b>氷結界3</b>
+			行動値10攻撃+4回避-4テリトリー発動、転換
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 氷結界1 ] HP : 6 → 1<br>
+			[ 氷結界2 ] HP : 6 → 1<br>
+			[ 氷結界3 ] HP : 6 → 1
+		</p>
+		<p class="player p7">
+			<b>デクシオス</b>
+			テリ／コンテ（強化【攻：１】／減衰【防：１】）　転換＠
+		</p>
+		<p class="player p5">
+			<b>カルディア</b>
+			テリ／コンテ（強化【攻：１】／減衰【回：１】）　転換＠
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ デクシオス ] HP : 0 → -5
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			これでこちらのテリトリーにより場に攻+16、回避-16
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ アリステロス ] HP : 0 → -5
+		</p>
+		<p class="player p8">
+			<b>アリステロス</b>
+			そもそもHP入力してなかったか
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ アリステロス ] HP : -5 → 5<br>
+			[ デクシオス ] HP : -5 → 5<br>
+			[ 蔓茱萸・T・ティルチ ] 因子 : 3 → 5
+		</p>
+		<p class="player p7">
+			<b>デクシオス</b>
+			あと上の宣言でカルディアとアリステロス間違えてるけどそういう感じですすいません
+		</p>
+		<p class="player p19">
+			<b>氷結界1</b>
+			特になければこちらから動く
+		</p>
+		<p class="player p7">
+			<b>デクシオス</b>
+			いや<br>
+			ここはこのダイアーに任せてもらおう
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			万が一の制止がないのかそっちには<br>
+			じゃあいけ
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			臨戦で貼ったテリトリーは<br>
+			コンテ入ってないならそのキャラのプリアクション前に消えるが
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ツルグミの行動時に消える
+		</p>
+		<p class="player p7">
+			<b>デクシオス</b>
+			まずトラップ設置
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ああはい、そうです。<br>
+			ツルグミのプリ前に消えます。
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			うい
+		</p>
+		<p class="player p7">
+			<b>デクシオス</b>
+			設置じゃねぇ解放
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			テリ補正合計が攻+11　回避-11<br>
+			防御は持ってるやつが最早存在しない
+		</p>
+		<p class="player p7">
+			<b>デクシオス</b>
+			トラップ開放《Tr【なし】（攻撃発動／継続【ダメ：耐】）》&gt;&gt;ヴァル<br>
+			ＡＥなし＠<br>
+			1点残ってるだろ！
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			ミリ残りしてたわ<br>
+			対抗ナシ　「BARORORORO！！！」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			バイクで突っ込みます<br>
+			そしてジャンプ！
+		</p>
+		<p class="player p7">
+			<b>デクシオス</b>
+			cf22+1d6 攻撃型なので1d (CF22+1D6) ＞ 計【 25 】 ： 22+3[3]
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			腕離して乗り捨てられたほうがいいですか！？<br>
+			いや、バイクでジャンプか
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			乗り捨ててるのだ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			乗り捨てられます！！！<br>
+			「わ、わー！！？」＠
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			15+2D6-11　回避 (15+2D6-11) ＞ 15+9[6,3]-11 ＞ 13<br>
+			cf抜けてる
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			クリってる
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			13+1d6 (13+1D6) ＞ 13+6[6] ＞ 19<br>
+			19+1d6 (19+1D6) ＞ 19+5[5] ＞ 24
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			なんだこいつ
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			惜しい
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			ギリ届いた<br>
+			3d6+5 普通のトラップ (3D6+5) ＞ 10[5,4,1]+5 ＞ 15<br>
+			頭～首にしがみつきます！＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			回避は-15じゃないですか？<br>
+			ツルグミの4枚で-16、セスタスの1枚で-4、ヴァルハザクの1枚で+5
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「捕まえ――――たっと！」＠
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			-15ですわ<br>
+			「！」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			乗った！？
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			じたばたと暴れて振りほどこうとする＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			1d6 継続 (1D6) ＞ 2
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ ヴァルハザク ] HP : 136 → 132
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			続いて2撃目<br>
+			Tr【なし】（攻撃発動）＠
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			AEなし　「GYUUUUU！！！」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			cf22+1d6 ポン (CF22+1D6) ＞ 計【 26 】 ： 22+4[4]
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ ヴァルハザク ] HP : 132 → 128
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			cf15+2D6　回避 (CF15+2D6) ＞ 計【 29 】 ： 15+9[3,6] (cr:1)+5[5] (cr:計1回)<br>
+			-16<br>
+			13<br>
+			倍差
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			-15なので14、ギリ倍差ではない
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			3d6+5+1d6 倍差 (3D6+5+1D6) ＞ 12[4,3,5]+5+2[2] ＞ 19<br>
+			倍差じゃないのか　なら17
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			-15やんけ
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ ヴァルハザク ] HP : 128 → 112
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			「！？！？！？」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			続いていくぞ<br>
+			Tr【なし】（攻撃発動）＠
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			対抗ナシ　「（バインドボイス）！！！」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			cf22+1d6 (CF22+1D6) ＞ 計【 30 】 ： 22+6[6] (cr:1)+2[2] (cr:計1回)
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			cf15+2D6-15　回避 (CF15+2D6-15) ＞ 計【 8 】 ： 15+8[4,4]-15<br>
+			はい
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「そらそらそらそらァ！」　しがみつきながら肘や拳で殴りつけます＠
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			のり攻撃じゃん
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			3d6+5+1d6 倍差 (3D6+5+1D6) ＞ 12[6,1,5]+5+3[3] ＞ 20
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ ヴァルハザク ] HP : 112 → 93
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			4撃目。デクシオス最後のトラップ
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			これが穿龍棍ですか
+		</p>
+		<p class="player p7">
+			<b>デクシオス</b>
+			Tr【なし】（攻撃発動）@
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			対抗ナシ　「ﾌﾛﾝﾃｨｱﾆｶｴﾚEEEEE！！！！」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			cf22+1d6  (CF22+1D6) ＞ 計【 20 】 ： 22+1[1] (fa:1)-3[3]<br>
+			やべっ
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			cf2d6 (CF2D6) ＞ 計【 7 】 ： 7[3,4]<br>
+			何がやねん
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			やばくない
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			何がやねん
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			3s6+5+1d6 倍差<br>
+			3d6+5+1d6 倍差 (3D6+5+1D6) ＞ 12[2,5,5]+5+5[5] ＞ 22
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ ヴァルハザク ] HP : 93 → 72
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			ラスト―
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			「RUuuuuuu」
+		</p>
+		<p class="player p7">
+			<b>デクシオス</b>
+			手番。<br>
+			（攻撃発動／減衰【回：１】）&gt;&gt;ハザク＠
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			対抗ナシ　そういや継続忘れてた
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ ヴァルハザク ] HP : 72 → 68
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			儚い命だなぁ
+		</p>
+		<p class="player p7">
+			<b>デクシオス</b>
+			cf22+1d6 そういえば攻撃型補正入れてなくね？ (CF22+1D6) ＞ 計【 31 】 ： 22+6[6] (cr:1)+3[3] (cr:計1回)
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			クソ、探索で疲弊した相手を殺すわけだから大丈夫だろｗｗｗ　とか想ってたのに<br>
+			cf2d6 (CF2D6) ＞ 計【 6 】 ： 6[3,3]
+		</p>
+		<p class="player p7">
+			<b>デクシオス</b>
+			5回殴って全部入ってないわ
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			じゃあ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			なんか散歩してたら会ったでござる
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ ヴァルハザク ] HP : 68 → 48
+		</p>
+		<p class="player p7">
+			<b>デクシオス</b>
+			+16しといてください<br>
+			3d6+5+1d6 先に計算されたので今回はなしであってる (3D6+5+1D6) ＞ 9[2,1,6]+5+6[6] ＞ 20
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ ヴァルハザク ] HP : 48 → 29
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			死ぬ<br>
+			ちょっと攻撃の手を休めない？
+		</p>
+		<p class="player p19">
+			<b>氷結界1</b>
+			俺も混ぜてよｗ
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			通常パンチならテリトリーが
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			仕上げと言わんばかりにそのまま猛攻撃を叩き込みます。<br>
+			ツルグミの目にはまるで「乱舞」しているかのようにも見えるでしょう＠<br>
+			……あっ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			16+8-5
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			えっと<br>
+			19
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			19乗せ
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ ヴァルハザク ] HP : 29 → 10
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			死ぬ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			足引き摺ってる！！！
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			もうクリーチャーみたいなHPしかない<br>
+			「ｷｭｰﾝｷｭｰﾝ」<br>
+			ｽﾞﾙｽﾞﾙ……
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			頭部に乱舞を叩き込み、態勢を崩したハザクから飛び降ります＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「凄まじい生命力の誇示……！これが剣闘士の戦いとでも言うんですか…！？」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「っとぉ……！　仕上げはお願いしていいかな！？」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「……美しい、ですね。」<br>
+			騎手のいなくなったバイクの後部に座りながら、つい、見惚れます。<br>
+			「って、そんなことを言っている場合ではありません！！ぬぁー！？？」
+		</p>
+		<p class="player p19">
+			<b>氷結界1</b>
+			俺のターン！<br>
+			もう普通にパンチ！！！！！！
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			これジェイド締め上げにいけるのでは？
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p19">
+			<b>氷結界1</b>
+			cf16+1d6 (CF16+1D6) ＞ 計【 20 】 ： 16+4[4]
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			cf2d6 (CF2D6) ＞ 計【 8 】 ： 8[5,3]<br>
+			はい<br>
+			+19の部分で瀕死確定
+		</p>
+		<p class="player p19">
+			<b>氷結界1</b>
+			4d6+2+4+19+1d6 (4D6+2+4+19+1D6) ＞ 15[2,3,5,5]+2+4+19+5[5] ＞ 45
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ ヴァルハザク ] HP : 10 → -34
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			「ｩｩ……」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			バイクに氷を纏せてクッションにしつつ突っ込みます！！！＠
+		</p>
+		<p class="player p18">
+			<b>ヴァルハザク</b>
+			ズズン……
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			つまり氷属性突撃
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			氷の角にあたり、虚弱体質だったステラーカイギュウはその巨体を地に伏せます
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			よわい
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			その肉体から最早生命の脈動を感じることは無いでしょう
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			ハザクは火＞龍＞氷＞雷＞水でした
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ぶっちゃけ睡眠休憩2回挟めば勝ちに行けるんじゃないか
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			同時、ステラーカイギュウが吐き出していた瘴気が徐々に薄れていきます
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			もう闘う意味もないが………。<br>
+			もうステラーカイギュウとしか呼ばれない
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			捜査協力してくれなかったらしっぺ返し
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			統率していた大本が死滅したため、この微生物は活動を続行できず、短い生涯を終えるのです。<br>
+			ちなみにヴェイドくんですが
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			まぁ今頃逃げてるだろうが
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			霧に適応した生物に体質が既に変化していたため<br>
+			霧がないと呼吸を行えず
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			あっ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			死んでしまうぞジェイ寿郎！
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			霧が晴れた頃に窒息死し、変死体として回収されるでしょう<br>
+			やったね
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「い、いたたたた……………」猛スピードで事故りましたがなんだかんだで能力をクッションにして無事＠<br>
+			バイクは……（目を伏せる）
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			ということはあそこにいた連中もみんな死んだか<br>
+			まぁ止むを得まい……<br>
+			「大丈夫？」　手を差し伸べます＠
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			まぁグニパヘリルの総人口の6割は太陽光が差す部分に避難してたので
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「も、もう……。いきなり無茶するんですから……。」傷ついた手を取ります。ツルグミの手は一段と冷たいです。＠
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			逃げ遅れた2割と、ジェイドの薬物で霧に適応したチンピラ2割が死滅しただけです。問題はないです
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「ごめんごめん。怒った？」＠
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			1d100 (1D100) ＞ 98
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「……いえ、むしろ感心しています。これを一人で打ちのめしてしまうだなんて………。」＠
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			グニパヘリルの違法建築の2％は荷重に耐えきれずに海に落下したらしいですが<br>
+			まぁ関係ないです
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			急に崩れた
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			ここってどこだっけ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			実は迷子
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			下層の廃墟
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			霧で景色がよう見えなかったっぽいのよな<br>
+			「…………」
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			グニパヘリル街ではないどこか
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「……………。」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			手を引っ張って立たせてあげる……と同時にぐいっと抱き寄せます＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ノーウェイホーム状態！！！<br>
+			「ひゃっ！？？」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			お顔が近い<br>
+			「ツルグミって、旦那さんがいるんだよね」　いつの間にか呼び捨てになっています＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「え、ええ……。」<br>
+			「……………あなたの方が、たくましいかもしれませんけれど」目を伏せます＠<br>
+			GM
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ぬ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			休憩権がまだ残ってましたよね
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			はい
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			クリア処理前に使えますか？
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ちょっと待ってね
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			「主ら！　見よ！」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			お前いたな！
+		</p>
+		<p class="player p10">
+			<b>パナケア</b>
+			「あそこに丁度いい放棄されたベッドがあるぞ！」<br>
+			「やるならあっちでやってて欲しいのじゃ！」<br>
+			「私は精液とかを吸収するのはあんまりしたくないのじゃ！」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「な、な、なにを言っているのですかあなたは！？？？？？？」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「……雰囲気台無しじゃーん」　妖艶だった表情が最初の少年らしい顔に戻ります
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			パナケアは雰囲気をぶち壊すと植木鉢に潜り込んでふて寝します
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「あーあ……ま、そうだね……報告も終わったし。帰ろうか？」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「………………。」
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			後日連絡を取るやつ！！！！！！
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			セスタスを掴みます。<br>
+			「………待ってください。」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「？」＠
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p1">
+			<b>私がGM</b>
+			あ、休憩はいいんですけど<br>
+			シーン休憩した日数だけしっぽりしてた扱いにします
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			！？？？！？！？？！
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			固定カメラでヤりまくるアレです
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			帰還してから休憩ってのは可能ですか？卓終わるか流石に
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			それは流石にタイミングを逃す
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			………わかった。
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			後日我慢できなくなってツルグミが誘う感じのが好みは気はしてきた！！！！！！
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ここで休憩すれば抑制が格段に楽になりますよ！！！<br>
+			なんなら使い切るぞオラ！！！！！！！！！！！
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			おまえは抑制と夢とどっちを取るんだよ！！！！！！！！！！！
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			…………………抑制と夢！！！！！！！！！！！！！
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			この場で青姦するのが夢なら話は別だが……
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			まぁ………………帰るか…。
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			セスタスにモーションかけられて目まで瞑ってそのまま生殺しで帰った方がシコれるだろ！！！！！！
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			なんだこいつ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ただ使い捨てキャラでも抑制はちゃんとしたいしセスタスにも抑制させてやりたい、それはどうにかならんか<br>
+			つまり普通に寝よう！！！！<br>
+			我々には何もなかった！！！！
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			もう一回会うまで「あの時自分は旦那を裏切った」って罪悪感とセスタスへの恋慕の狭間で葛藤しましょう
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			休憩権は行使しないのね！！
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ちなみにEXが7（パナケアの四肢+頭、クリア日数）とクリア報酬、3賞MVPがあるから<br>
+			最低両者10個は来ると思ってほしい
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			今因子が11個か
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ドルイドが良いなら帰る
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			帰りましょう
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			もらえるもんは貰っときたかっただけだ
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			いやまぁ<br>
+			本来貰えないものではあるんで<br>
+			ボス前の回復ポイントなのでな
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			最低10個なら21個、アイテム購入と持ち越しに14d使うから……7dは確定で抑制に使える
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ネクストが欲しい～～～
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「―――いえ、なんでもありません。<br>
+			………”セスタス”。」<br>
+			パナケアを持ち上げて帰ろうとします＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「……うん！　じゃ、帰ろっか！」<br>
+			「さっきは妙な真似してごめんね。闘いが終わった後って、なんていうか……“昂る”からさ」<br>
+			セスタスが薄着なので、ツルグミは少し気付くかもしれません<br>
+			……彼の股間が“張っている”ことに、そしてそのサイズに。＠
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p1">
+			<b>私がGM</b>
+			デカイ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			モンエナぐらいあります
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			すっご<br>
+			すっご？<br>
+			すっごい
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			別に旦那が短小じゃなくても旦那より大きい
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			特に何もなければそのまま帰って報告
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「………………！！！は、はい………！！」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ツルグミの心の中の何かがベキッ！！！！！と折れます。
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			帰り道、パナケアの誤解を解こうと話しかけるチャンスは何度もあったはずなのに、セスタスが話しかけでもしない限りは、終始無言でした。＠rpend
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			話しかけはしますが、他愛のない雑談です。先ほどのような表情はその日見せず終いでした＠rpend
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ウマをふしだらな目に遭わせた～～～～～～！！！！！！！！！！（勝利宣言）
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			では終了処理ィ<br>
+			クリア　+2<br>
+			EX合計　+7<br>
+			報酬合計+9<br>
+			そこに三賞MVPの発表
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] 因子 : 11 → 18
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			バトル賞　セスタス・ツルグミ<br>
+			今回は協力の勝利でした
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			GMに回復要求する前に自分でリソース管理しとけって話だった。戦力投入が過剰すぎた
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] 因子 : 18 → 20
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			探索賞　ツルグミ<br>
+			ハザク出会った原因は貴様だ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			あんだけ火力出せたのもツルグミのテリあったからだしな
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			瓢箪から駒にも程があるだろ！<br>
+			でもありがとうございます
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			RP賞　セスタス・ツルグミ<br>
+			あんこまん先生は神
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			あんこまん先生は神
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			まだあんこまんしてないだろ！
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			MVP　ツルグミ<br>
+			今回に関してはシナリオ内部探索壊滅してた<br>
+			というか探索する前になんか変な奇跡が起きて終わったので、その奇跡の元凶になります。
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] 因子 : 20 → 21<br>
+			[ セスタス ] 因子 : 21 → 22
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			以上！！！！
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			そういえばこれダメだったらどうすればいいのかわからなかったな
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			皆目見当がつかない
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			因子+13
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 蔓茱萸・T・ティルチ ] 因子 : 5 → 18
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			霧の中のグニパヘリルで聞き込みでもすればヴェイドの薬の出どころが完全に不明だとか<br>
+			サンフィモン教会に行けば謎の装置をつけて空気清浄機になったジョンドゥから動く濃霧の情報をもらったりだとか
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			つまりあれか
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			色々
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			ルート自体は合ってるのか<br>
+			すっ飛ばしただけで
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			謎の装置をつけて空気清浄機になったジョンドゥ
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			なんなら霧の外に出れば霧が日光を嫌うだとか<br>
+			そういうフレーバーな情報とかも出てくる<br>
+			ルート事態はまぁ合ってる
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			前走はどこで死んだ？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			各所で材料を集めて、1d100での探索の成功率を上げて……みたいな感じだったのかな<br>
+			あるいは諦めてジェイド殴り殺すか
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			前走は色々探し終えて<br>
+			さぁハザク探すか！　ってときに運悪くハザクと遭遇<br>
+			寝る前だったのもあってリソースがアレで
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			こっちも寝てねえけどな！！！
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			挑んだは良いけどテリ持ちが1人しかいねぇし
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			テリはパワー
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			3人中2人汚染されまくってるしで火力が足りなくて
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			冷静に考えたら睡眠あるからジェイド→ハザクでも全然何とかなった気はする
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			回復に追いつかずに詰んだ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			まぁ、今回僕の抑制運がよかった<br>
+			抑制っていうか自制運
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			でも前走はちゃんとジェイド倒してたよ<br>
+			いやジェイドは倒してないか
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			ジェイドが情報源としては一番固いし順当だしね
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			相手しなかったのが功を奏した感はあるし
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ジェイドの証言を引き出すのはできた<br>
+			ジェイドは退路が無い状態で取り巻き一掃で白旗上げます
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			でもまぁ……………………………休憩イベントはしたかったよね（小声）
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			後日談で
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			こう、吊り橋効果が………
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			まぁそれはうん
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			セックスはしないけどホテルの同じ部屋で過ごすみたいな空気感も面白かったかもしれない
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			あ、チンピラが言ってた女の子はココアちゃんです
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			うんエンディングまでイチャイチャするつもりはなかった<br>
+			それが楽しそうだなって
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			手遅れでした
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			悲しいなぁ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ああ……うん、まぁでもやることはやったつもり
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			さぁ今日こそ告白するぞって日に<br>
+			ジェイドの薬物使って色々吹っ飛んで
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			連れて行った方が……いや残酷だったかな
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			後日会ったら謝るぐらいはするかな
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			まぁチンピラさんはBSS
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			間に合わなかったってのとちょっと骨折っちゃったってのと
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			なぜこんなヤリチンが微笑むのか<br>
+			世界は力　力は世界
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			何を迷うことがある奪い取れ！
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			あ、ココアちゃんはあの直後くらいに職員さんが脳天ぶち抜いて楽にしてくれました<br>
+			霧が晴れたらそのまま窒息死するわけだからまぁ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			血も涙もない処置なんなの！？
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			良かったんじゃない
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			倫理オワオワドラシル
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			抑制しますけどそっちは因子余るの？<br>
+			いや待て
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			いや、職員さんだから脳天ぶち抜いたわけですけど
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			全く余りません
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			下層の浮浪者なら最後に穴使われながら死ぬわけで<br>
+			どっちが良いかと言うとほら
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			これ因子捧げる（意味深）方がいいのか
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			草
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			なんだっけ？膣内に出すとかいう最低のAEがあったよね？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			22個でーす<br>
+			シナリオ終了後だからなぁ……
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			アレは前回だけだから
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			タマが異常なだけだったわ<br>
+			とりあえず9個使う、これだけ使って、様子見てセスタスへの譲渡も考える
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			とりあえず7個<br>
+			いや
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			9個は多いか
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			8個使えるんだったわ、煙幕残ってるから
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] 因子 : 22 → 14
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			いや9個
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			振りまーす
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			87-9d6 (87-9D6) ＞ 87-39[6,5,6,4,3,6,4,3,2] ＞ 48
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			97-8d6 (97-8D6) ＞ 97-25[2,5,1,6,1,2,5,3] ＞ 72
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			減らねえ！！
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			そっち回り過ぎじゃね？？・
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			なんだその出目
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			9d=39って何？？
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ま、まぁ別にここまで回らなくてもって感じだったし
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			サイコロ2個多いぞ<br>
+			そんな出目してるわ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			抑制は完了したがどうするかなぁ<br>
+			こいつをここで出番終了させるならセスタスに上げたほうがいいんだよな<br>
+			こいつセスタスにNTRれるだけのためのキャラだし…………
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			:暴走:-72<br>
+			:暴走-25
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 蔓茱萸・T・ティルチ ] 暴走値 : 87 → 48
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			暴走値！！！！！！！！
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] 暴走値 : 97 → 72
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			因子ほしい？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			ほしいなー<br>
+			このままだとしんどいなー<br>
+			誰か因子くれないかなー
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			9個全部？？？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			12%減らせればいいから<br>
+			9個全部かな
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			はい……（財布）
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 蔓茱萸・T・ティルチ ] 因子 : 18 → 9
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			また今度返すからさ
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ 蔓茱萸・T・ティルチ ] 因子 : 9 → 0
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			愛してるよ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			最低すぎる～～～～
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] 因子 : 14 → 23
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			そのまま突っ込みます
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] 因子 : 23 → 14
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			9d6 (9D6) ＞ 30[1,6,2,1,3,6,3,2,6] ＞ 30
+		</p>
+		<p class="player p4">
+			<b>system</b>
+			[ セスタス ] 暴走値 : 72 → 42
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			よかったね
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			よし<br>
+			不死身を失ってしまったな……
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			お互いにな………<br>
+			だから不幸もらいま………
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			しゃーない。寵愛でも取ろう
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			え、恋愛取れって？？？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			リテイク失うのは痛いが……
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			寵愛取れって？？？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			奉仕者
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			どこまで財布にする気だよお前
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			エッチなやつじゃん
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			奉仕者で…………………。
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			絆奉仕者の公式チートコンボ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ゲームだからGMのためにも一応まともにクリア処理はしたいんだけどなぁ！！！！
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			リテイク失うの痛いな
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			しかもあれでしょ、奉仕者とかさせといてツルグミは財布にすらさせてもらえないんでしょ？<br>
+			僕はこういうふざけた遊び方を許してくれるあろえさんにめっちゃ感謝してるから一定の忠誠は見せたい！！！！！！！！！
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			一緒に遊びに行ったら食事代おごってもらったりはすると思うけど
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			まぁパトロンにさせたりしないんでしょ？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			うーんまぁ本人が納得して娯楽としてやるなら止めはしないかな
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			寵愛にしまーす！！！！！！
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			はいおｋ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			不幸ではないから
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			自分の娯楽の妨げになるなら止めてもらう
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			いや、大丈夫<br>
+			本人的には強い種さえくれたら満足だろうから
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			なんだこいつ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			そうベタベタはしない
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			貢がせた結果自分に面倒事が起こるようなら貢ぐのやめさせるけど<br>
+			本人が進んで払う分には呵責は感じないかな……逆に貢ぐように仕向けるつもりもない
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			セスタスに迷惑かけたくないから自分と夫の金でセスタスの子供育てます
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			返せって言われないから返さないだけで返せって言われたら利子と世話代込で返します
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ピクサイ2が出たらセスタスとツルグミの子孫が生きているでしょう<br>
+			そんな感じ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			後日談ですか？<br>
+			後日談が始まってしまうんですか？
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			いや、別にいい。今の記述で満足したから
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			はい<br>
+			終わり！！！！！！
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			GMがかわいそうだから
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p1">
+			<b>私がGM</b>
+			一応シナリオへの質問とかあったらなんか受け付けるで
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			GMとしてはジェイドとの交戦はどのぐらい想定してるのか
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			詰んだならやってもええけど、弱い相手ではないぞってくらい
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			最後の手段か
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			まぁシバきたおせば薬の出どころ吐くのでリターンが無いわけじゃない<br>
+			とはいえ普通に強いから大人しく探索したほうが良くね？<br>
+			って感じ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			となれば我々の対応でまぁまぁ正しかったな
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			強いものには逆らわない<br>
+			ステラーカイギュウは狩る<br>
+			人間の強さ
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ステラーカイギュウはか弱いものだから
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			クソ種族<br>
+			不倫もするキメセクもする<br>
+			クソ種族
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			仲間が攻撃されると庇うために態々やってくるのがステラーカイギュウ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			その生態マジで「ヒトカスさぁ…」ってなるから好き<br>
+			好きじゃない<br>
+			部室にもどりますか？
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			ほいだらログ取りまーす
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			今回は健全な卓だった
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			おつかれさまでしたー
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">狭間の世界</div>
+		<p class="player p1">
+			<b>謎の闇堕植物</b>
+			今回も元凶はスヴァです<br>
+			ハザク（幼体）を拾ったので実験してたらめっちゃ効く薬物が採取できました
+		</p>
+		<p class="player p3">
+			<b>謎のドルイド</b>
+			タマで行ってたらまた「あっ……」ってなってたのか
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			調子に乗って育ててたら手に負えなくなったので<br>
+			まぁ誰かがなんとかするやろの精神で雲隠れしました<br>
+			ジェイドはその薬物の廃棄残りを、島に来た日に見つけました<br>
+			やつの能力は薬物の調整です
+		</p>
+		<p class="player p0">
+			<b>超たくあん</b>
+			ごめん＾＾；
+		</p>
+		<p class="player p1">
+			<b>謎の闇堕植物</b>
+			カイギュウが居なくなったら高純度のやつが市場に出回るでしょう<br>
+			そんな感じでした<br>
+			「まだカイギュウが2、3頭残っていたから殺してやった」
+		</p>
+		<p class="player p3">
+			<b>謎のドルイド</b>
+			ふつふつと後日連絡とる下りだけやりたくなってきた感がある
+		</p>
+		<p class="player p1">
+			<b>謎の闇堕植物</b>
+			やってもええぞ<br>
+			部屋は残ってる
+		</p>
+		<p class="player p1">
+			<b>謎の闇堕植物</b>
+			ただ我は風呂入ってくるので<br>
+			やるなら適当にやってて欲しい
+		</p>
+		<p class="player p3">
+			<b>謎のドルイド</b>
+			「あえてここで切らなければいけないんだ……！」とも思うんだよな<br>
+			ミロのヴィーナス
+		</p>
+		<p class="player p1">
+			<b>謎の闇堕植物</b>
+			なるほど
+		</p>
+		<p class="player p0">
+			<b>超たくあん</b>
+			あろえさんに迷惑かからないなら<br>
+			やり<br>
+			ます
+		</p>
+		<p class="player p3">
+			<b>謎のドルイド</b>
+			両腕の施工作業開始
+		</p>
+		<p class="player p0">
+			<b>超たくあん</b>
+			握手したらもげそう
+		</p>
+		<p class="player p3">
+			<b>謎のドルイド</b>
+			ツボに入ったんですか？？
+		</p>
+		<p class="player p0">
+			<b>超たくあん</b>
+			ちょっとクローム再起動するか
+		</p>
+
+
+
+
+
+
+
+
+	</div>
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			はい
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			はい
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			多分、連絡先を交換したと思う
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			しました
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			セスタスってまだ闘技場みたいなところで戦ったりするのだろうか
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			というより同僚だから最初からしてた説ある<br>
+			今は流石になぁ……<br>
+			トレーニングとして同僚とか有志の間で組手はしてるかも
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			もうツルグミにとって彼に会いに行く最高のタイミングは「戦いを終えた後」なんだよね<br>
+			なんかない？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			レクリエーション兼トレーニングとして、グレイプニルやらＹＤＦの間で組手大会でも開かれてることにしますか？
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			開かれるとして、セスタスの方から<br>
+			ただ一言だけ「見に来て」って伝えてくることはありえるかな？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			………………<br>
+			言わない！！
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			はい
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			全然言いそうでもあるから迷うけどあえて言わないと答えます！<br>
+			動かない事が私の覚悟です。
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			いつ連絡をしようか踏ん切りがつかず悶々としていましたが<br>
+			まぁこの気持は一時の気の迷いだったと思うことにして過ごしていたら<br>
+			組み手大会が開かれることになって、<br>
+			旦那が出るので応援しに行ったら決勝戦まで勝ち上がった旦那の相手がセスタスで
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			（あっ……）
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			セスタスが勝って激情を抑えられなくなりますか？<br>
+			ツルグミさんは？<br>
+			どうなんだババアおい<br>
+			っていうのはどうですか
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			逆にやりすぎて反則負けってどうですか？
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			良いと思います
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			はい<br>
+			じゃあ組手大会です<br>
+			地上最強の生物を決めるべく戦士たちが拳を交わしていると思います<br>
+			旦那さんのＲＰとかあります？
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			問題は旦那の設定があまり決まってないからグレイプニルではないな<br>
+			話を大きくしたくないからそんなに大きい大会でもない
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			ＹＤＦもグレイプニルもグングニルという組織の部署だから、その中で開いてる大会とか？<br>
+			でかすぎるか
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			獣人で、先祖代々カースト上位のインド人で、能力が強く、生命力に溢れる血統<br>
+			そんな感じ<br>
+			それでも、セスタスに惨敗した<br>
+			いや、最初は拮抗していたように見えたが、負け方は無残なものだった<br>
+			そんな感じで昂ぶったセスタスの前に敗れる<br>
+			感じ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			上半身裸で、身体にボディオイル（オリーブ）塗って手にセスタスつけて闘ってます<br>
+			ピュクスの流儀です<br>
+			厳密に語るとすれば、ティルチ氏は「勝って」いました。<br>
+			彼が敗北したのは、セスタスの反則によるものです。<br>
+			「ーーーー」<br>
+			セスタスの方も痛手を負っていました。<br>
+			それ故に、タガが外れたのかもしれません。<br>
+			後頭部から首へ目掛けての打撃――【ラビットパンチ】。<br>
+			選手の生命に危機を及ぼすために禁止されている技でした。<br>
+			僅かな隙を縫うようにそれを正確に打ち込み、ダウンしたティルチ氏へそのままサッカーボールキックを叩き込――<br>
+			――もうとしたところで、審判の判定が出たのでした。<br>
+			……かつて、生命を賭し立っていた闘技場において、これは反則ではありません。<br>
+			しかし彼が今興じていたのは、あくまでもスポーツ。<br>
+			自分が生き残るためでもなければ、相手を殺すためのものでもありません。<br>
+			幸いにしてティルチ氏の命に別状はありませんでしたが、当然、彼はその場で判定負けとなりました。<br>
+			汗を拭いながら、ばつの悪い表情で会場を去ろうとします＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			観客席で、息を呑んでいました。<br>
+			いや、出場選手の中に彼の名前があった時からこうなるのを予期していました。<br>
+			彼の武闘はその容姿も相まって観客を魅了し、いくつかの観客はツルグミと同じような感情を覚えたかもしれません。<br>
+			しかし、ツルグミ以外にはいませんでした。<br>
+			彼の連絡先を知っていて、今から会う約束を取り付けようという人間は。<br>
+			セスタスにメールを送ります。<br>
+			「試合を見ていました。今から会いませんか」と＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			シャワーを浴びて、出てきたところでメールに気付きます<br>
+			「……？」<br>
+			「…………」<br>
+			「…………♪」<br>
+			『何処に行けばいい？』＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			………どこにすっかなぁ<br>
+			じゃあ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			旦那が病院で診てもらってる間の家に！？
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			あ～そうします？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			思いついただけで拘りはない
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			……どうしよう、面白くはある
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			獣人って単語にイメージ引っ張られてるだけかもしれんが、旦那も雄として立派ではあるんだろうな……<br>
+			旦那に落ち度のないＮＴＲ好き
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			じゃあ上層にあるホテルの場所が送られてきます。<br>
+			「階層ごと貸し切りにしておきました。」<br>
+			自分がいる部屋の番号も送られてきます。＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			冷静に考えたら旦那殴り倒した後に奥さんに呼び出し受けてガッツポーズできるほど無神経でもない気がしてきた<br>
+			そこそこ申し訳なさそうに出向きます
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			じゃあそれがただのホテルじゃなくてラブホだったら？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			じゃあ大丈夫か……
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			いや、どうしような……
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			その感じなら普通のホテルだけど察した方がいいかもしれない
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			普通のホテルだな！
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			普通のホテルとして、察するか察しないかどっちがいいですか？
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			文面はそれ以外ないです。
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			おまえが判断しろってか！
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			今更観客席のツルグミと目が合ってたとかは遅いか
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			う～ん<br>
+			じゃあ合ってました<br>
+			何か読み取れる感情はありましたか？
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			では目が合った瞬間、旦那が打ちのめされた悲しみよりも<br>
+			本当の雄を見つけてしまった喜びを感じている表情だとわかりました。<br>
+			貴方であれば、見慣れていないことはないと思います＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			じゃあルンルン気分で行きます
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			あ、ちょっとまって<br>
+			目が合った後、彼女は治療室の旦那の下へ行きます。<br>
+			娘と一緒に悼みの言葉をかけていましたが、数分で切り上げて部屋を出ます。
+		</p>
+		<p class="player p22">
+			<b>娘</b>
+			「お母様、どこへ行くのですか？こんな時に……。」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「……ごめんなさい。少し、一人になりたいんです」<br>
+			そう言って足早に何処かへ去ります。
+		</p>
+		<p class="player p22">
+			<b>娘</b>
+			「お母様………。」<br>
+			「そうよね。こんな勝ち方じゃ、祝勝会……。という気分にはなれないわよね。」<br>
+			「それにしてもあのセスタスとかいう奴……。世の中の男という生物は本当に野蛮で汚らわしいわ」
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			別にセスタスとしてはティルチ氏にいろんな意味で好感持ってるのが余計ややこしい香りがするな<br>
+			咄嗟に反則出しちゃう程度には強かったし何ならバイだし
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			そしてツルグミは大枚をはたいて匿名性の守られる部屋を携帯端末で取り、<br>
+			セスタスに連絡を入れ、ホテルへ向かいます。
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			案の定やっぱちょっと遅刻して来ます
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			これがセスタスがメールに気づくまでの一部始終で、彼女はひどく静かなホテルの一室で椅子に座りながら、彼を待っています。＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			程無くして、ノックもなしにドアが開くでしょう。<br>
+			「……良かったの？　旦那さんの傍にいてあげなくて」<br>
+			あなたの旦那を打ち負かした少年が、そこに立っています。<br>
+			彼もまた手負いですから、ところどころに痣が覗いたり、包帯で最低限の手当がなされていることでしょう＠
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			冷静に考えると再生能力者だから傷が残ってるのおかしいな！
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「……………ええ。」
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			良いんだよ！　今は手負いの方がかっこいいんだ！！
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「まったく、私の愛する夫をあんな目に遭わせて。」<br>
+			「そんなあなたは人気のないところへ呼ばれて……。」<br>
+			「―――どんな目に、遭うと思いますか？」<br>
+			あなたの前に立って見下ろします。
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			肩をすくめながら後ろ手にドアを閉めます。
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			その表情は、あなたが今まで一夜を共にした女性の多くが見せてきたものと同じ笑みでした。＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			そのまますたすた歩いて、ベッドにぼふっと倒れ込みます
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			側を歩いていくなら腕を掴むかな。<br>
+			そしてそのまま歩くならベッドの上についていく＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「旦那さん、強かったよ。まさかあんなに追い込まれると思ってなかったな」<br>
+			「やってる内に、昔のこと思い出しちゃってさ。ああいうのも全部オッケーだったから、咄嗟に」
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p1">
+			<b>私がGM</b>
+			この娘はこれで快楽に弱そう
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			服をまくります。先の組手で大きな痣が出来ていることでしょう――この傷も、夜には癒えているのでしょうが。<br>
+			それでも整った形に割れた腹筋は美しく、むしろ痣がその逞しさを強調しているかのようにも見えます。<br>
+			「それで？　ツルグミは……僕に“お仕置き”でもするの？」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			抱いて欲しいなら絶対にお前から手を出せというスタイル！
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			まぁまごついてたらこっちからいきます
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			下半身昂ぶってますか？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			流石にバキバキだと思う<br>
+			全部察した上でここまで来てるから
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			じゃあ部屋入った時から？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			はい
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			なら<br>
+			セスタスの体温も高くなってますか？
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			そうだなぁ<br>
+			まぁ高くなってると思います
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ならここまでの流れはそのままで<br>
+			ただ腕を取った時に<br>
+			「あっつ……♥」と呟いて
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			体温で発情してんじゃねぇよBBA！（チンピラ系の竿役）
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			彼が寝転んだところで何を命じられるまでもなく足元に屈み込んで<br>
+			胸元を曝け出します。<br>
+			「お仕置きだなんて……。」<br>
+			「とんでもない。私は、あなたと一緒にしたいんですよ……」<br>
+			「”祝勝会”を………♥」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「……ふーん」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			セスタスを見つめながら、猛り立つそれを布の上からデカパイで挟み込みます。<br>
+			ものすごくひんやりしています。<br>
+			＠rpendでもいいくらい<br>
+			続けるなら続ける<br>
+			勝負が終わった後の蒸し暑く感じる時、彼女の胸や腋に挟み込んだらさぞや気持ちいいだろうなと思います。<br>
+			そんな胸を手で挟み込みながら”続き”をしたいと目で訴えかけます。＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「あはっ、やっぱり冷たいなぁ。氷みたいに溶けちゃいそうだよね」<br>
+			彼女のおねだりに応えて下着を脱ぐでしょう。<br>
+			「ぼろん」と。本当にそんな擬音が相応しいかもしれません。<br>
+			ツルグミの顔ほどもあるサイズのそれが、眼前でまろび出て、そそり立っています<br>
+			「――挟みたい？　咥えたい？」　餌を吊るす飼育員のような口ぶりで＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「はぁっ……！はぁ………！！」<br>
+			いつかの日、息切れしていた時のことを思い出すほどに息が荒くなっています。<br>
+			これを見るだけで、ツルグミは心が何度も折れて、何度もセスタスに負けています。<br>
+			愛おしそうに抱え込む力を強くして、臭いを嗅ぎたそうに鼻を近づけたり、口づけしたそうに唇を近づけたりしますが、何度も葛藤してはやめている。
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			シャワーを浴びた後なので臭いはそれほど強くはないかもしれません。それ以上に熱気が伝わってきます。
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			はしたなく緩んだ顎のせいでよだれが口の端から漏れ出て、脚にぽたりと滴る液まで冷たい。
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			服の上からでもあれだけ熱かったものが、直に触れて、あるいは体内にねじ込まれれば。<br>
+			果たしてどうなるのか――<br>
+			「……どうしたの？」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「………だめ」<br>
+			「だめ……です……。」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「…………」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			身を上げて、我慢汁が糸を引きながら乳から離れてゆく。<br>
+			「やっぱり、ここで咥えるのはだめ………」<br>
+			這って、セスタスの顔の前に身を乗り出して。<br>
+			「だって私、この蔓茱萸。<br>
+			貴方のことを、心から愛しています。」<br>
+			「”あの”夫よりも、ずっと強いあなた――――」<br>
+			せめて、最初の口づけはきれいな唇で。<br>
+			「おちんちんは&quot;この後&quot;にいっぱい、しゃぶらせてください……♥」<br>
+			そう言ってセスタスの唇を奪い、小さくて強い身体に抱きついて、吸い上げるようにキスしました。＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			従順な彼女の言葉に、口角が上がるでしょう。<br>
+			何十人も、何百人もの戦士たちを殴り倒してきた、小さくも無骨に発達してきた手。<br>
+			それが、ツルグミの胸へ添えられ――そのまま鷲摑みます。<br>
+			乱暴に胸を揉みながら、舌をねじ込み、口腔を蹂躙するような貪るようなキスをするでしょう。<br>
+			舌と舌を繋ぐように唾液が糸を引き、口付けがほどけたら<br>
+			「たぶん、喉の奥まで使わないと収まりきらないと思うけど」<br>
+			「期待していいのかな？」　小気味良さげに囁きます＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「ぷはっ……♥」<br>
+			「そうね……。そう言われると、上手く出来るか自信がありませんわ……。」<br>
+			「&quot;あの人&quot;のより、ずっと大きいですもの………♥」<br>
+			唾液のアーチを作りながら身を引いて、乳を擦り付けながら股間へと顔を近づけていく。<br>
+			「……膝立ちでも良いので、立ち上がってもらっても、よろしいでしょうか」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「あ、ごめんごめん」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「ええ。&quot;勝者&quot;に、見下されながらしてみたいんです……♥」<br>
+			乳でペニスをしつこいくらいにこねながら媚びます。＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			すっと立ち上がります。自然とツルグミを見下ろす形になり……彼女の顔にも影が落ちて、大きさが強調される形になりました＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「わぁっ………♥」<br>
+			ほしかったおもちゃを目にした子供のように瞳を輝かせて<br>
+			先端へと丁寧にキスをした後……<br>
+			「…………。」<br>
+			恥ずかしそうにもう一度、上目遣いで彼を見上げて<br>
+			「あ、あの…。本当に下手でも笑わないでくださいね」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			じゃあ、ツルグミの頬に軽い感触があります<br>
+			ペニスで顔を打たれたと気付くのに、少し間があるかもしれません。
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「……へ？」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「前置き、良いからさ」<br>
+			「早くやってみてよ。上手いか下手かは僕が決めるから」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「は…はいっ……！申し訳……ありません」<br>
+			そう言って口の中へと、ぬっぽりと、ぬっぽりと、飲み込んでいきます。<br>
+			生気を感じない、とでも言うべき口内温度でペニスをもてなします。<br>
+			―――しかし体温は冷たくても、技術はぬるいです。奥まで一向にいきません。＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「んっ……♥」　なかなかない感触なので流石に気持ちよさそうではあります。　<br>
+			暫くすると、ざらざらした手がツルグミの頬や髪を撫でるでしょう＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「んっ……♥ん……♥」<br>
+			（嬉しい、上手くできている……♥）<br>
+			できてません。＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			優しく撫でているかと思ったら、不意に頭をわし掴みます。<br>
+			そのまま奥まで突っ込む。<br>
+			「あ゛ぁ゛～～これヤバ……♥」<br>
+			「ツルグミの口、ひんやりしてるのは良いんだけどさぁ、フェラ自体は全然下手くそっていうか……」<br>
+			「もしかしてあんまりやったことないの？」<br>
+			喉に突っ込んだままなので答えられるわけがないんですが、まぁ表情から読み取るつもりなのかもしれません＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「ン&quot;ボ&quot;””ッ&quot;&quot;！？！？ン&quot;グ&quot;ボ&quot;&quot;&quot;ッ&quot;&quot;&quot;&quot;ボエ&quot;&quot;&quot;ッ&quot;&quot;♥♥」<br>
+			（し、死ぬっ♥こんな風に乱暴に扱われたことはありませんわ♥♥死ん♥死ぬってぇ&quot;♥♥<br>
+			チンポに殺&quot;さ&quot;れ&quot;って言&quot;って&quot;ん&quot;の&quot;&quot;に&quot;&quot;ぃ&quot;&quot;♥💢💢♥）<br>
+			（ああ、でも………♥）<br>
+			（ 残り少ない命ですもの ）<br>
+			（ これで死ぬのｍ………… ）<br>
+			酸素が不足した脳が支離滅裂なことを考え始めています。使えないオナホですね。＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			じゃあ容赦なく抽挿を始めます。<br>
+			奥を突く度に喉が締まって気持ち良いです。<br>
+			「死にかけるのは良いんだけどっ、僕を満足させてからにしてほしいなっ！」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			（ お&quot;☆♥💢💢お&quot;☆♥💢死💢性奴隷っ♥☆☆セスタスくんだいすきぃっ♥☆↑♥♥☆↑☆☆ )<br>
+			( ヤベって♥♥💢💢☆↑↑↑お&quot;………？お&quot;&quot;&quot;！？！？！？タリホね……？お母さんね脳みそ死んでき………… ）
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「うわ、喉マンコきっつ♥♥　異物入って押し出そうとしてる喉こじ開けるのヤバいッ♥」<br>
+			「あ、そろそろ……♥」　しばらく抽挿を続けた頃に、はずんだ息で呟きます。
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「ご………♥」<br>
+			( ごぎゅう ざぜで……♥♥ )
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			喉内の感触で、ツルグミはその予兆を感じるかもしれません。
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			彼女の意志（もうそんなものないかもしれませんが）とは逆に、<br>
+			喉も、顎も、頬も、舌も、ペニスに刺激を与える筋肉が弛緩する様子はありません。生存本能でしょうか、生殖本能でしょうか。＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「――――射精るっ♥♥♥」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「 ぶッぼ♥♥♥♥！！♥♥☆♥☆♥ 」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			痙攣と同時に、濁流のような精液がツルグミの喉へ、直接流し込まれます。
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「 ズボボボボォッ♥ブボッ♥♥ 」<br>
+			「 ゴッキュッ♥ゴキュッ♥ゴッキュッ♥♥ 」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「あはっ♥　飲んでる飲んでる♥」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			鼻からも精液を垂らしながら吸い続けています。空気だとでも思っているのでしょうか。＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「あ、吸われてる♥　ヤバ、絞られ……」　そもそもの射精量に加え、ツルグミからのアプローチもあって射精は暫く続くでしょう。<br>
+			口内からようやくペニスが引きずり出された頃には、彼女の顔は白濁液でドロドロになっているかもしれません＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			『ぷちっ♥』『プチチッ！！』<br>
+			脳細胞が、焼ききれるかんしょく………<br>
+			今、わたしののうみそ、さんそなくて、どれくらいえしして………<br>
+			「ヂュルルルルッ♥♥ズボッ♥♥」<br>
+			引き抜かれる最後の瞬間まで口をすぼめて尿道の中を吸い込んで、<br>
+			ゼリー状の精液が紐のようにぶっとい糸を引きながら無様にベッドの上へと倒れ込みました。<br>
+			「すっごぉ……………♥♥♥」<br>
+			倒れ伏しながら、涙が流れていました。それは苦痛によって現れた反射ではなく、歓喜でした。＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「うわ、顔真っ赤じゃん……♥」<br>
+			呼吸を妨げられ血が上り、茹でだこのようになったツルグミの顔。<br>
+			そして精液塗れになって崩れ落ちた無様な様子を見て背筋にぞくりとしたものが駆け抜ける。<br>
+			「――ねぇ。満足してるところ悪いんだけど、もう終わりじゃないよね？♥」<br>
+			あれだけの精子を吐き出しておきながら、まだ彼の男性器は怒張したままです。<br>
+			どころか、先ほどより大きくなっているようにさえ見える＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「はぁっ……はぁ…………♥♥」<br>
+			「申し訳……ありません………♥下手くそな口淫で………♥」<br>
+			「それでも……おまんこは頑張りますから………♥♥」<br>
+			豪脚にすがりつき、デカパイを押し付けて卑しく媚びる、貴き血の女（40代前半経産婦）<br>
+			「もしかしたら……♥娘よりも若いあなたのおちんちん♥♥挿れさせてください……♥♥」<br>
+			「主人とおそろいの指輪より…♥おっきな宝石ついたのも買ってあげるから……♥私のことあなたのものにして……♥ね……♥」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「最初はあんな貞淑ぶってたのに、ツルグミがここまでチンポ狂いだったなんてね～♥」<br>
+			「…………そうだ」<br>
+			「疲れただろうから、最初は僕がリードしてあげよっか♥」　抱きかかえて、ベッドから移動します＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「え……...///」<br>
+			「やさし……………♥♥」<br>
+			中年女がガチ恋顔を赤らめて胸板に手を添えます。＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			ツルグミを抱えたまま何かを捜し、見つけるとその前に立ちます。<br>
+			姿見でした。銀髪褐色の少年と、それに抱きかかえられた精液塗れの女性が映っています。<br>
+			「あったあった。これならよく見えるかなーと思ってさ……よっと♥」<br>
+			ツルグミを抱え直し、後ろから抱え上げるような姿勢になります
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「ま……待って……これ……ちょっと、もう、恥ずかしいわよ……。」<br>
+			「だって……貴方みたいな子供の種欲しがって腰降ってるオバサンなんか……♥」<br>
+			「無様すぎ…………♥♥」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「これなら何がどこに入ってどんな顔してるのか、よく見えるでしょ？」<br>
+			ゆっくりと持ち上げ、ツルグミの雌穴へとチンポを近付けていく<br>
+			「挿れてほしい？」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「……………はい♥」<br>
+			「挿れてください………♥」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「何を？　何処に？♥」＠
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			ボス戦よりチャHの時間のが遥かに長い
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			まだやってるのか……
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			終わりませんでした
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			まぁ明日日曜だしええんちゃう
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			パイズリで締められなかった時点でこうなるしかなかった
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「セスタスの………本当に強くてたくましいおちんぽを……♥不倫おばさんツルグミの卑しい経産婦おまんこに……♥♥ずぼって……♥ズボって挿れて♥♥」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			――そのまま肉棒がツルグミの股座を突き穿ちます。
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p1">
+			<b>私がGM</b>
+			そろそろログ取ろうと思ってきたらまだやってて草なんよ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			やらなければいけない気がしたんだ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			こんな事してる我々のことなんてほっといてお休みください；；<br>
+			開始から12時間が経過したけどやらなければいけない
+		</p>
+		<p class="player p1">
+			<b>私がGM</b>
+			じゃあ体壊さないようにね<br>
+			暖かくして寝ろよ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			はい；；
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			「――はい、不貞完遂～♥」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「ッオ&quot;&quot;&quot;♥♥♥♥♥」<br>
+			「………ッほォォォオ&quot;&quot;&quot;♥♥♥」すごく満足そう＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「もうキスまでとかフェラまでとか言い訳利かなくなっちゃったね♥」<br>
+			「ま、最初から年甲斐もなく媚び媚びだったけど……さっ♥♥」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「は……はいっ♥最初っから♥セスタスくんかっこいいなぁって♥私の中の女が♥恋しちゃってましたぁっ♥♥♥」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			今回は最初から容赦なくピストンを始めます。<br>
+			姿見にはあられもない、背徳的で淫らな光景が写っているのでしょう<br>
+			「旦那さんも可哀想だよね～、少なくとも競技としては僕に勝ったのにさ♥」<br>
+			「奥さんは完堕ちして子供もほっぽって、僕と不倫セックスしちゃうんだもんなぁ♥」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「はいいいっ♥♥かっかわいそうですねぇっ♥♥」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「正直人妻として終わってるよね♥　罪悪感とかないの？♥」　容赦ないピストンと共になじる＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「あなたの方が好き♥♥好きだから♥わたくしあなたの方があのひとより好きぃっ♥ごめんなさいっ♥♥♥あのひとより愛のあるセックスできてごめんなさいっ♥♥」<br>
+			「エ&quot;♥エ”ッヘぇ&quot;&quot;&quot;！？！？♥♥ま、ま&quot;っで”♥これ♥きもちわるい♥イキ顔まで見ちゃう♥見えちゃうからぁ♥♥」<br>
+			「イグからっ♥ちょっとピストンとめて♥とめてぇ&quot;&quot;ー……ぜぇ～はぁ…♥♥」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「あはっ♥　かわいい事言ってくれるじゃーん♥　ほら、舌出して♥　キスハメしよ♥」<br>
+			ピストンは止めません。緩急を付けながら、子宮を殴りつけるように力強く攻め立てます。
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「お&quot;っ♥お&quot;！？？！♥♥じゅるっ♥ちゅぱっ♥ヂュル♥」<br>
+			（美少年すぎるぅ♥まって♥かっこよすぎますわ♥♥♥）
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「ん？　今もしかしてちょっとイッた？♥」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「あ&quot;っ♥セスタス好&quot;き&quot;す&quot;ぎて&quot;イグッ♥♥<br>
+			イッで&quot;&quot;る&quot;&quot;&quot;♥イギましたァ&quot;&quot;&quot;♥♥」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「鏡の中で子供相手にヨガってる自分見てイッたんだ♥」<br>
+			「ツルグミ、本当にマゾメスなんだね♥」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「イッでるから止めて♥♥しぬ♥と&quot;め&quot;っ♥💢<br>
+			止めてってイ&quot;&quot;ってるのにィ&quot;&quot;&quot;ッ&quot;&quot;&quot;💢♥💢♥♥♥」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「あははっ、叫びすぎで何言ってるかわかんないよ♥　……んっ♥」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			子宮を叩きつける度に乳がぼるんぼるんと弾けて揺れて、主人の晴れ舞台の為に綺麗に整えた髪もぐちゃぐちゃに狂乱させて、ババアが年甲斐もなく汚いイキ顔を晒します＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「また精子上がって来たかもっ……♥」<br>
+			「ね、良いよね？　膣内で射精していいよね♥」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「は…………？」<br>
+			「はいィィィィィィイイイイッ♥♥イイッ♥♥」<br>
+			「そのために来ましたぁ！！！♥♥」<br>
+			「今日そのためにお呼びしましたァァっ♥♥♥」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「あははははっ♥　妊娠するためって、本当酷い人妻だなぁ♥」<br>
+			「ほら、もう一回おねだりして！　僕の子種欲しいんでしょ？」<br>
+			「射精されるなら子宮にお迎えしないと！　ほらっ♥♥」　ラストスパートをかけながら＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「はいっ♥♥欲しい♥あなたの子供が♥♥主人の種よりあなたの種がほ&quot;ぢ&quot;&quot;い&quot;ッ&quot;♥」<br>
+			「絶対にたくましくて♥♥強い子供になる♥♥主人のよりぃっ♥♥確信してましたぁぁっ♥♥」<br>
+			「ね♥ねっ♥おねがい♥射精前に今度はセスタスが命令して♥<br>
+			下層の少年格闘士の子供♥♥外界から代々受け継いできた天馬空の♥ツルグミの♥♥私の貴族のお腹で育てろって命令して♥♥」<br>
+			「絶対に！！！ぜったいに&quot;&quot;&quot;&quot;&quot;&quot;&quot;♥♥♥迷惑わかけないからぁぁ♥♥♥」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「あはは、いいよ♥　せっかくだからご褒美ね♥」<br>
+			「……ただ、訂正が必要だなぁ」<br>
+			抱きしめるようにして、ピストン中の身体をさらに密着させながら<br>
+			「代々続いてきたのか何なのか知らないけど――ツルグミは僕に屈服した雌でしょ？」<br>
+			「僕は下層の奴隷だけど君を負かした雄で、君はそのチンポに媚びるしかできない、高貴でもなんでもないただのマゾ雌なんだからさ」<br>
+			「だから――安心して僕の子供孕みなよ♥♥そのための精子は……たっぷり膣内に射精してあげるから」<br>
+			「さ――ぁッ……！」
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			ひときわ音高く腰を打ち付けたのが最後でした。<br>
+			二度目とは到底思えない、むしろ勢いを増しているとも思われる白濁の本流が、ツルグミの子宮目掛けて噴き出します。＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「は……はいッ♥つよいあなたにこびるめすッ♥♥<br>
+			いっぱいどーぶつこーびしゅりゅっ♥しゅりゅうァァオ&quot;&quot;ン&quot;&quot;&quot;ン&quot;&quot;&quot;&quot;ウ&quot;&quot;&quot;ォ&quot;&quot;&quot;&quot;ッ&quot;&quot;&quot;&quot;&quot;&quot;&quot;♥♥」<br>
+			雄に媚びる猫なで声を出していましたが、<br>
+			射精を感じた瞬間呆気なく本性を表し年相応の汚声で叫ぶババァ。<br>
+			ラブホテルの店員だとしても顔をしかめるような水たまりを床に垂らしながら、優れた雄との生殖機会を逃すまいと膣がうねりをあげて注精を促す。<br>
+			「うれし……♥♥おんなのよろこび♥♥<br>
+			あぁ♥♥しあわせ…………♥」<br>
+			「これからはあんなよわいひとの子供じゃなくて……♥あなたのこども♥うみうみします……♥」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「はぁ～～気持ち良かった……♥」<br>
+			破顔したツルグミと対象的に、スッキリとした面持ちで姿見を眺めます。<br>
+			「じゃ、体位変えて次いこっか♥」<br>
+			「もう十分休憩できたよね？♥」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「え♥まって♥はやいっ♥しんじゃう♥うむまえにしんぢゃうからぁっ♥♥」＠
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			すみません、終わりでいいんですが。これだけは言わせてください。
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			はい
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			ひとしきりセスタスと交わったあと、ベッドの上で絡みながら――――<br>
+			「ほんとうはね、セスタス……♥<br>
+			あなたと会った日に子作りしたかったの……♥」<br>
+			セスタスより少し高い背丈を活かして、下半身を繋げながら乳を顔に当てがいます。<br>
+			「あの日、帰還までに猶予が二泊三日もあって………」<br>
+			「絶対妊娠するまで誰もいない世界であなたと溶け合えたらって……ずっと夢見てて……」<br>
+			指を絡めます。
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			あんこまん式ショタおねの礼儀なので端末いじりながら話を聞いています
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「ね……♥ルームサービス好きなだけ頼んでいいから♥あと２日♥♥いましょう♥ね♥♥」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「えー？」　二日、と聞いて若干顔をしかめます<br>
+			「うーん……」　端末ぽちぽち
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			興味を失われていますが、気にせずセスタスのペニスを気持ちよくするために腰を動かしています。＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「じゃ、友達呼んで良い？」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「え………？」<br>
+			「それって、男の子……？それとも、女の子…？」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「奴隷時代からの知り合いが2人いるんだよね。ずーっとツルグミと2人じゃつまんないしなぁ……」<br>
+			たぶん金髪とピンク髪
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「………それは、嫌です」<br>
+			「でも、つまらないなら………。」<br>
+			「そう…………。そうです………か………。」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「……腰止まってるけど？」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「………離れたくないです。」<br>
+			「でも、貴方の子を産むと決めたから……。」<br>
+			「貴方以外と交わるくらいなら、ここで、お開きにします……。」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「う～ん」　まぁこのままお開きというのもそれはそれでバツが悪いわけで<br>
+			「じゃ、逆ならいいの？」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「へ………？」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「だから、ツルグミがお友達連れてきてくれたら楽しいんじゃないかなと思うんだけど」<br>
+			「娘さんとかさ」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「ッ……………！！」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			やばい………！<br>
+			どうしよう………………！！！！！<br>
+			どうすんだババアお前！！！！！
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「そうよ……貴方の子供をみんなで産んだ方が……あなたの為よね………」
+		</p>
+	</div>
+
+	<div class="tab t1">
+		<div class="tabtitle">雑談</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			2日このまま寝泊りはダルいけど明らかにしょげかえってるのを見て流石に呵責を覚えた結果
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「ああ、でも……娘を巻き込むなんて……そんな……」＠<br>
+			ババアの頭の中で娘も捧げればいいとか名案じゃない！！！っていう閃きとあらゆる常識的にダメだろっていう理性がある
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「食事はいつまでも食べられるわけじゃないし、ルームサービスの女の子とかよりはツルグミの知り合いの方が盛り上がるだろうし……」<br>
+			「ま、このままお開きでもいいけどね。楽しかったしさ」＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			5+1d6+12+1d6 閃き5VS精神12 (5+1D6+12+1D6) ＞ 5+3[3]+12+4[4] ＞ 24<br>
+			はい<br>
+			「………ごめんなさい、できないわ。」<br>
+			「私の………私とあのひとの、子だもの」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「…………」　言葉尻にひっかかったのか、少しむっとします<br>
+			為すがままにさせていた腰をいきなり突き上げます
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「ン&quot;&quot;&quot;&quot;ｯオ&quot;&quot;&quot;&quot;ッッ♥♥♥♥」＠<br>
+			バグったかのような痙攣をします
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「僕の子供産むんじゃないの？　旦那さんよりも僕の方が良いって言ってなかったっけ？」
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「だめっ♥だめっ♥♥垂穂もっ……♥躑躅も……♥♥大切な子供だからぁっ♥♥」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「ツルグミって嘘つきなんだね～。僕悲しいよ～」　腰を動かし始めます
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「それにっ♥♥娘に嫌われたらぁっ♥♥バレたらあなたの子供育てられなくなるっ♥♥」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「僕の方が強い雄なんでしょ？　ツルグミも現に今喜んでるじゃんか」<br>
+			「僕のところに連れてきたらなんで娘に嫌われると思うのかな～？」　ぱちゅぱちゅ＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「それはっ……♥それはっ………♥♥」<br>
+			「私のような変態マゾじゃないかもしれないからぁっ……♥♥」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「えぇ～～ほんとに～～？」<br>
+			「正直今、僕すっご～く幻滅してるんだけどさぁ。このままだとやっぱりここに2日居るのは無理かも」<br>
+			「好きな人となら一緒の部屋にいても飽きないけど、そうでもない相手とは無理だもんねぇ～？」<br>
+			「……でも、ツルグミが娘さんたちをお友達として連れてきてくれたら～♥」<br>
+			「僕、ツルグミのこと凄く優しいんだなって♥　本当に好きになっちゃうかも……♥」　耳元で囁きます＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			垂穂が生存している√にしようか迷っている<br>
+			垂穂はタマのもんだからなぁ～
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「ツルグミはみんなをここに連れてくるのは危ないって思ってるんだよね♥」<br>
+			「でもそれを押して僕が3日間飽きないために連れてきてくれるなら……」<br>
+			「それってすごく僕のことを想ってくれてるってことだから～♥」　下から手を伸ばして乳首を弄びながら＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「………あ&quot;っ♥あ&quot;あ&quot;っ♥♥」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「僕もツルグミのこと、同じぐらい好きになっちゃうかもな～♥」　ピストンのリズムを変え、思考を麻痺させます＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「わ……分かったぁ♥分かったからぁ♥♥」<br>
+			「呼んだら私のこと………また妊娠させてくれる……？」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「本当に～！？　やったー、ツルグミ大好き！♥」<br>
+			がばっと身体を起こして、そのままツルグミと上下を入れ替えます<br>
+			おそらくは初めて上になりながら<br>
+			「何人欲しい？♥」　覆いかぶさりながら訊ねます＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「…………ッ！？！？！？？」<br>
+			「！！♥♥☆❤！💗💛！！💜！！💛♡♡♥」<br>
+			一番言われたかった言葉を言われて感極まって、都合の悪い想像を頭から全部消して何度もキスします。<br>
+			「ほんとは産める限りッ……♥5人…♥いや♥6人………♥♥いや………♥」<br>
+			「娘と合わせて10人……♥ねぇ♥娘もっ♥娘達も妊娠させてくれるっ♥ねぇ♥言って！♥♥ねぇっ♥」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「え～、そんなにいけるのか～？　ツルグミけっこうおばさんじゃんｗ」<br>
+			「それに――こんな雑魚マンコなのに♥」　ぱちゅん♥＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「ンッオ&quot;&quot;&quot;ッ♥マンコあなたの形になるから♥♥がんばるからっ♥娘まで売る不倫おばさんのこと捨てないで♥♥いっぱいつよい子孫残させて♥♥」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「ふ～ん、なら頑張って妊娠して……ねっ♥」<br>
+			上から覆いかぶさるような形でピストンを開始します。<br>
+			ここまでで何度も射精しているというのに、衰え知らずのストロークです。
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「はぁっ♥はぁっはぁっはぁッ♥♥」<br>
+			セスタスを見つめながら。今までにない破滅的な興奮を覚えながら。
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「愛してるよ、ツルグミ……。元気な子供いっぱい産んでね（責任取るとは言ってない）」<br>
+			ぱんっ♥　ぱんっ♥　ぱんっ♥　ぱんっ♥＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			（この射精受けたら終わる♥♥人生おわる♥人生おわる♥♥♥♥むすめとわたし人生おわるじんせいおわるじんせい♥♥♥）<br>
+			（断らなきゃ♥♥セスタスのチンポより娘の方がだいじって言わなきゃ♥）<br>
+			（射精する前にいわなきゃぁぁっ♥♥♥）＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			キスで口を塞ぎながらラストスパートをかけます＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			（あっ………おわったぁ♥♥♥）<br>
+			失禁のような潮を吹いて膣を締め上げます＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			（うわっ、急に締めすぎッーー！）<br>
+			「――――……ッッ！」<br>
+			上から押しつぶすように圧迫しながら、今日だけで何度目になるかもわからない射精を、当たり前のように膣内へ注ぎ込みます＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「お”っイ&quot;&quot;ッ&quot;グ&quot;&quot;あ”♥ア”ア”ア”ぁぁぁぁぁ♥♥♥」<br>
+			よく飽きないなぁと呆れるくらい、何度射精しても満足そうに絶頂します。<br>
+			「…………はぁ……はぁ………。」<br>
+			「ねぇ………♥じゃあ、こっちから質問………♥」<br>
+			「なんにん……♥よんでほしい……？」＠
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「うっ……♥　はぁ……急に締めすぎ……♥　どんだけ嬉しかったのさ……♥」<br>
+			「…………そんなの決まってるじゃん～」<br>
+			「呼べるだけ呼んでよ、それ上回るぐらいの人数孕ませてあげるからさ♥」＠rpend
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p22">
+			<b>娘</b>
+			………お母様が消息を立ってそろそろ２日になる。<br>
+			お父様が衰弱しているっていうのに、姉さんたちも何故か顔を見せない。<br>
+			ムカムカする………。これも全部あいつの…。セスタスとかいう男のせい。<br>
+			絶対に許さない。今度会ったらお父様よりひどい容態にしてやるわ。私の能力で……。<br>
+			そんな時に届いた、一通のメール。<br>
+			お母様から。―――セスタスと一緒にいる？何よそれ。<br>
+			待っててお母さん……今すぐ助けに行くから！！<br>
+			―――ホテルの扉の先にあった光景は
+		</p>
+		<p class="player p23">
+			<b>姉1</b>
+			「ンッオ&quot;&quot;&quot;ッ♥♥ヤッベ♥♥ヤベってこれェ♥イグッ♥」
+		</p>
+		<p class="player p24">
+			<b>姉2</b>
+			「セスタス様っ♥すごい♥精力すごすぎますっ♥♥あぁっ♥セスタス様♥私をお嫁さんにしてください♥♥次は私に♥どうかお情けを♥♥」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			我慢せずとっととイけと言わんばかりに尻を叩きます＠
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			「ア&quot;……ひ♥♥」
+		</p>
+		<p class="player p23">
+			<b>姉1</b>
+			「っちょケツ叩くの反則っしょォォォ♥♥またイグッ♥♥」
+		</p>
+		<p class="player p22">
+			<b>娘</b>
+			セスタスに犯されて喜んでいる姉と<br>
+			セスタスに寄り添って媚びている姉と<br>
+			犯され抜いて精液まみれになりながら動かなくなっているお母様の姿だった。＠rpend
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「アハハッ♥　お尻叩いただけでイく君も大概だけど……ねッ♥」<br>
+			姉1の絶頂に追い打ちをかけるように膣内へ射精します。<br>
+			「ふぅ～……ん？」<br>
+			「あ。来た来た。面と向かって話すのは初めてかな」
+		</p>
+		<p class="player p23">
+			<b>姉1</b>
+			「あ”♥デキるっ♥できるってェこれ♥♥らめぇっ♥」
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			「――“君が大嫌いな”セスタスです、よろしく♥」＠rpend
+		</p>
+		<p class="player p22">
+			<b>娘</b>
+			「………殺す」<br>
+			躑躅、という名のその少女は。両腕を朝日のように燃やしてセスタスに襲いかかった。<br>
+			返り討ちにして羽交い締めにされる、ほんの数秒前の話であった＠
+		</p>
+	</div>
+
+	<div class="tab t0">
+		<div class="tabtitle">メイン</div>
+		<p class="player p3">
+			<b>セスタス</b>
+			終焉ですか？
+		</p>
+		<p class="player p22">
+			<b>娘</b>
+			はい
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			お疲れさまでした<br>
+			パイズリで終わらせなくてすいませんでした！！！！<br>
+			なんか終わらせたくなかったんです！！！！
+		</p>
+		<p class="player p22">
+			<b>娘</b>
+			私の人生も終わって最終的に腋舐められながらダブル妊娠検査薬ピースします＠RPEND<br>
+			男ってほんとバカですね<br>
+			下半身でもの考えてるでしょ絶対<br>
+			バーカ！！！！！！！！！！！
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			（子宮に一撃）
+		</p>
+		<p class="player p22">
+			<b>娘</b>
+			お&quot;ッ♥♥♥
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			なげーよ！（爆笑問題田中）<br>
+			メジロ家全員食われるとは思わなかったよ<br>
+			マック以外全滅
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			セスタスの気持ちになって「2日拘束はないわ～」と思ってヤリ友連れてきてそいつらとゲーム交えながらならアリかなぁと正直に答えてしまった
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			なんならあそこでマジで切る予定だったんだけどね<br>
+			当初の目的はひっそりとセスタスの苗床になってひっそりと子供育てるだけだから<br>
+			目的は達成してる<br>
+			なんで娘まで売った？<br>
+			うへ～何時間座ってた…エコノミー症候群なる
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			妥協案を探る過程でなんかツルグミが含みのある答えをしたので<br>
+			競争心に火が点いた結果あんなことに……<br>
+			第二すいませんでしたポイント<br>
+			13時間ぐらいやってたのか……
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			我々が猿に退化しているうちに蟹スレの催しは終わったし海老がバクシンの動画あげてるしコナタデさんは猿になってる
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			チャＨ始めてから5～6時間ぐらい経過してるな
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			いやでもね、チャHというのはやめたまえ<br>
+			必要。<br>
+			我々が行った行為それは必要の二文字。
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			なんだこいつ
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			この世に無駄なことなんてないの<br>
+			後日談は必要なもの。
+		</p>
+		<p class="player p22">
+			<b>娘</b>
+			なんだこいつ
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			でも私もパイズリで切ろうみたいな話になった時に「本当にこれでいいのか？」って疑念が過りました
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			これやらなかったら膣内射精まで続けるけど良いのか？って警告できない自分が居た
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			でもやるべきだと思ったんだ<br>
+			ちゃんと40p分やるべきだと思った
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			メジロラモーヌのキャラデザが公開されたら生贄が一人増えます<br>
+			でもマックは……マックだけはカニドラの住人だ<br>
+			そもそも彼女らとはいとこだし
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			私はうまくやれたでしょうか、博士……（壊れかけのロボット）
+		</p>
+		<p class="player p22">
+			<b>娘</b>
+			（踵落としでとどめを刺す）
+		</p>
+		<p class="player p3">
+			<b>セスタス</b>
+			（粉砕されランプが目にあたるパーツから転がる）
+		</p>
+		<p class="player p0">
+			<b>蔓茱萸・T・ティルチ</b>
+			家に帰ろう<br>
+			最後に一言<br>
+			ウマ娘のメジロ家（ほぼ）全員汚したぞおおおおおおおおおおおおおおおおおお！！！！！！！！！！！！！！！！！！！！！！！！！！！！<br>
+			これが自由だぁああああああああ！！！！！！！！！！！<br>
+			お疲れさまでした。
+		</p>
+	</div>
+</body>
+</html>
