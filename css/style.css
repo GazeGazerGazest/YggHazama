@@ -1,4 +1,4 @@
-/* 基本設定 */
+/* Base Settings */
 body {
   font-family: 'メイリオ', 'Meiryo', sans-serif;
   margin: 10px;
@@ -10,19 +10,25 @@ body {
   animation: fadeIn 1s ease 0s 1 normal;
 }
 
+table {
+  margin: 0;
+  padding: 0;
+  border-spacing: 3;
+  }
 
-/* フレックスボックス（お嬢様にオススメされた） */
+.borderless {
+  border-spacing: 0;
+  }
+
+td {
+  padding:0;
+}
+
+/* Flexbox */
 .flex-container {
   display: flex;
 }
-.flex-container iframe {
-  flex-grow: 1;
-}
-
-.flex-container table {
-  flex-grow: 1;
-}
-.flex-container div {
+.flex-container > * {
   flex-grow: 1;
 }
 
@@ -31,8 +37,8 @@ a:link, a:visited {
   display: inline;
 }
 
-.bottun-hover:hover {
-  background: linear-gradient(45deg, rgba(128,255,255,0),rgba(128,255,255,0.5));
+.button-hover:hover {
+  background: linear-gradient(45deg, rgba(128,255,255,0), rgba(128,255,255,0.5));
   color: #00ff00;
 }
 
@@ -46,16 +52,16 @@ ul, ol {
 }
 
 h1, h2, h3 {
-  valign: middle;
+  vertical-align: middle;
 }
 
-/* アニメーション設定 */
+/* Animations */
 @keyframes fadeIn {
   0% {opacity: 0}
   100% {opacity: 1}
 }
 
-/* ポップアップ */
+/* Popup */
 .lb {
   display: flex;
   position: fixed;
@@ -71,24 +77,21 @@ h1, h2, h3 {
   pointer-events: none;
   z-index: 100;
 }
-
 .lb img {
   width: auto !important;
   max-height: 100% !important;
   cursor: pointer;
 }
-
 .lb:target {
   opacity: 1;
   pointer-events: auto;
   z-index: 101;
 }
 
-/* ハンバーガーボタン */
+/* Hamburger Menu */
 #menu-btn-check {
   display: none;
 }
-
 .menu-content {
   width: 100%;
   height: 100%;
@@ -99,23 +102,20 @@ h1, h2, h3 {
   transition: all 0.5s;
   z-index: 80;
 }
-
 #menu-btn-check:checked ~ .menu-content {
   right: 0;
 }
 
-/* メニューボタン設定（共通） */
 .menu-btn {
   cursor: pointer;
   height: 100px;
   width: 100px;
   background-color: #212121;
-  position: absolute; /* この行を変更 */
+  position: absolute;
   bottom: 2%;
-  right: 2%; /* この行を追加（左から右に変更） */
-  z-index: 81; /* この行を追加（z-indexを少し上げてみてください） */
+  right: 2%;
+  z-index: 81;
 }
-
 .menu-btn span,
 .menu-btn span:before,
 .menu-btn span:after {
@@ -126,39 +126,34 @@ h1, h2, h3 {
   background: white;
   margin: auto;
 }
-
 .menu-btn span {
   top: 50%;
   left: 10px;
 }
-
 .menu-btn span:before,
 .menu-btn span:after {
   top: 0;
   bottom: 0;
 }
-
 .menu-btn span:before {
   transform: translateY(-20px);
 }
-
 .menu-btn span:after {
   transform: translateY(20px);
 }
+#menu-btn-check:checked ~ .menu-btn span {
+  background-color: rgba(255, 255, 255, 0);
+}
+#menu-btn-check:checked ~ .menu-btn span:before {
+  bottom: 0;
+  transform: rotate(45deg);
+}
+#menu-btn-check:checked ~ .menu-btn span:after {
+  top: 0;
+  transform: rotate(-45deg);
+}
 
-	#menu-btn-check:checked ~ .menu-btn span {
-	    background-color: rgba(255, 255, 255, 0);/*メニューオープン時は真ん中の線を透明にする*/
-	}
-	#menu-btn-check:checked ~ .menu-btn span::before {
-	    bottom: 0;
-	    transform: rotate(45deg);
-	}
-	#menu-btn-check:checked ~ .menu-btn span::after {
-	    top: 0;
-	    transform: rotate(-45deg);
-	}
-
-
+/* Menu Window */
 .menuwin {
   grid-area: menuwin;
   width: 300px;
@@ -166,13 +161,32 @@ h1, h2, h3 {
   background: rgba(0,0,0,0.8);
 }
 
+/* Main Window */
 .mainwin {
   grid-area: mainwin;
   height: 95vh;
   background: rgba(0,0,0,0.8);
 }
 
-/* 画面サイズに応じた表示切替 */
+/* Table Cell */
+.table-cell {
+  position: relative;
+  cursor: pointer;
+  padding: 5px;
+  color: #ffff00;
+}
+.table-cell a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+.table-cell:hover {
+  filter: brightness(1.5);
+}
+
+/* Responsive Design */
 @media screen and (max-width: 768px) {
   .menuwin {
     display: none;
@@ -185,15 +199,13 @@ h1, h2, h3 {
     width: 80%;
   }
 }
-
 @media screen and (min-width: 769px) {
-	.menuwin {
-	  grid-area: menuwin;
-	  width: 300px;
-	  height: 95vh;
-	  background: rgba(0,0,0,0.8);
-	}
-
+  .menuwin {
+    grid-area: menuwin;
+    width: 300px;
+    height: 95vh;
+    background: rgba(0,0,0,0.8);
+  }
   .hamburger-menu {
     display: none;
   }
