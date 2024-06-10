@@ -6,6 +6,7 @@ body{
     margin: 15px;
     font-size: 14px;
     line-height: 140%;
+    background: rgba(0,0,0,0.8);
     }
 
 /* 公開チャット div */

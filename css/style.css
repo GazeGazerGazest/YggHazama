@@ -4,6 +4,7 @@ body {
   margin: 10px;
   padding: 0;
   color: #ffffff;
+  background: rgba(0,0,0,0.8);
   background-size: auto 100%;
   background-repeat: no-repeat;
   background-position: center;
@@ -157,14 +158,6 @@ h1, h2, h3 {
 .menuwin {
   grid-area: menuwin;
   width: 300px;
-  height: 95vh;
-  background: rgba(0,0,0,0.8);
-}
-
-/* Main Window */
-.mainwin {
-  grid-area: mainwin;
-  height: 95vh;
   background: rgba(0,0,0,0.8);
 }
 
@@ -188,6 +181,9 @@ h1, h2, h3 {
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {
+  .change1 {
+    display: none;
+  }
   .menuwin {
     display: none;
   }
@@ -200,11 +196,13 @@ h1, h2, h3 {
   }
 }
 @media screen and (min-width: 769px) {
+  .change2 {
+    display: none;
+  }
   .menuwin {
     grid-area: menuwin;
     width: 300px;
     height: 95vh;
-    background: rgba(0,0,0,0.8);
   }
   .hamburger-menu {
     display: none;
