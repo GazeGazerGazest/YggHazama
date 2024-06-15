@@ -3,181 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>イラスト</title>
-    <link href="../css/lity-2.4.1/dist/lity.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="../css/lity-2.4.1/dist/lity.js"></script>
-    <style>
-        /* 既存のCSS */
-        html {
-            height: 100%;
-        }
-        body {
-            height: 100%;
-            font-family: 'メイリオ', 'Meiryo', sans-serif;
-            margin: 0;
-            padding: 0;
-            color: #ffffff;
-            background: rgba(0,0,0,0.8);
-            background-size: cover;
-            animation: fadeIn 1s ease 0s 1 normal;
-            -webkit-animation: fadeIn 1s ease 0s 1 normal;
-        }
-        h1 {
-            background-repeat: no-repeat;
-            background-size: 5em;
-            background-position: right;
-            background-color: #000000;
-            padding: 0.5em;
-            border: 0.1em solid #ffffff;
-            color: #ffffff;
-        }
-        h2 {
-            background-repeat: no-repeat;
-            background-image: url(../image/symbol03.png);
-            background-size: 4em;
-            background-position: right;
-            background-color: #000000;
-            padding: 0.5em;
-            border: 0.1em solid #ffffff;
-            color: #ffffff;
-        }
-        h3 {
-            background-repeat: no-repeat;
-            background-image: url(../image/symbol03.png);
-            background-size: 3em;
-            background-position: right;
-            background-color: #000000;
-            padding: 0.5em;
-            border: 0.1em solid #ffffff;
-            color: #ffffff;
-        }
-        a:before {
-            display: inline;
-        }
-        a:link {
-            color: #a080ff;
-            display: inline;
-        }
-        a:visited {
-            color: #a080ff;
-        }
-        .bottun-hover:hover {
-            background: linear-gradient(45deg, rgba(128, 255, 255, 0), rgba(128, 255, 255, 0.5));
-            color: #00ff00;
-        }
-        ul, ol {
-            margin: 0;
-        }
-        .frame {
-            height: 175px;
-            width: 175px;
-        }
-        @keyframes fadeIn {
-            0% {opacity: 0}
-            100% {opacity: 1}
-        }
-        @-webkit-keyframes fadeIn {
-            0% {opacity: 0}
-            100% {opacity: 1}
-        }
-        /* 新しいCSS */
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-        }
+    <title>Image Gallery</title>
+<style>
+    /* Animations */
+    @keyframes fadeIn {
+        0% {opacity: 0}
+        100% {opacity: 1}
+    }
+    body {
+        font-family: 'メイリオ', 'Meiryo', sans-serif;
+        margin: 10px;
+        padding: 0;
+        color: #ffffff;
+        background: rgba(0,0,0,0.8);
+        animation: fadeIn 1s ease 0s 1 normal;
+        text-align: center;
+    }
+    .thumbnail-container {
+        width: 150px;
+        height: 150px;
+        display: inline-block;
+        vertical-align: middle;
+        margin: 5px;
+    }
+    .thumbnail {
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        object-fit: contain;
+        transition: transform 0.3s, border 0.3s;
+    }
+    .thumbnail:hover {
+        transform: scale(1.1);
+        border: 2px solid #f1f1f1;
+    }
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        padding-top: 60px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        vertical-align: middle;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.9);
+        justify-content: center;
+        align-items: center;
+    }
+    .modal-content {
+        margin: auto;
+        display: block;
+        max-width: 90%;
+        max-height: 90%;
+        width: auto;
+        height: auto;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        animation: fadeIn 0.5s;
+    }
+    .modal-content img {
+        width: 100%;
+        height: auto;
+        display: block;
+        max-height: 80vh; /* 最大高さをビューポートの80%に制限 */
+        object-fit: contain;
+        margin: auto;
+    }
+    .modal-content:hover {
+        cursor: pointer;
+    }
+    .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 10%;
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        user-select: none;
+        transition: background-color 0.3s;
+    }
+    .prev {
+        left: 0;
+    }
+    .next {
+        right: 0;
+    }
+    .prev:hover, .next:hover {
+        background-color: rgba(0,0,0,0.8);
+    }
+    .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+        z-index: 81;
+    }
+    .close:hover,
+    .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
 
-        .gallery img {
-            width: 150px;
-            height: 150px;
-            object-fit: contain;
-            object-position: center;
-            cursor: pointer;
-            background-color: #000; /* 背景色を設定して余白が見やすくなるようにします */
-        }
 
-        .lity-prev, .lity-next {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 2em;
-            color: white;
-            text-decoration: none;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 0.5em 1em;
-            border-radius: 0.3em;
-            cursor: pointer;
-            z-index: 10001;
-        }
-        .lity-prev {
-            left: 10px;
-        }
-        .lity-next {
-            right: 10px;
-        }
-    </style>
 </head>
-<body width="100%">
-    <h1>イラストギャラリー</h1>
-    <div class="gallery">
-        <a href="image/001.jpg" data-lity><img src="image/resize/001.jpg" alt="【トルトルと】"></a>
-        <a href="image/002.jpg" data-lity><img src="image/resize/002.jpg" alt="【タリホと】"></a>
-        <a href="image/003.jpg" data-lity><img src="image/resize/003.jpg" alt="【トルトルと２】"></a>
-        <a href="image/004.jpg" data-lity><img src="image/resize/004.jpg" alt="【レミエムと】"></a>
-        <a href="image/005.png" data-lity><img src="image/resize/005.png" alt="【ツルグミと】"></a>
-        <a href="image/006.png" data-lity><img src="image/resize/006.png" alt="【スカーレットと】"></a>
-        <a href="image/007.jpg" data-lity><img src="image/resize/007.jpg" alt="【ツツジと】"></a>
-        <a href="image/008.jpg" data-lity><img src="image/resize/008.jpg" alt="【ツクバネと】"></a>
-        <a href="image/009.jpg" data-lity><img src="image/resize/009.jpg" alt="【メリアナと】"></a>
-        <a href="image/010.jpg" data-lity><img src="image/resize/010.jpg" alt="【タイキと】"></a>
-        <a href="image/011.jpg" data-lity><img src="image/resize/011.jpg" alt="【玉藻と】"></a>
-        <a href="image/012.jpg" data-lity><img src="image/resize/012.jpg" alt="【古見BBAと】"></a>
-        <a href="image/013.jpg" data-lity><img src="image/resize/013.jpg" alt="【ルザミーネと】"></a>
-        
+<body>
+
+<h1>▼イメージギャラリー</h1>
+
+<div style="display: inline-block; height: 150px; vertical-align: middle;"></div>
+<!-- Thumbnail images -->
+<div class="thumbnail-container"><img class="thumbnail" src="image/resize/001.jpg" onclick="openModal();currentSlide(1)" alt="Image 1"></div>
+<div class="thumbnail-container"><img class="thumbnail" src="image/resize/002.jpg" onclick="openModal();currentSlide(2)" alt="Image 2"></div>
+<div class="thumbnail-container"><img class="thumbnail" src="image/resize/003.jpg" onclick="openModal();currentSlide(3)" alt="Image 3"></div>
+<div class="thumbnail-container"><img class="thumbnail" src="image/resize/004.jpg" onclick="openModal();currentSlide(4)" alt="Image 4"></div>
+<div class="thumbnail-container"><img class="thumbnail" src="image/resize/005.jpg" onclick="openModal();currentSlide(5)" alt="Image 5"></div>
+<div class="thumbnail-container"><img class="thumbnail" src="image/resize/006.jpg" onclick="openModal();currentSlide(6)" alt="Image 6"></div>
+<div class="thumbnail-container"><img class="thumbnail" src="image/resize/007.jpg" onclick="openModal();currentSlide(7)" alt="Image 7"></div>
+<div class="thumbnail-container"><img class="thumbnail" src="image/resize/008.jpg" onclick="openModal();currentSlide(8)" alt="Image 8"></div>
+<div class="thumbnail-container"><img class="thumbnail" src="image/resize/009.jpg" onclick="openModal();currentSlide(9)" alt="Image 9"></div>
+<div class="thumbnail-container"><img class="thumbnail" src="image/resize/010.jpg" onclick="openModal();currentSlide(10)" alt="Image 10"></div>
+<div class="thumbnail-container"><img class="thumbnail" src="image/resize/011.jpg" onclick="openModal();currentSlide(11)" alt="Image 11"></div>
+<div class="thumbnail-container"><img class="thumbnail" src="image/resize/012.jpg" onclick="openModal();currentSlide(12)" alt="Image 12"></div>
+<div class="thumbnail-container"><img class="thumbnail" src="image/resize/013.jpg" onclick="openModal();currentSlide(13)" alt="Image 13"></div>
+<div class="thumbnail-container"><img class="thumbnail" src="image/resize/014.jpg" onclick="openModal();currentSlide(14)" alt="Image 14"></div>
+<div class="thumbnail-container"><img class="thumbnail" src="image/resize/015.jpg" onclick="openModal();currentSlide(15)" alt="Image 15"></div>
+
+<!-- The Modal/Lightbox -->
+<div id="myModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <div class="modal-content">
+        <img id="modal-image" src="">
     </div>
-    </div>
+    <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+    <a class="next" onclick="changeSlide(1)">&#10095;</a>
+</div>
 
-    <script>
-        $(document).on('lity:open', function(event, instance) {
-            let currentImage = instance.element();
-            let images = $('.gallery a');
-            let currentIndex = images.index(currentImage);
+<script>
+let slideIndex = 1;
 
-            let updateImage = function(index) {
-                let newImage = $(images[index]).attr('href');
-                instance.element().attr('href', newImage).find('img').attr('src', newImage);
-            };
+function openModal() {
+    document.getElementById('myModal').style.display = "block";
+    showSlides(slideIndex);
+}
 
-            let prevButton = $('<a class="lity-prev">&#10094;</a>');
-            let nextButton = $('<a class="lity-next">&#10095;</a>');
+function closeModal() {
+    document.getElementById('myModal').style.display = "none";
+}
 
-            prevButton.on('click', function(event) {
-                event.stopPropagation();
-                currentIndex = (currentIndex - 1 + images.length) % images.length;
-                updateImage(currentIndex);
-            });
+function changeSlide(n) {
+    showSlides(slideIndex += n);
+}
 
-            nextButton.on('click', function(event) {
-                event.stopPropagation();
-                currentIndex = (currentIndex + 1) % images.length;
-                updateImage(currentIndex);
-            });
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+}
 
-            $('body').append(prevButton, nextButton);
+function showSlides(n) {
+    const slides = ["image/001.jpg", "image/002.jpg", "image/003.jpg", "image/004.jpg", "image/005.jpg",
+                    "image/006.jpg", "image/007.jpg", "image/008.jpg", "image/009.jpg", "image/010.jpg",
+                    "image/011.jpg", "image/012.jpg", "image/013.jpg", "image/014.jpg", "image/015.jpg"];
+    if (n > slides.length) { slideIndex = 1 }
+    if (n < 1) { slideIndex = slides.length }
+    document.getElementById("modal-image").src = slides[slideIndex - 1];
+}
+</script>
 
-            $(document).on('lity:close', function() {
-                prevButton.remove();
-                nextButton.remove();
-            });
-        });
-
-
-window.onload = function() {
-  parent.postMessage(window.location.pathname, "*");
-};
-
-    </script>
 </body>
 </html>

@@ -12,3 +12,13 @@ $(".inline").colorbox({
      inline:true,
      rel:'group'
 });
+
+function resizeIframe(iframe) {
+    iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 'px';
+}
+
+// For dynamically resizing when content changes
+window.addEventListener('resize', function() {
+    var iframe = document.getElementById('contentFrame');
+    resizeIframe(iframe);
+});
