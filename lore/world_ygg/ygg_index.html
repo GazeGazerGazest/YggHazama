@@ -186,8 +186,11 @@
 
 <script>
 window.onload = function() {
-  parent.postMessage(window.location.pathname, "*");
+    parent.postMessage(window.location.pathname, "*");
+    var height = document.documentElement.scrollHeight;
+    window.parent.postMessage({ height: height }, "*");
 };
+
 </script>
 
 

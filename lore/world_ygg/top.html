@@ -7,7 +7,7 @@
 
 <body>
 
-    <iframe id="ygg_index" name="ygg_index" src="ygg_index.html" frameborder="0" width="100%" height="500px"></iframe>
+    <iframe id="ygg_index" name="ygg_index" src="ygg_index.html" frameborder="0" width="100%" onload="resizeIframe(this)"></iframe>
 
 <div style="margin-top: 50px;">
 
@@ -67,9 +67,22 @@
 
 <script>
 window.onload = function() {
-  parent.postMessage(window.location.pathname, "*");
+    parent.postMessage(window.location.pathname, "*");
+    initIframeListener();
 };
-</script>
 
+function initIframeListener() {
+    window.addEventListener('message', function(event) {
+        if (event.origin !== window.location.origin && event.origin !== "null") {
+            // メッセージが同一オリジンからのものであることを確認
+            return;
+        }
+        if (event.data.height) {
+            var iframe = document.getElementById('ygg_index');
+            iframe.style.height = event.data.height + 'px';
+        }
+    }, false);
+}
+</script>
 
 </HTML>
