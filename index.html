@@ -10,7 +10,9 @@
     body {
       transition: background-image 0.5s ease-in-out;
       background-repeat: no-repeat;
-      background-size: cover;
+      background-size: 50%;
+      background-position: 50% 50%;
+      background-color: rgba(0,0,0,1);
     }
   </style>
 </head>
@@ -37,15 +39,13 @@
       console.log('Current iframe src:', pathname);
 
       if (pathname.includes('lore/world_ygg/')) {
-        body.style.backgroundImage = 'url("image/yggbg.jpg")';
+        body.style.backgroundImage = 'url("image/seal_ygg.png")';
       } else if (pathname.includes('lore/world_arc/')) {
-        body.style.backgroundImage = 'url("image/arcbg.jpg")';
-      } else if (pathname.includes('top.html')) {
-        body.style.backgroundImage = 'url("image/topbg.jpg")';
+        body.style.backgroundImage = 'url("image/seal_arc.png")';
       } else if (pathname.includes('gallery/')) {
-        body.style.backgroundImage = 'url("image/gallerybg.jpg")';
+        body.style.backgroundImage = 'url("image/seal_gallery.png")';
       } else {
-        body.style.backgroundImage = 'url("image/bg.jpg")';
+        body.style.backgroundImage = 'url("image/seal_alma.png")';
       }
 
       console.log('Background image set to:', body.style.backgroundImage);
