@@ -5,7 +5,7 @@ body {
   padding: 0;
   color: #ffffff;
   background: rgba(0,0,0,0.8);
-  background-size: auto 100%;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   animation: fadeIn 1s ease 0s 1 normal;

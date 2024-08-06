@@ -192,6 +192,10 @@ function showSlides(n) {
     document.getElementById("caption").innerHTML = slide.alt;
 }
 
+window.onload = function() {
+  parent.postMessage(window.location.pathname, "*");
+};
+
 </script>
 
 </body>
