@@ -1,129 +1,5 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ログ</title>
-    <link href="../css/lity-2.4.1/dist/lity.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="../css/lity-2.4.1/dist/lity.js"></script>
-    <style>
-        /* 既存のCSS */
-        html {
-            height: 100%;
-        }
-        body {
-            height: 100%;
-            font-family: 'メイリオ', 'Meiryo', sans-serif;
-            margin: 0;
-            padding: 0;
-            color: #ffffff;
-            background-size: cover;
-            animation: fadeIn 1s ease 0s 1 normal;
-            -webkit-animation: fadeIn 1s ease 0s 1 normal;
-        }
-        h1 {
-            background-repeat: no-repeat;
-            background-size: 5em;
-            background-position: right;
-            background-color: #000000;
-            padding: 0.5em;
-            border: 0.1em solid #ffffff;
-            color: #ffffff;
-        }
-        h2 {
-            background-repeat: no-repeat;
-            background-image: url(../image/symbol03.png);
-            background-size: 4em;
-            background-position: right;
-            background-color: #000000;
-            padding: 0.5em;
-            border: 0.1em solid #ffffff;
-            color: #ffffff;
-        }
-        h3 {
-            background-repeat: no-repeat;
-            background-image: url(../image/symbol03.png);
-            background-size: 3em;
-            background-position: right;
-            background-color: #000000;
-            padding: 0.5em;
-            border: 0.1em solid #ffffff;
-            color: #ffffff;
-        }
-        a:before {
-            display: inline;
-        }
-        a:link {
-            color: #a080ff;
-            display: inline;
-        }
-        a:visited {
-            color: #a080ff;
-        }
-        .bottun-hover:hover {
-            background: linear-gradient(45deg, rgba(128, 255, 255, 0), rgba(128, 255, 255, 0.5));
-            color: #00ff00;
-        }
-        ul, ol {
-            margin: 0;
-        }
-        .frame {
-            height: 175px;
-            width: 175px;
-        }
-        @keyframes fadeIn {
-            0% {opacity: 0}
-            100% {opacity: 1}
-        }
-        @-webkit-keyframes fadeIn {
-            0% {opacity: 0}
-            100% {opacity: 1}
-        }
-        /* 新しいCSS */
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .gallery img {
-            width: 150px;
-            height: 150px;
-            object-fit: contain;
-            object-position: center;
-            cursor: pointer;
-            background-color: #000; /* 背景色を設定して余白が見やすくなるようにします */
-        }
-
-        .lity-prev, .lity-next {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 2em;
-            color: white;
-            text-decoration: none;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 0.5em 1em;
-            border-radius: 0.3em;
-            cursor: pointer;
-            z-index: 10001;
-        }
-        .lity-prev {
-            left: 10px;
-        }
-        .lity-next {
-            right: 10px;
-        }
-    </style>
-</head>
-<body width="100%">
-
-
-
-
-
 
 <html>
 <head>
@@ -137,79 +13,59 @@
 	<h1>■ログ一覧</h1>
 	<hr>
 	<table cellspacing="5" cellpadding="5" width="100%" border="0">
-		<tr bgcolor="#460000">
-			<td width="15%">
+	</table>
+
+	<table border="0" width="100%">
+		<tr>
+			<td bgcolor="#151515" width="20%">
 				◆エピソード05
 			</td>
-			<td>
-				<a href="log/ep005/ep005.html" >爛れた正月</a>
+			<td bgcolor="#151515" class="table-cell">
+				<b>
+					<a href="log/ep005/ep005.html" >爛れた正月</a>
+				</b>
 			</td>
 		</tr>
-		<tr bgcolor="#460000">
-			<td width="15%">
+		<tr bgcolor="#151515">
+			<td>
 				◆エピソード06
 			</td>
-			<td>
-				<a href="log/ep006/ep006.html" >far distant</a>
+			<td bgcolor="#151515" class="table-cell">
+				<b>
+					<a href="log/ep006/ep006.html" >far distant</a>
+				</b>
 			</td>
 		</tr>
-		<tr bgcolor="#460000">
-			<td width="15%" rowspan="2">
+		<tr bgcolor="#151515">
+			<td rowspan="2">
 				◆エピソード07
 			</td>
-			<td>
-				<a href="log/ep007/ep007.html" >森人の里</a>
+			<td bgcolor="#151515" class="table-cell">
+				<b>
+					<a href="log/ep007/ep007.html" >森人の里</a>
+				</b>	
 			</td>
 		</tr>
-		<tr bgcolor="#460000">
-			<td>
-				<a href="log/ep007-ep/ep007-ep.html" >エピローグ</a>
+		<tr bgcolor="#151515">
+			<td bgcolor="#151515" class="table-cell">
+				<b>
+					<a href="log/ep007-ep/ep007-ep.html" >エピローグ</a>
+				</b>
+				
 			</td>
 		</tr>
-	</table>
+					
+				</table>
+			</details>
+		</td>
+	</tr>
+</table>
+
+
 </div>
 </body>
 </html>
 
-
-
-
-
-
-    <script>
-        $(document).on('lity:open', function(event, instance) {
-            let currentImage = instance.element();
-            let images = $('.gallery a');
-            let currentIndex = images.index(currentImage);
-
-            let updateImage = function(index) {
-                let newImage = $(images[index]).attr('href');
-                instance.element().attr('href', newImage).find('img').attr('src', newImage);
-            };
-
-            let prevButton = $('<a class="lity-prev">&#10094;</a>');
-            let nextButton = $('<a class="lity-next">&#10095;</a>');
-
-            prevButton.on('click', function(event) {
-                event.stopPropagation();
-                currentIndex = (currentIndex - 1 + images.length) % images.length;
-                updateImage(currentIndex);
-            });
-
-            nextButton.on('click', function(event) {
-                event.stopPropagation();
-                currentIndex = (currentIndex + 1) % images.length;
-                updateImage(currentIndex);
-            });
-
-            $('body').append(prevButton, nextButton);
-
-            $(document).on('lity:close', function() {
-                prevButton.remove();
-                nextButton.remove();
-            });
-        });
-    </script>
 
 </body>
 </html>
